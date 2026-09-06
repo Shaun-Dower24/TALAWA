@@ -428,12 +428,6 @@
     margin:0 auto 0 0; font-family:var(--mono); font-size:10px;
     letter-spacing:.22em; text-transform:uppercase; color:var(--ash);
   }
-  .order-tab{
-    font-family:var(--mono); font-size:11px; letter-spacing:.12em;
-    text-transform:uppercase; cursor:pointer; background:transparent; color:var(--ash);
-    border:1px solid rgba(145,138,123,.4); border-radius:2px; padding:.5rem .8rem;
-  }
-  .order-tab[aria-pressed="true"]{background:var(--gold); color:var(--ink); border-color:var(--gold)}
   .order-panel{padding:clamp(1.2rem,3.4vw,2.2rem) 1.1rem}
   .order-panel h3{
     font-family:var(--display); font-weight:900; text-transform:uppercase;
@@ -1130,6 +1124,7 @@
         <li><b>Postcode</b><span class="tbc" data-venue="postcode">[ postcode to confirm ]</span></li>
         <li><b>When</b><span>Every Saturday, 4&ndash;8pm &mdash; or until it&rsquo;s gone</span></li>
         <li><b>Parking</b><span>Free in the pub car park</span></li>
+        <li><b>Payment</b><span>Card and cash</span></li>
         <li><b>Phone</b><span data-venue="phone">07841 625488</span></li>
       </ul>
       <div class="btn-row">
@@ -1183,36 +1178,18 @@
 
   <div class="order">
     <div class="order-head">
-      <p>How to order &mdash; click to compare</p>
-      <button class="order-tab" aria-pressed="true"  aria-controls="op-0" type="button">Turn up</button>
-      <button class="order-tab" aria-pressed="false" aria-controls="op-1" type="button">Ring or DM</button>
-      <button class="order-tab" aria-pressed="false" aria-controls="op-2" type="button">Order online</button>
+      <p>How to order</p>
     </div>
 
     <div class="order-panel" id="op-0">
       <h3>Just turn up</h3>
-      <p>No need to order ahead. Come and find the truck from 4pm on Saturday &mdash; when it&rsquo;s gone, it&rsquo;s gone.</p>
+      <p>No need to order ahead &mdash; everything is cooked fresh on the day and served in the
+        order people arrive. Come and find the truck from 4pm on Saturday; when it&rsquo;s gone,
+        it&rsquo;s gone. Card and cash both fine.</p>
       <div class="btn-row">
-        <a class="btn" href="#find" data-tbc>Get directions</a>
+        <a class="btn js-directions" href="#find" data-tbc>Get directions</a>
         <a class="btn btn--ghost" href="#menu">See the menu</a>
       </div>
-    </div>
-
-    <div class="order-panel" id="op-1" hidden>
-      <h3>Ring ahead or send a message</h3>
-      <p>Call and we&rsquo;ll have it ready for you, or send a message on Instagram and we&rsquo;ll sort it out there.</p>
-      <div class="btn-row">
-        <a class="btn" href="#find" data-tbc>Call the truck</a>
-        <a class="btn btn--ghost" data-social="instagram" href="#find" data-tbc>Message on Instagram</a>
-      </div>
-    </div>
-
-    <div class="order-panel" id="op-2" hidden>
-      <h3>Order and pay online</h3>
-      <p>Pick your tray, pay, and collect at a time that suits you. Worth knowing: this one is a
-        much bigger job than the other two &mdash; it needs a payment provider and somewhere for you
-        to see orders coming in. A separate conversation rather than part of this build.</p>
-      <div class="btn-row"><a class="btn" href="#menu" data-tbc>Start an order</a></div>
     </div>
   </div>
 </section>
@@ -1247,17 +1224,17 @@
 
     <details class="faq-item" name="faq">
       <summary>Can I order ahead?<span class="faq-mark" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p><span class="faq-todo">Answer needed</span></p><p>This one matters &mdash; it is the question that decides whether someone travels. Worth answering even if the answer is a flat no.</p></div>
+      <div class="faq-a"><p>No &mdash; everything is cooked fresh on the day and served in the order people arrive. Come down and join the queue.</p></div>
     </details>
 
     <details class="faq-item" name="faq">
       <summary>Do you take card?<span class="faq-mark" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p><span class="faq-todo">Answer needed</span></p><p>If it is cash only, saying so here saves a wasted journey and a bad review.</p></div>
+      <div class="faq-a"><p>Both. Card and cash are fine.</p></div>
     </details>
 
     <details class="faq-item" name="faq">
       <summary>Is there anything vegetarian?<span class="faq-mark" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p><span class="faq-todo">Answer needed</span></p><p>Often the deciding question when a group is choosing where to eat &mdash; one vegetarian can move four people elsewhere.</p></div>
+      <div class="faq-a"><p>Not at the moment. The board is built around the jerk chicken and the curry goat, so there is no vegetarian main. If that changes it will be on the board first.</p></div>
     </details>
 
     <details class="faq-item" name="faq">
@@ -1507,18 +1484,6 @@
     fitTray();
     wide.addEventListener('change', fitTray);
   }
-
-  /* ---------- the swappable ordering block (works with or without GSAP) ---------- */
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('.order-tab'));
-  tabs.forEach(function (tab) {
-    tab.addEventListener('click', function () {
-      tabs.forEach(function (t) {
-        var on = (t === tab);
-        t.setAttribute('aria-pressed', on ? 'true' : 'false');
-        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
-      });
-    });
-  });
 
   /* ---------- venue: the one place the address lives ----------
      Fill these four in and the directions link, the call button, the address

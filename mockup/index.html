@@ -564,9 +564,22 @@
         </pattern>
         <clipPath id="riceClip"><ellipse cx="300" cy="215" rx="196" ry="126"/></clipPath>
         <clipPath id="trayClip"><rect x="86" y="66" width="828" height="628" rx="16"/></clipPath>
+        <clipPath id="photoClip"><rect x="60" y="40" width="880" height="680" rx="30"/></clipPath>
       </defs>
 
-      <!-- Swap point: replace this <g id="plate"> with <image href="tray.jpg" .../> -->
+      <!-- ================= PHOTO SWAP =================
+           Delete the whole <g id="plate"> block below and paste this in its place:
+
+           <image id="plate" href="assets/tray.jpg"
+                  x="60" y="40" width="880" height="680"
+                  preserveAspectRatio="xMidYMid slice"
+                  clip-path="url(#photoClip)"/>
+
+           The six labels and leader lines sit outside this group and are
+           positioned in the same coordinate space, so they keep pointing at
+           the right food. Needs a LANDSCAPE top-down shot: "slice" fills the
+           frame, so a portrait photo gets cropped top and bottom.
+           ============================================= -->
       <g id="plate">
         <rect x="60" y="40" width="880" height="680" rx="30" fill="url(#foil)"/>
         <rect x="86" y="66" width="828" height="628" rx="16" fill="#7E7B72"/>
@@ -575,9 +588,9 @@
         </g>
 
         <!-- rice & peas -->
-        <ellipse cx="300" cy="215" rx="196" ry="126" fill="#D9CFB6"/>
+        <ellipse cx="300" cy="215" rx="196" ry="126" fill="#C6A991"/>
         <g clip-path="url(#riceClip)"><rect x="100" y="85" width="400" height="265" fill="url(#beans)" opacity=".85"/></g>
-        <ellipse cx="252" cy="176" rx="92" ry="52" fill="#E6DEC8" opacity=".45"/>
+        <ellipse cx="252" cy="176" rx="92" ry="52" fill="#D6BCA4" opacity=".45"/>
 
         <!-- mac & cheese -->
         <ellipse cx="772" cy="222" rx="152" ry="116" fill="#E7C169"/>
@@ -775,7 +788,7 @@
           <rect width="300" height="380" fill="#151311"/>
           <rect x="34" y="72" width="232" height="236" rx="12" fill="#A6A39A"/>
           <rect x="46" y="84" width="208" height="212" rx="6" fill="#7E7B72"/>
-          <ellipse cx="106" cy="140" rx="58" ry="40" fill="#D9CFB6"/>
+          <ellipse cx="106" cy="140" rx="58" ry="40" fill="#C6A991"/>
           <ellipse cx="206" cy="146" rx="46" ry="36" fill="#E7C169"/>
           <ellipse cx="98" cy="216" rx="34" ry="20" fill="#D9963E"/>
           <ellipse cx="196" cy="222" rx="32" ry="28" fill="#DDAE64"/>

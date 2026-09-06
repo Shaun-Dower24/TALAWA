@@ -1,0 +1,11 @@
+# PREVIEW ONLY — this blocks every search engine.
+#
+# The page still shows blank prices and placeholder review cards. If Google
+# indexed it in that state, that is the version Stevenage would find when
+# searching for Jamaican food, and it would take a while to shake off.
+#
+# AT LAUNCH: delete the two Disallow lines below, remove the matching
+# <meta name="robots"> tag near the top of index.html, and add a sitemap.
+
+User-agent: *
+Disallow: /

@@ -1,0 +1,29 @@
+# Talawa Caribbean Food — Netlify configuration
+#
+# The site is a static page with no build step, so there is nothing to compile.
+# Netlify serves the contents of `mockup/` as the site root: mockup/index.html
+# becomes the home page and mockup/assets/* sit at /assets/*.
+
+[build]
+  publish = "mockup"
+  command = ""
+
+# The page changes often while it is being reviewed, so it must never be served
+# stale. The photographs never change once published, so they cache hard.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

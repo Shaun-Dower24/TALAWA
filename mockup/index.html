@@ -24,6 +24,7 @@
   }
 
   *{box-sizing:border-box}
+  :root{interpolate-size:allow-keywords}
 
   body{
     margin:0;
@@ -292,6 +293,7 @@
   }
   .sec-h .ghost{color:transparent; -webkit-text-stroke:clamp(1px,.13vw,2px) var(--gold); display:block}
   .rule{height:1px; background:rgba(145,138,123,.22); border:0; margin:0}
+  [id]{scroll-margin-top:5.25rem}
 
   /* ============ MENU ============ */
   .menu-board{
@@ -479,7 +481,116 @@
   .bar .b2{background:var(--ink-2); color:var(--gold)}
 
   @media (max-width:860px){
-  </style>
+    .bar{display:flex}
+    .gal-grid{grid-template-columns:1fr}
+    .gal-side{position:static; padding-right:var(--pad)}
+    .gal-rail{padding-left:var(--pad)}
+    .find-grid{grid-template-columns:1fr}
+    .map-wrap{order:-1}
+    .stamp{right:8px; bottom:-22px}
+    .addr li{grid-template-columns:1fr; gap:.2rem}
+    .rev{width:clamp(228px,74vw,300px)}
+    .rev-summary{gap:1.1rem}
+  }
+
+  /* ============ REVIEWS ============ */
+  .rev-note{
+    display:flex; gap:.8rem; align-items:flex-start;
+    max-width:70ch; margin:0 0 clamp(1.6rem,4vw,2.6rem);
+    border-left:2px solid var(--scotch); padding-left:.9rem;
+    font-family:var(--mono); font-size:11px; letter-spacing:.05em;
+    line-height:1.7; color:var(--bone);
+  }
+  .rev-summary{
+    display:flex; flex-wrap:wrap; align-items:center; gap:clamp(1rem,3vw,2.4rem);
+    padding:0 0 clamp(1.6rem,4vw,2.4rem);
+    margin-bottom:clamp(1.6rem,4vw,2.4rem);
+    border-bottom:1px solid rgba(145,138,123,.2);
+  }
+  .rev-score{display:flex; align-items:baseline; gap:.6rem}
+  .rev-score b{
+    font-family:var(--display); font-weight:900; line-height:.9;
+    font-size:clamp(2.4rem,7vw,4.4rem); color:var(--gold);
+  }
+  .rev-score span{
+    font-family:var(--mono); font-size:11px; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--ash);
+  }
+  .stars{display:flex; gap:.22rem}
+  .stars svg{width:19px; height:19px; fill:var(--gold); display:block}
+  .stars--muted svg{fill:none; stroke:var(--ash); stroke-width:1.6}
+
+  .rev-wall{overflow-x:auto; position:relative; margin:0 calc(var(--pad) * -1); scrollbar-width:none}
+  .rev-wall::-webkit-scrollbar{display:none}
+  .rev-wall.is-marquee{overflow:hidden}
+  .rev-wall::before,.rev-wall::after{
+    content:''; position:absolute; top:0; bottom:0; width:clamp(2rem,7vw,7rem);
+    z-index:2; pointer-events:none;
+  }
+  .rev-wall::before{left:0;  background:linear-gradient(90deg, var(--ink), transparent)}
+  .rev-wall::after{right:0; background:linear-gradient(270deg, var(--ink), transparent)}
+  .rev-track{display:flex; gap:clamp(.7rem,1.6vw,1.1rem); width:max-content; padding:0 .55rem}
+
+  .rev{
+    flex:0 0 auto; width:clamp(250px,27vw,340px);
+    background:var(--ink-2); border:1px solid rgba(145,138,123,.28);
+    padding:1.15rem 1.2rem 1.1rem; display:flex; flex-direction:column; gap:.85rem;
+    position:relative;
+  }
+  .rev-tag{
+    position:absolute; top:-1px; right:-1px;
+    font-family:var(--mono); font-size:9px; letter-spacing:.14em;
+    text-transform:uppercase; background:var(--scotch); color:var(--bone);
+    padding:.25rem .45rem;
+  }
+  .rev-q{margin:0; font-size:.97rem; line-height:1.6; color:var(--bone)}
+  .rev-by{
+    margin:0; display:flex; flex-wrap:wrap; gap:.5rem; align-items:baseline;
+    font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--ash); margin-top:auto;
+  }
+  .rev-src{color:var(--gold)}
+
+  /* ============ FAQ ============ */
+  .faq-list{max-width:64rem; margin:0; border-top:1px solid rgba(145,138,123,.22)}
+  .faq-item{border-bottom:1px solid rgba(145,138,123,.22)}
+  .faq-item summary{
+    display:flex; align-items:flex-start; gap:1rem; cursor:pointer;
+    padding:clamp(1rem,2.6vw,1.45rem) 0; list-style:none;
+    font-family:var(--display); font-weight:900; text-transform:uppercase;
+    font-size:clamp(.92rem,2.1vw,1.3rem); letter-spacing:.005em;
+    color:var(--bone); line-height:1.25;
+  }
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary:hover{color:var(--gold)}
+  .faq-mark{
+    flex:0 0 auto; margin-left:auto; width:22px; height:22px; position:relative;
+    transition:transform .34s cubic-bezier(.22,1,.36,1);
+  }
+  .faq-mark::before,.faq-mark::after{
+    content:''; position:absolute; inset:50% 0 auto 0; height:2px;
+    background:var(--gold); transform:translateY(-50%);
+  }
+  .faq-mark::after{transform:translateY(-50%) rotate(90deg); transition:opacity .34s}
+  .faq-item[open] .faq-mark{transform:rotate(180deg)}
+  .faq-item[open] .faq-mark::after{opacity:0}
+  .faq-a{padding:0 0 clamp(1.1rem,2.6vw,1.6rem); max-width:62ch}
+  .faq-a p{margin:0 0 .8rem; color:var(--bone); opacity:.86}
+  .faq-a p:last-child{margin-bottom:0}
+  .faq-todo{
+    display:inline-block; font-family:var(--mono); font-size:10px;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--scotch);
+    border:1px solid var(--scotch); padding:.3rem .5rem;
+  }
+  /* progressive: animates where ::details-content is supported, instant elsewhere */
+  @supports selector(::details-content){
+    .faq-item::details-content{
+      block-size:0; overflow:hidden;
+      transition:block-size .38s cubic-bezier(.22,1,.36,1), content-visibility .38s allow-discrete;
+    }
+    .faq-item[open]::details-content{block-size:auto}
+  }
+</style>
 
 <div class="grain"></div>
 
@@ -723,6 +834,85 @@
 
 <hr class="rule">
 
+<!-- ===================== REVIEWS ===================== -->
+<section class="sec" id="reviews">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+    <symbol id="star" viewBox="0 0 24 24"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.58 1.11 6.47L12 17.44 6.19 20.5 7.3 14.03 2.6 9.45l6.5-.95L12 2.6z"/></symbol>
+  </defs></svg>
+
+  <p class="sec-num">Reviews</p>
+  <h2 class="sec-h">Word of<span class="ghost">Mouth</span></h2>
+
+  <p class="rev-note">
+    Every card below is a blank. I have not written a single one of these &mdash;
+    inventing reviews for a real business is illegal in the UK and it is the fastest way
+    to lose the trust the rest of this page is trying to build. Send me your Google and
+    Facebook reviews and they go straight in.
+  </p>
+
+  <div class="rev-summary">
+    <div class="rev-score">
+      <b>&mdash;</b>
+      <span>Average rating<br>to confirm</span>
+    </div>
+    <div class="stars stars--muted" aria-hidden="true">
+      <svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg>
+    </div>
+    <div class="rev-score">
+      <b>&mdash;</b>
+      <span>Reviews<br>to confirm</span>
+    </div>
+  </div>
+
+  <div class="rev-wall" id="revWall">
+    <div class="rev-track" id="revTrack">
+      <figure class="rev">
+        <span class="rev-tag">Placeholder</span>
+        <div class="stars" aria-hidden="true"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></div>
+        <blockquote class="rev-q">A short review sits like this one.</blockquote>
+        <figcaption class="rev-by">Customer name <span class="rev-src">Google</span></figcaption>
+      </figure>
+
+      <figure class="rev">
+        <span class="rev-tag">Placeholder</span>
+        <div class="stars" aria-hidden="true"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></div>
+        <blockquote class="rev-q">A middling one runs to about this much &mdash; two or three lines, which is the length most people actually write.</blockquote>
+        <figcaption class="rev-by">Customer name <span class="rev-src">Google</span></figcaption>
+      </figure>
+
+      <figure class="rev">
+        <span class="rev-tag">Placeholder</span>
+        <div class="stars" aria-hidden="true"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></div>
+        <blockquote class="rev-q">And a long one goes to roughly here &mdash; the sort where somebody really gets going, names the dish, says how far they drove, and promises to be back next Saturday. The card grows to fit rather than cutting it off.</blockquote>
+        <figcaption class="rev-by">Customer name <span class="rev-src">Facebook</span></figcaption>
+      </figure>
+
+      <figure class="rev">
+        <span class="rev-tag">Placeholder</span>
+        <div class="stars" aria-hidden="true"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></div>
+        <blockquote class="rev-q">Another short one.</blockquote>
+        <figcaption class="rev-by">Customer name <span class="rev-src">Facebook</span></figcaption>
+      </figure>
+
+      <figure class="rev">
+        <span class="rev-tag">Placeholder</span>
+        <div class="stars" aria-hidden="true"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></div>
+        <blockquote class="rev-q">Medium again &mdash; about two lines on a phone screen, which is the size that reads best in a row like this.</blockquote>
+        <figcaption class="rev-by">Customer name <span class="rev-src">Google</span></figcaption>
+      </figure>
+
+      <figure class="rev">
+        <span class="rev-tag">Placeholder</span>
+        <div class="stars" aria-hidden="true"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></div>
+        <blockquote class="rev-q">Six is enough to fill the row. More than about a dozen and nobody reads them.</blockquote>
+        <figcaption class="rev-by">Customer name <span class="rev-src">Google</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
 <!-- ===================== FIND US ===================== -->
 <section class="sec" id="find">
   <p class="sec-num">Saturdays</p>
@@ -819,6 +1009,74 @@
       <div class="btn-row"><a class="btn" href="#menu" data-tbc>Start an order</a></div>
     </div>
   </div>
+</section>
+
+<hr class="rule">
+
+<!-- ===================== FAQ ===================== -->
+<section class="sec" id="faq">
+  <p class="sec-num">Before you set off</p>
+  <h2 class="sec-h">Common<span class="ghost">Questions</span></h2>
+
+  <div class="faq-list">
+    <details class="faq-item" name="faq" open>
+      <summary>When are you open?<span class="faq-mark" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p>Every Saturday, 4pm until 8pm &mdash; or until we sell out, whichever comes first. We are not open any other day.</p></div>
+    </details>
+
+    <details class="faq-item" name="faq">
+      <summary>Where do I find you?<span class="faq-mark" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p>In the car park at the Man in the Moon pub. <span class="faq-todo">Full address and postcode needed</span></p></div>
+    </details>
+
+    <details class="faq-item" name="faq">
+      <summary>Do you do catering or parties?<span class="faq-mark" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p>No. We are Saturdays at the Man in the Moon and nothing else &mdash; it keeps the food consistent and the queue moving.</p></div>
+    </details>
+
+    <details class="faq-item" name="faq">
+      <summary>I&rsquo;ve got an allergy &mdash; what should I do?<span class="faq-mark" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p>Tell us when you place your order and we will talk it through with you. Please inform us of any allergies or dietary requirements before you order &mdash; our food is prepared in a small kitchen where allergens are present.</p></div>
+    </details>
+
+    <details class="faq-item" name="faq">
+      <summary>Can I order ahead?<span class="faq-mark" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p><span class="faq-todo">Answer needed</span></p><p>This one matters &mdash; it is the question that decides whether someone travels. Worth answering even if the answer is a flat no.</p></div>
+    </details>
+
+    <details class="faq-item" name="faq">
+      <summary>Do you take card?<span class="faq-mark" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p><span class="faq-todo">Answer needed</span></p><p>If it is cash only, saying so here saves a wasted journey and a bad review.</p></div>
+    </details>
+
+    <details class="faq-item" name="faq">
+      <summary>Is there anything vegetarian?<span class="faq-mark" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p><span class="faq-todo">Answer needed</span></p><p>Often the deciding question when a group is choosing where to eat &mdash; one vegetarian can move four people elsewhere.</p></div>
+    </details>
+
+    <details class="faq-item" name="faq">
+      <summary>What time do you usually sell out?<span class="faq-mark" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p><span class="faq-todo">Answer needed</span></p><p>A rough honest answer &mdash; &ldquo;the goat usually goes by 6&rdquo; &mdash; gets people there earlier.</p></div>
+    </details>
+
+    <details class="faq-item" name="faq">
+      <summary>Is there parking?<span class="faq-mark" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p><span class="faq-todo">Answer needed</span></p><p>I had guessed &ldquo;free in the pub car park&rdquo; earlier in the page. Confirm it or correct it &mdash; I should not be guessing this.</p></div>
+    </details>
+  </div>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"When are you open?","acceptedAnswer":{"@type":"Answer","text":"Every Saturday, 4pm until 8pm, or until we sell out. We are not open any other day."}},
+      {"@type":"Question","name":"Where do I find you?","acceptedAnswer":{"@type":"Answer","text":"In the car park at the Man in the Moon pub."}},
+      {"@type":"Question","name":"Do you do catering or parties?","acceptedAnswer":{"@type":"Answer","text":"No. Talawa trades on Saturdays at the Man in the Moon only."}},
+      {"@type":"Question","name":"I have an allergy - what should I do?","acceptedAnswer":{"@type":"Answer","text":"Tell us when you place your order. Our food is prepared in a small kitchen where allergens are present."}}
+    ]
+  }
+  </script>
 </section>
 
 <!-- ===================== FOOTER ===================== -->
@@ -1118,6 +1376,38 @@
       });
     }, { passive: true });
   }
+
+  /* reviews wall: duplicate the row, then loop it. Without JS or under
+     reduced motion the wall stays an ordinary horizontal scroller. */
+  var wall = document.getElementById('revWall'), track = document.getElementById('revTrack');
+  if (wall && track) {
+    var half = track.scrollWidth;
+    Array.prototype.slice.call(track.children).forEach(function (card) {
+      var clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
+    wall.classList.add('is-marquee');
+
+    var roll = gsap.to(track, {
+      x: -half, duration: half / 42, ease: 'none', repeat: -1,
+      modifiers: { x: gsap.utils.unitize(function (x) { return parseFloat(x) % half; }) }
+    });
+    wall.addEventListener('pointerenter', function () { roll.pause(); });
+    wall.addEventListener('pointerleave', function () { roll.resume(); });
+    wall.addEventListener('focusin',  function () { roll.pause(); });
+    wall.addEventListener('focusout', function () { roll.resume(); });
+  }
+
+  gsap.from('.rev-summary > *', {
+    opacity: 0, y: 18, duration: .7, stagger: .09, ease: 'power3.out',
+    scrollTrigger: { trigger: '.rev-summary', start: 'top 88%' }
+  });
+
+  gsap.from('.faq-item', {
+    opacity: 0, y: 16, duration: .6, stagger: .06, ease: 'power2.out',
+    scrollTrigger: { trigger: '.faq-list', start: 'top 85%' }
+  });
 
   gsap.to('.stamp', {
     rotate: 128, ease: 'none',

@@ -353,10 +353,12 @@
     display:flex; gap:clamp(.7rem,1.6vw,1.2rem);
     overflow-x:auto; overflow-y:hidden; padding:0 var(--pad) 1.4rem 0;
     scrollbar-width:thin; scrollbar-color:var(--gold) transparent; cursor:grab;
+    scroll-snap-type:x proximity; scroll-behavior:smooth;
   }
   .gal-rail::-webkit-scrollbar{height:3px}
   .gal-rail::-webkit-scrollbar-thumb{background:var(--gold)}
-  .gal-rail.is-drag{cursor:grabbing}
+  .gal-rail.is-drag{cursor:grabbing; scroll-snap-type:none; scroll-behavior:auto}
+  .gal-rail:focus-visible{outline:2px solid var(--gold); outline-offset:4px}
   .gal-rail.is-drag *{pointer-events:none}
   .shot{
     flex:0 0 auto; width:clamp(210px,26vw,340px); aspect-ratio:4/5;
@@ -364,6 +366,7 @@
     border:1px solid rgba(145,138,123,.3);
     display:flex; flex-direction:column; justify-content:flex-end;
     padding:1rem; overflow:hidden; margin:0; will-change:transform;
+    scroll-snap-align:start;
   }
   .shot--wide{width:clamp(300px,40vw,520px); aspect-ratio:3/2}
   .shot-art{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
@@ -471,7 +474,7 @@
   .hyg span{font-family:var(--mono); font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--ash); line-height:1.4}
 
   /* ============ MOBILE ACTION BAR ============ */
-  .bar{position:fixed; left:0; right:0; bottom:0; z-index:58; display:none; gap:1px; background:rgba(145,138,123,.3)}
+  .bar{position:fixed; left:0; right:0; bottom:0; z-index:58; display:none; flex-wrap:wrap; gap:1px; background:rgba(145,138,123,.3)}
   .bar a{
     flex:1; text-align:center; text-decoration:none; font-family:var(--mono);
     font-size:12px; letter-spacing:.16em; text-transform:uppercase;
@@ -590,12 +593,82 @@
     }
     .faq-item[open]::details-content{block-size:auto}
   }
+
+  /* ============ OPEN / CLOSED STATUS ============ */
+  .status{
+    display:inline-flex; align-items:center; gap:.5rem;
+    font-family:var(--mono); font-size:10px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--ash);
+    border:1px solid rgba(145,138,123,.4); border-radius:2px;
+    padding:.42rem .6rem; white-space:nowrap;
+  }
+  .status-dot{
+    width:7px; height:7px; border-radius:50%; background:var(--ash);
+    flex:0 0 auto; position:relative;
+  }
+  .status[data-open="true"]{color:var(--bone); border-color:rgba(53,177,74,.55)}
+  .status[data-open="true"] .status-dot{background:var(--green)}
+  .status[data-open="true"] .status-dot::after{
+    content:''; position:absolute; inset:-4px; border-radius:50%;
+    border:1px solid var(--green); animation:ping 2.1s ease-out infinite;
+  }
+  @keyframes ping{
+    0%{transform:scale(.6); opacity:.9}
+    70%,100%{transform:scale(1.5); opacity:0}
+  }
+  .hero-status{margin:0 0 1rem}
+  @media (max-width:560px){ .nav .status{display:none} }
+
+  /* ============ LIGHTBOX ============ */
+  .lb{
+    border:0; padding:0; background:transparent; max-width:100vw; max-height:100vh;
+    width:100%; height:100%; overflow:hidden;
+  }
+  .lb::backdrop{background:rgba(6,5,5,.94)}
+  .lb-stage{
+    width:100%; height:100%; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:1rem; padding:clamp(2.6rem,6vw,4rem);
+  }
+  .lb-img{
+    max-width:100%; max-height:76vh; width:auto; height:auto;
+    display:block; object-fit:contain; border:1px solid rgba(242,236,223,.16);
+  }
+  .lb-cap{
+    margin:0; font-family:var(--mono); font-size:11px; letter-spacing:.08em;
+    color:var(--bone); text-align:center; max-width:60ch;
+  }
+  .lb-count{
+    font-family:var(--mono); font-size:10px; letter-spacing:.2em; color:var(--ash);
+  }
+  .lb-btn{
+    position:absolute; background:rgba(10,9,8,.8); color:var(--gold); cursor:pointer;
+    border:1px solid rgba(145,138,123,.42); border-radius:2px;
+    width:44px; height:44px; display:grid; place-items:center; padding:0;
+    font-family:var(--mono); font-size:16px; line-height:1;
+  }
+  .lb-btn:hover{background:var(--gold); color:var(--ink); border-color:var(--gold)}
+  .lb-close{top:clamp(.9rem,2.5vw,1.6rem); right:clamp(.9rem,2.5vw,1.6rem)}
+  .lb-prev{left:clamp(.6rem,2vw,1.6rem);  top:50%; transform:translateY(-50%)}
+  .lb-next{right:clamp(.6rem,2vw,1.6rem); top:50%; transform:translateY(-50%)}
+  .shot--zoom{cursor:zoom-in}
+
+  /* ============ DOCK ============ */
+  .bar-status{
+    flex:0 0 100%; display:flex; align-items:center; justify-content:center; gap:.5rem;
+    background:var(--ink-2); color:var(--ash);
+    font-family:var(--mono); font-size:10px; letter-spacing:.16em;
+    text-transform:uppercase; padding:.5rem;
+  }
+  .bar-status[data-open="true"]{color:var(--bone)}
+  .bar-status .status-dot{background:var(--ash)}
+  .bar-status[data-open="true"] .status-dot{background:var(--green)}
 </style>
 
 <div class="grain"></div>
 
 <nav class="nav" aria-label="Main">
   <a class="nav-mark" href="#top"><img src="assets/logo.jpg" alt="Talawa Caribbean Takeaway"></a>
+  <span class="status js-status" data-open="false"><i class="status-dot"></i><span class="status-txt">Saturdays 4&ndash;8pm</span></span>
   <div class="nav-links">
     <a href="#menu">Menu</a>
     <a href="#gallery" data-opt>The truck</a>
@@ -624,6 +697,7 @@
   <div class="hero-foot">
     <div>
       <p class="aside">likkle but talawa &mdash; small, but mighty.</p>
+      <p class="hero-status"><span class="status js-status" data-open="false"><i class="status-dot"></i><span class="status-txt">Saturdays 4&ndash;8pm</span></span></p>
       <p class="strap" style="margin-top:1.1rem">Jamaican food &nbsp;&middot;&nbsp; <b>Every Saturday, 4&ndash;8pm</b></p>
     </div>
     <div class="cue"><i></i> Scroll</div>
@@ -792,7 +866,7 @@
       <a class="gal-handle" href="#gallery" data-tbc>@talawa &mdash; handle to confirm</a>
     </div>
 
-    <div class="gal-rail" id="rail">
+    <div class="gal-rail" id="rail" tabindex="0" role="region" aria-label="Photo gallery, scrollable">
       <figure class="shot shot--wide">
         <img class="shot-art" src="assets/truck.jpg" alt="The Talawa trailer, hatch open, Jamaican flags on the counter">
         <span class="shot-i">01</span>
@@ -1099,9 +1173,23 @@
 </footer>
 
 <nav class="bar" aria-label="Quick actions">
+  <p class="bar-status js-status" data-open="false">
+    <i class="status-dot"></i><span class="status-txt">Saturdays 4&ndash;8pm</span>
+  </p>
   <a class="b1" href="#find" data-tbc>Call</a>
   <a class="b2" href="#find" data-tbc>Directions</a>
 </nav>
+
+<dialog class="lb" id="lightbox" aria-label="Photo viewer">
+  <div class="lb-stage">
+    <img class="lb-img" id="lbImg" alt="">
+    <p class="lb-cap" id="lbCap"></p>
+    <p class="lb-count" id="lbCount"></p>
+  </div>
+  <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Close">&#10005;</button>
+  <button class="lb-btn lb-prev"  id="lbPrev"  type="button" aria-label="Previous photo">&#10094;</button>
+  <button class="lb-btn lb-next"  id="lbNext"  type="button" aria-label="Next photo">&#10095;</button>
+</dialog>
 
 <!-- ===================== NOTE ===================== -->
 <section class="note">
@@ -1237,19 +1325,112 @@
 
   /* ---------- gallery: click and drag to scroll ---------- */
   var rail = document.getElementById('rail');
+  var railDragged = false;
   if (rail) {
     var down = false, startX = 0, startLeft = 0;
     rail.addEventListener('pointerdown', function (e) {
       if (e.pointerType === 'touch') return;          /* touch already scrolls */
       down = true; startX = e.clientX; startLeft = rail.scrollLeft;
-      rail.classList.add('is-drag');
-      rail.setPointerCapture(e.pointerId);
     });
     rail.addEventListener('pointermove', function (e) {
-      if (down) rail.scrollLeft = startLeft - (e.clientX - startX);
+      if (!down) return;
+      var dx = e.clientX - startX;
+      if (Math.abs(dx) > 6 && !railDragged) {
+        /* only now: `.is-drag` kills pointer-events on the cards, which would
+           otherwise retarget an ordinary click away from the photo */
+        railDragged = true;
+        rail.classList.add('is-drag');
+        rail.setPointerCapture(e.pointerId);
+      }
+      rail.scrollLeft = startLeft - dx;
     });
     ['pointerup', 'pointercancel'].forEach(function (ev) {
-      rail.addEventListener(ev, function () { down = false; rail.classList.remove('is-drag'); });
+      rail.addEventListener(ev, function () {
+        down = false; rail.classList.remove('is-drag');
+        setTimeout(function () { railDragged = false; }, 0);
+      });
+    });
+  }
+
+  /* ---------- open / closed, worked out in UK time ---------- */
+  function talawaStatus() {
+    var p = {};
+    new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Europe/London', weekday: 'short', hour: '2-digit', hour12: false
+    }).formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; });
+
+    var h = parseInt(p.hour, 10) % 24;          /* some locales render midnight as 24 */
+    var sat = p.weekday === 'Sat';
+    if (sat && h >= 16 && h < 20) return { open: true,  text: 'Open now — til 8pm' };
+    if (sat && h < 16)            return { open: false, text: 'Opens today, 4pm' };
+    return { open: false, text: 'Opens Saturday, 4pm' };
+  }
+  function paintStatus() {
+    var st = talawaStatus();
+    document.querySelectorAll('.js-status').forEach(function (el) {
+      el.setAttribute('data-open', st.open ? 'true' : 'false');
+      el.querySelector('.status-txt').textContent = st.text;
+    });
+  }
+  paintStatus();
+  setInterval(paintStatus, 60000);
+
+  /* ---------- lightbox on the real photographs ---------- */
+  var lb = document.getElementById('lightbox');
+  if (lb) {
+    var lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap'),
+        lbCount = document.getElementById('lbCount'), lbPrev = document.getElementById('lbPrev'),
+        lbNext = document.getElementById('lbNext'), items = [], cur = 0;
+
+    document.querySelectorAll('.shot').forEach(function (fig) {
+      var img = fig.querySelector('img.shot-art');
+      if (!img) return;                          /* placeholder panels hold no photo */
+      var capEl = fig.querySelector('.shot-cap');
+      var cap = capEl ? capEl.textContent.trim() : '';
+      var i = items.push({ el: img, alt: img.alt, cap: cap }) - 1;
+
+      fig.classList.add('shot--zoom');
+      fig.tabIndex = 0;
+      fig.setAttribute('role', 'button');
+      fig.setAttribute('aria-label', 'View photo: ' + (cap || img.alt));
+      fig.addEventListener('click', function () { if (!railDragged) open(i); });
+      fig.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
+      });
+    });
+
+    var render = function () {
+      var it = items[cur];
+      lbImg.src = it.el.currentSrc || it.el.src;
+      lbImg.alt = it.alt;
+      lbCap.textContent = it.cap;
+      lbCount.textContent = (cur + 1) + ' / ' + items.length;
+      lbPrev.hidden = lbNext.hidden = items.length < 2;
+    };
+    var open = function (i) {
+      cur = i; render();
+      if (lb.showModal) lb.showModal(); else lb.setAttribute('open', '');
+    };
+    var step = function (d) { cur = (cur + d + items.length) % items.length; render(); };
+
+    document.getElementById('lbClose').addEventListener('click', function () { lb.close(); });
+    lbPrev.addEventListener('click', function () { step(-1); });
+    lbNext.addEventListener('click', function () { step(1); });
+    lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
+    lb.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); step(-1); }
+    });
+  }
+
+  /* ---------- arrow keys move the gallery a card at a time ---------- */
+  if (rail) {
+    rail.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      var card = rail.querySelector('.shot');
+      var w = card ? card.getBoundingClientRect().width + 12 : 300;
+      rail.scrollLeft += (e.key === 'ArrowRight' ? w : -w);
     });
   }
 
@@ -1324,6 +1505,12 @@
       gsap.to(marquee, { timeScale: 1 + Math.min(v, 4), duration: .35, overwrite: true });
     }
   });
+
+  var band = document.querySelector('.band');
+  if (band) {
+    band.addEventListener('pointerenter', function () { marquee.pause(); });
+    band.addEventListener('pointerleave', function () { marquee.resume(); });
+  }
 
   gsap.from('.fact', {
     opacity: 0, y: 26, duration: .8, stagger: .1, ease: 'power3.out',

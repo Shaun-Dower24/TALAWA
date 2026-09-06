@@ -53,9 +53,33 @@ Everything below assumes the recommended route.
 
 ---
 
+## 2a. Build status
+
+**Seven of the eleven are built and on the site.** All of Tier 1 and the first three of
+Tier 2 — rebuilt in the site's own plain code rather than pulled in as React components,
+exactly as section 2 recommends. The page is still one file and still has no build step.
+
+| # | Item | Status |
+|---|---|---|
+| 3.1 | Customer reviews | Built — structure only, waiting on your reviews |
+| 3.2 | Questions section | Built — 4 of 9 answered, 5 waiting on you |
+| 3.3 | Open-now badge | Built and working |
+| 3.4 | Bottom bar on phones | Built and working |
+| 4.1 | Tap a photo to enlarge | Built and working |
+| 4.2 | Arrow keys and snapping | Built and working |
+| 4.3 | Ticker pauses on hover | Built |
+| 4.4 | Counting numbers | Blocked — needs real figures |
+| 4.5 | Real map | Blocked — needs the postcode |
+| 5.1 | Mailing list | Later — needs a backend and consent wording |
+| 5.2 | Confirmation pop-ups | Later — needs online ordering first |
+
+The four that are not built are held up on **content or a decision from you**, not on code.
+
+---
+
 ## 3. Worth doing — these fix real gaps
 
-### 3.1 Customer reviews ⭐ *the biggest gap on the site*
+### 3.1 Customer reviews — **BUILT** ⭐ *the biggest gap on the site*
 **On 21st.dev: 161 testimonial components.** Good ones: *Testimonials with Marquee*,
 *Infinite Moving Cards*, *Stagger Testimonials*.
 
@@ -71,7 +95,7 @@ language already on your page, so it looks like it belongs rather than bolted on
 copy-paste is fine. If you don't have many yet, that's worth knowing too, because getting
 them is then the highest-value thing you could do this month.
 
-### 3.2 A proper questions section
+### 3.2 A proper questions section — **BUILT**
 **On 21st.dev: 191 FAQ blocks, 234 accordions.**
 
 Right now the only thing answering customer questions is one line about allergies. The
@@ -92,7 +116,7 @@ local business that's worth more than any visual flourish on the page.
 
 **What I need from you:** the six or eight questions you get asked most, and your answers.
 
-### 3.3 An "Open now" badge
+### 3.3 An "Open now" badge — **BUILT**
 **On 21st.dev: 605 badge components.**
 
 A small pill in the corner that reads **OPEN NOW** on a Saturday between 4 and 8, and
@@ -101,7 +125,7 @@ A small pill in the corner that reads **OPEN NOW** on a Saturday between 4 and 8
 This is the good half of the "Six Til Sold Out" idea from the original proposal, without the
 fragile half. It answers the very first question anyone has, instantly.
 
-### 3.4 A better bottom bar on phones
+### 3.4 A better bottom bar on phones — **BUILT**
 **On 21st.dev: 49 "dock" components.**
 
 You've currently got two flat buttons stuck to the bottom on mobile. That's prime real
@@ -112,25 +136,25 @@ alongside Call and Directions and still be less cluttered than it sounds.
 
 ## 4. Nice improvements — do after the above
 
-### 4.1 Tap a photo to see it bigger
+### 4.1 Tap a photo to see it bigger — **BUILT**
 **Galleries: 272. Pop-ups: 328.** Right now tapping a photo does nothing. On a food site
 people expect to be able to look closely. Basic, and slightly embarrassing to be missing.
 
-### 4.2 Arrow keys and snapping on the gallery
+### 4.2 Arrow keys and snapping on the gallery — **BUILT**
 **Carousels: 239.** The drag-along rail works, but you can't use it with a keyboard, and it
 doesn't settle neatly on a photo. Fixing that helps anyone not using a mouse.
 
-### 4.3 Check our scrolling ticker against theirs
+### 4.3 Check our scrolling ticker against theirs — **BUILT**
 **Marquees: 113.** I wrote yours by hand. Magic UI's version is the one everyone copies, and
 it handles two things mine doesn't: pausing when you hover, and stopping entirely for people
 who've asked their phone to reduce motion. Worth a look.
 
-### 4.4 Counting numbers
+### 4.4 Counting numbers — **BLOCKED**
 **Stats: 153.** Something like *"Trading since 2023 · 4.9 stars · 60 trays a Saturday"* with
 the figures counting up as you reach them. **Only if the numbers are real** — tell me the
 true ones or we skip it.
 
-### 4.5 A real map
+### 4.5 A real map — **BLOCKED**
 **Maps: 51.** The map on the site now is drawn by me. Once you send the postcode it becomes
 a real one you can tap for directions.
 
@@ -138,14 +162,14 @@ a real one you can tap for directions.
 
 ## 5. Later, if the business goes that way
 
-### 5.1 "Tell me when the truck's out"
+### 5.1 "Tell me when the truck's out" — **LATER**
 **Forms: 1522.** An email or WhatsApp list people join to get a nudge on Saturday morning.
 
 For a Saturday-only trader this is genuinely valuable — it catches the people who meant to
 come and forgot, which is a bigger group than you'd think. But it needs somewhere to store
 the addresses and proper consent wording, so it's a separate job rather than part of this one.
 
-### 5.2 Little confirmation pop-ups
+### 5.2 Little confirmation pop-ups — **LATER**
 **Toasts: 79.** Only matters once people can order through the site. Parked.
 
 ---
@@ -185,16 +209,14 @@ applicable to a food truck.
 
 ---
 
-## 8. Suggested order
+## 8. Where it stands
 
-1. **Customer reviews** — biggest gap, needs your reviews
-2. **Questions section** — second biggest, needs your answers, and helps you show up in search
-3. **Open-now badge** — quick, and answers the first question anyone has
-4. **Tap-to-enlarge photos** — quick, fixes something people will try and find broken
+All four of the original priorities are built, plus three more. Nothing else is worth
+building until content arrives — the reviews wall and five of the nine questions are empty
+containers, and a third placeholder section (the counting numbers) would only cheapen the
+rest.
 
-The first two are really **content** jobs rather than design jobs. I can build the containers
-in an afternoon; they're worth nothing until your actual reviews and your actual answers go in
-them. So the useful next step is you sending me those, not me building more.
+**The next move is yours, not mine.**
 
 ---
 

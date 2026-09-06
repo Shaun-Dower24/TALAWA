@@ -42,14 +42,6 @@
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  .tag{
-    position:fixed; bottom:14px; left:14px; z-index:70;
-    font-family:var(--mono); font-size:10px; letter-spacing:.16em;
-    text-transform:uppercase; color:var(--ash);
-    border:1px solid rgba(145,138,123,.34); border-radius:2px;
-    padding:5px 9px; background:rgba(10,9,8,.72);
-    backdrop-filter:blur(6px);
-  }
 
   /* ============ HERO ============ */
   .hero{
@@ -58,25 +50,38 @@
     padding:clamp(4.5rem,10vh,7rem) var(--pad) clamp(2rem,5vh,3.5rem);
     overflow:hidden;
   }
+  .hero-photo{
+    position:absolute; inset:0; z-index:0; pointer-events:none;
+    background:url("assets/tray.jpg") center 38%/cover no-repeat;
+    opacity:.12;
+  }
+  .hero-scrim{
+    position:absolute; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(78% 62% at 42% 52%, rgba(10,9,8,.94), rgba(10,9,8,.55) 62%, transparent),
+      linear-gradient(180deg, rgba(10,9,8,.9), transparent 26%, transparent 62%, rgba(10,9,8,.95));
+  }
   .hero-glow{
     position:absolute; inset:0; z-index:0; pointer-events:none;
     background:
       radial-gradient(58% 44% at 50% 78%, rgba(232,72,27,.16), transparent 68%),
       radial-gradient(70% 50% at 50% 30%, rgba(255,201,28,.07), transparent 72%);
   }
-  .frond{position:absolute; z-index:1; pointer-events:none; opacity:.5}
+  .frond{position:absolute; z-index:1; pointer-events:none; opacity:.3}
   .frond--tl{top:-9%; left:-7%; width:min(46vw,540px); transform:rotate(-8deg)}
   .frond--tr{top:-13%; right:-9%; width:min(44vw,520px); transform:scaleX(-1) rotate(-14deg)}
-  .frond--br{bottom:-16%; right:-6%; width:min(38vw,440px); transform:scaleX(-1) rotate(24deg); opacity:.3}
+  .frond--br{bottom:-16%; right:-6%; width:min(38vw,440px); transform:scaleX(-1) rotate(24deg); opacity:.18}
 
   .hero-inner{position:relative; z-index:2; width:100%}
 
   .eyebrow{
+    display:flex; align-items:center; gap:.7rem;
     font-family:var(--mono); font-size:clamp(9px,1.05vw,12px);
     letter-spacing:.34em; text-transform:uppercase; color:var(--ash);
     margin:0 0 clamp(1.5rem,5vh,3rem);
   }
 
+  .eyebrow-logo{width:42px; height:42px; border-radius:50%; display:block}
   .likkle{
     font-family:var(--display); font-weight:900;
     font-size:clamp(2rem,6.4vw,5rem);
@@ -169,8 +174,9 @@
     font-family:var(--mono); font-size:21px; font-weight:500;
     letter-spacing:.08em; fill:var(--ink);
   }
+  .lead-halo{fill:none; stroke:#0A0908; stroke-width:6.5; stroke-linecap:round; opacity:.8}
   .lead{fill:none; stroke:var(--gold); stroke-width:2.4; stroke-linecap:round}
-  .lead-dot{fill:var(--gold)}
+  .lead-dot{fill:var(--gold); stroke:#0A0908; stroke-width:2.5}
 
   .tray-final{
     position:static; z-index:5;
@@ -255,7 +261,8 @@
     border-bottom:1px solid rgba(145,138,123,.2);
     transform:translateY(-101%);
   }
-  .nav-mark{font-family:var(--script); font-size:1.5rem; color:var(--gold); line-height:1; text-decoration:none}
+  .nav-mark{display:flex; align-items:center; line-height:0}
+  .nav-mark img{width:38px; height:38px; border-radius:50%; display:block}
   .nav-links{display:flex; align-items:center; gap:clamp(.9rem,2.4vw,2rem)}
   .nav-links a{
     font-family:var(--mono); font-size:11px; letter-spacing:.18em;
@@ -357,14 +364,15 @@
     padding:1rem; overflow:hidden; margin:0; will-change:transform;
   }
   .shot--wide{width:clamp(300px,40vw,520px); aspect-ratio:3/2}
-  .shot-art{position:absolute; inset:0; width:100%; height:100%}
+  .shot-art{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
   .shot-empty{
     position:absolute; inset:0; opacity:.5;
     background-image:repeating-linear-gradient(-45deg, transparent 0 13px, rgba(145,138,123,.14) 13px 14px);
   }
   .shot-i{
-    position:absolute; top:.8rem; left:.9rem; z-index:2;
-    font-family:var(--mono); font-size:10px; letter-spacing:.12em; color:var(--ash);
+    position:absolute; top:.7rem; left:.8rem; z-index:2;
+    font-family:var(--mono); font-size:10px; letter-spacing:.12em; color:var(--bone);
+    background:rgba(10,9,8,.72); padding:.25rem .45rem;
   }
   .shot-loop{
     position:absolute; top:.7rem; right:.8rem; z-index:2;
@@ -430,6 +438,7 @@
 
   /* ============ FOOTER ============ */
   .foot{border-top:1px solid rgba(145,138,123,.24); padding:clamp(3rem,8vh,5.5rem) var(--pad) 7rem}
+  .foot-banner{width:100%; max-width:520px; height:auto; display:block; margin:0 0 clamp(2rem,5vw,3rem)}
   .foot-top{
     display:flex; flex-wrap:wrap; gap:2rem; align-items:flex-end;
     justify-content:space-between; margin-bottom:clamp(2.4rem,6vw,4rem);
@@ -470,23 +479,12 @@
   .bar .b2{background:var(--ink-2); color:var(--gold)}
 
   @media (max-width:860px){
-    .tag{bottom:72px}
-    .bar{display:flex}
-    .gal-grid{grid-template-columns:1fr}
-    .gal-side{position:static; padding-right:var(--pad)}
-    .gal-rail{padding-left:var(--pad)}
-    .find-grid{grid-template-columns:1fr}
-    .map-wrap{order:-1}
-    .stamp{right:8px; bottom:-22px}
-    .addr li{grid-template-columns:1fr; gap:.2rem}
-  }
-</style>
+  </style>
 
 <div class="grain"></div>
-<div class="tag">Mock-up · Direction 1</div>
 
 <nav class="nav" aria-label="Main">
-  <a class="nav-mark" href="#top">Talawa</a>
+  <a class="nav-mark" href="#top"><img src="assets/logo.jpg" alt="Talawa Caribbean Takeaway"></a>
   <div class="nav-links">
     <a href="#menu">Menu</a>
     <a href="#gallery" data-opt>The truck</a>
@@ -497,13 +495,15 @@
 
 <!-- ===================== HERO ===================== -->
 <header class="hero" id="top">
+  <div class="hero-photo"></div>
+  <div class="hero-scrim"></div>
   <div class="hero-glow"></div>
   <svg class="frond frond--tl" viewBox="0 0 400 300" aria-hidden="true"></svg>
   <svg class="frond frond--tr" viewBox="0 0 400 300" aria-hidden="true"></svg>
   <svg class="frond frond--br" viewBox="0 0 400 300" aria-hidden="true"></svg>
 
   <div class="hero-inner">
-    <p class="eyebrow">Talawa &middot; Caribbean Food</p>
+    <p class="eyebrow"><img class="eyebrow-logo" src="assets/logo.jpg" alt="">Talawa &middot; Caribbean Food</p>
     <h1>
       <span class="likkle" aria-hidden="true">LIKKLE</span>
       <span class="talawa" aria-label="Likkle but Talawa"><span>B</span><span>U</span><span>T</span><span>&nbsp;</span><span>T</span><span>A</span><span>L</span><span>A</span><span>W</span><span>A</span></span>
@@ -539,134 +539,64 @@
   <div class="tray-stage">
     <p class="tray-head">The tray</p>
 
-    <svg class="tray-art" viewBox="-235 -70 1470 930" role="img" aria-label="A takeaway tray with rice and peas, mac and cheese, sauce, sweet plantain, festival, slaw and jerk chicken, each labelled.">
+    <svg class="tray-art" id="trayArt" viewBox="0 0 1300 820" role="img" aria-label="A Talawa tray: rice and peas, mac and cheese, sauce, sweet plantain, festival, slaw and jerk chicken, each labelled.">
       <defs>
-        <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#CFCCC2"/><stop offset=".28" stop-color="#9C998F"/>
-          <stop offset=".54" stop-color="#DAD7CD"/><stop offset=".78" stop-color="#8F8C83"/>
-          <stop offset="1" stop-color="#BFBCB2"/>
-        </linearGradient>
-        <pattern id="beans" width="78" height="74" patternUnits="userSpaceOnUse">
-          <g fill="#C9BDA0">
-            <ellipse cx="10" cy="9"  rx="5.5" ry="2.2" transform="rotate(28 10 9)"/>
-            <ellipse cx="40" cy="18" rx="5.5" ry="2.2" transform="rotate(-52 40 18)"/>
-            <ellipse cx="66" cy="6"  rx="5.5" ry="2.2" transform="rotate(12 66 6)"/>
-            <ellipse cx="22" cy="40" rx="5.5" ry="2.2" transform="rotate(-18 22 40)"/>
-            <ellipse cx="58" cy="48" rx="5.5" ry="2.2" transform="rotate(64 58 48)"/>
-            <ellipse cx="34" cy="66" rx="5.5" ry="2.2" transform="rotate(-40 34 66)"/>
-            <ellipse cx="72" cy="62" rx="5.5" ry="2.2" transform="rotate(8 72 62)"/>
-          </g>
-          <ellipse cx="26" cy="22" rx="8.5" ry="6"   fill="#6B2016" transform="rotate(24 26 22)"/>
-          <ellipse cx="62" cy="34" rx="8"   ry="5.6" fill="#7C2A1C" transform="rotate(-38 62 34)"/>
-          <ellipse cx="14" cy="58" rx="7.6" ry="5.4" fill="#5E1B13" transform="rotate(52 14 58)"/>
-          <circle cx="48" cy="8"  r="2"   fill="#3F5D2A"/>
-          <circle cx="8"  cy="34" r="1.8" fill="#46662E"/>
-        </pattern>
-        <clipPath id="riceClip"><ellipse cx="300" cy="215" rx="196" ry="126"/></clipPath>
-        <clipPath id="trayClip"><rect x="86" y="66" width="828" height="628" rx="16"/></clipPath>
-        <clipPath id="photoClip"><rect x="60" y="40" width="880" height="680" rx="30"/></clipPath>
+        <clipPath id="photoClip"><rect x="350" y="30" width="600" height="722" rx="10"/></clipPath>
+        <radialGradient id="vig" cx="50%" cy="50%" r="74%">
+          <stop offset="0"   stop-color="#0A0908" stop-opacity="0"/>
+          <stop offset=".60" stop-color="#0A0908" stop-opacity="0"/>
+          <stop offset="1"   stop-color="#0A0908" stop-opacity=".6"/>
+        </radialGradient>
       </defs>
 
-      <!-- ================= PHOTO SWAP =================
-           Delete the whole <g id="plate"> block below and paste this in its place:
-
-           <image id="plate" href="assets/tray.jpg"
-                  x="60" y="40" width="880" height="680"
-                  preserveAspectRatio="xMidYMid slice"
-                  clip-path="url(#photoClip)"/>
-
-           The six labels and leader lines sit outside this group and are
-           positioned in the same coordinate space, so they keep pointing at
-           the right food. Needs a LANDSCAPE top-down shot: "slice" fills the
-           frame, so a portrait photo gets cropped top and bottom.
-           ============================================= -->
       <g id="plate">
-        <rect x="60" y="40" width="880" height="680" rx="30" fill="url(#foil)"/>
-        <rect x="86" y="66" width="828" height="628" rx="16" fill="#7E7B72"/>
-        <g clip-path="url(#trayClip)" opacity=".22">
-          <path d="M140 66 L118 694 M240 66 L226 694 M360 66 L352 694 M480 66 L478 694 M600 66 L604 694 M720 66 L730 694 M840 66 L856 694" stroke="#F2ECDF" stroke-width="3"/>
-        </g>
-
-        <!-- rice & peas -->
-        <ellipse cx="300" cy="215" rx="196" ry="126" fill="#C6A991"/>
-        <g clip-path="url(#riceClip)"><rect x="100" y="85" width="400" height="265" fill="url(#beans)" opacity=".85"/></g>
-        <ellipse cx="252" cy="176" rx="92" ry="52" fill="#D6BCA4" opacity=".45"/>
-
-        <!-- mac & cheese -->
-        <ellipse cx="772" cy="222" rx="152" ry="116" fill="#E7C169"/>
-        <ellipse cx="758" cy="200" rx="112" ry="76" fill="#F4DE9C" opacity=".72"/>
-        <ellipse cx="806" cy="252" rx="62" ry="38" fill="#B9812C" opacity=".55"/>
-        <ellipse cx="716" cy="258" rx="44" ry="26" fill="#C08A31" opacity=".45"/>
-
-        <!-- sauce pot -->
-        <circle cx="520" cy="252" r="80" fill="#D9D5CB" opacity=".55"/>
-        <circle cx="520" cy="252" r="70" fill="#8E4614"/>
-        <circle cx="520" cy="252" r="70" fill="none" stroke="#EDE7DA" stroke-width="4" opacity=".5"/>
-        <ellipse cx="498" cy="230" rx="26" ry="15" fill="#C87A2E" opacity=".6"/>
-
-        <!-- sweet plantain -->
-        <ellipse cx="292" cy="392" rx="98" ry="54" fill="#C9812C" transform="rotate(-16 292 392)"/>
-        <ellipse cx="292" cy="392" rx="78" ry="38" fill="#E0A249" transform="rotate(-16 292 392)"/>
-        <ellipse cx="352" cy="466" rx="96" ry="52" fill="#B96F22" transform="rotate(9 352 466)"/>
-        <ellipse cx="352" cy="466" rx="74" ry="34" fill="#D9963E" transform="rotate(9 352 466)"/>
-        <ellipse cx="238" cy="470" rx="88" ry="48" fill="#C07822" transform="rotate(-6 238 470)"/>
-        <ellipse cx="238" cy="470" rx="66" ry="31" fill="#DC9C43" transform="rotate(-6 238 470)"/>
-
-        <!-- festival -->
-        <ellipse cx="682" cy="468" rx="108" ry="94" fill="#C58F42"/>
-        <ellipse cx="670" cy="450" rx="88" ry="72" fill="#DDAE64"/>
-        <ellipse cx="650" cy="430" rx="44" ry="27" fill="#EDC988" opacity=".8"/>
-
-        <!-- slaw -->
-        <ellipse cx="158" cy="568" rx="104" ry="98" fill="#EFE8D9"/>
-        <path d="M104 540 Q158 556 214 534 M108 590 Q166 606 218 580 M120 618 Q164 630 206 616" stroke="#9B7BA8" stroke-width="7" fill="none" stroke-linecap="round" opacity=".65"/>
-        <path d="M112 566 Q170 578 212 556" stroke="#D08A45" stroke-width="5" fill="none" stroke-linecap="round" opacity=".6"/>
-
-        <!-- jerk chicken -->
-        <ellipse cx="486" cy="606" rx="180" ry="126" fill="#38220F" transform="rotate(-7 486 606)"/>
-        <ellipse cx="466" cy="580" rx="140" ry="92" fill="#4A2F16" transform="rotate(-7 466 580)"/>
-        <ellipse cx="430" cy="556" rx="72" ry="42" fill="#5E3D1D" transform="rotate(-12 430 556)" opacity=".85"/>
-        <ellipse cx="700" cy="632" rx="126" ry="88" fill="#2F1C0C" transform="rotate(14 700 632)"/>
-        <ellipse cx="690" cy="614" rx="96" ry="62" fill="#452B13" transform="rotate(14 690 614)"/>
-        <path d="M392 632 Q470 660 548 636 M436 674 Q500 694 566 672" stroke="#0F0906" stroke-width="8" fill="none" stroke-linecap="round" opacity=".55"/>
+        <image href="assets/tray.jpg" x="350" y="30" width="600" height="722"
+               preserveAspectRatio="xMidYMid slice" clip-path="url(#photoClip)"/>
+        <rect x="350" y="30" width="600" height="722" rx="10" fill="url(#vig)"/>
+        <rect x="350" y="30" width="600" height="722" rx="10" fill="none" stroke="#F2ECDF" stroke-opacity=".16"/>
       </g>
 
-      <!-- ---- labels ---- -->
-      <g class="lbl-group" data-i="0">
-        <path class="lead" d="M -21 151 Q 138 138 300 213" pathLength="1"/>
-        <circle class="lead-dot" cx="300" cy="213" r="6"/>
-        <rect class="lbl-slab" x="-210" y="130" width="189" height="42" rx="2"/>
-        <text class="lbl-txt" x="-194" y="158">RICE &amp; PEAS</text>
+      <g class="lbl-group">
+        <path class="lead-halo" d="M 310 171 Q 430 158 574 170" pathLength="1"/>
+        <path class="lead"      d="M 310 171 Q 430 158 574 170" pathLength="1"/>
+        <circle class="lead-dot" cx="574" cy="170" r="6"/>
+        <rect class="lbl-slab" x="121" y="150" width="189" height="42" rx="2"/>
+        <text class="lbl-txt" x="137" y="178">RICE &amp; PEAS</text>
       </g>
-      <g class="lbl-group" data-i="1">
-        <path class="lead" d="M 1010 161 Q 900 178 774 220" pathLength="1"/>
-        <circle class="lead-dot" cx="774" cy="220" r="6"/>
-        <rect class="lbl-slab" x="1010" y="140" width="203" height="42" rx="2"/>
-        <text class="lbl-txt" x="1026" y="168">MAC &amp; CHEESE</text>
+      <g class="lbl-group">
+        <path class="lead-halo" d="M 990 222 Q 930 214 866 222" pathLength="1"/>
+        <path class="lead"      d="M 990 222 Q 930 214 866 222" pathLength="1"/>
+        <circle class="lead-dot" cx="866" cy="222" r="6"/>
+        <rect class="lbl-slab" x="990" y="201" width="203" height="42" rx="2"/>
+        <text class="lbl-txt" x="1006" y="229">MAC &amp; CHEESE</text>
       </g>
-      <g class="lbl-group" data-i="2">
-        <path class="lead" d="M 22 421 Q 150 402 290 392" pathLength="1"/>
-        <circle class="lead-dot" cx="290" cy="392" r="6"/>
-        <rect class="lbl-slab" x="-210" y="400" width="232" height="42" rx="2"/>
-        <text class="lbl-txt" x="-194" y="428">SWEET PLANTAIN</text>
+      <g class="lbl-group">
+        <path class="lead-halo" d="M 310 342 Q 410 330 534 342" pathLength="1"/>
+        <path class="lead"      d="M 310 342 Q 410 330 534 342" pathLength="1"/>
+        <circle class="lead-dot" cx="534" cy="342" r="6"/>
+        <rect class="lbl-slab" x="78" y="321" width="232" height="42" rx="2"/>
+        <text class="lbl-txt" x="94" y="349">SWEET PLANTAIN</text>
       </g>
-      <g class="lbl-group" data-i="3">
-        <path class="lead" d="M 1010 441 Q 872 448 690 466" pathLength="1"/>
-        <circle class="lead-dot" cx="690" cy="466" r="6"/>
-        <rect class="lbl-slab" x="1010" y="420" width="146" height="42" rx="2"/>
-        <text class="lbl-txt" x="1026" y="448">FESTIVAL</text>
+      <g class="lbl-group">
+        <path class="lead-halo" d="M 990 412 Q 880 402 764 412" pathLength="1"/>
+        <path class="lead"      d="M 990 412 Q 880 402 764 412" pathLength="1"/>
+        <circle class="lead-dot" cx="764" cy="412" r="6"/>
+        <rect class="lbl-slab" x="990" y="391" width="146" height="42" rx="2"/>
+        <text class="lbl-txt" x="1006" y="419">FESTIVAL</text>
       </g>
-      <g class="lbl-group" data-i="4">
-        <path class="lead" d="M -121 661 Q -20 626 100 578" pathLength="1"/>
-        <circle class="lead-dot" cx="100" cy="578" r="6"/>
-        <rect class="lbl-slab" x="-210" y="640" width="89" height="42" rx="2"/>
-        <text class="lbl-txt" x="-194" y="668">SLAW</text>
+      <g class="lbl-group">
+        <path class="lead-halo" d="M 310 538 Q 362 528 434 538" pathLength="1"/>
+        <path class="lead"      d="M 310 538 Q 362 528 434 538" pathLength="1"/>
+        <circle class="lead-dot" cx="434" cy="538" r="6"/>
+        <rect class="lbl-slab" x="221" y="517" width="89" height="42" rx="2"/>
+        <text class="lbl-txt" x="237" y="545">SLAW</text>
       </g>
-      <g class="lbl-group" data-i="5">
-        <path class="lead" d="M 1010 681 Q 806 700 620 634" pathLength="1"/>
-        <circle class="lead-dot" cx="620" cy="634" r="6"/>
-        <rect class="lbl-slab" x="1010" y="660" width="203" height="42" rx="2"/>
-        <text class="lbl-txt" x="1026" y="688">JERK CHICKEN</text>
+      <g class="lbl-group">
+        <path class="lead-halo" d="M 990 578 Q 840 600 670 578" pathLength="1"/>
+        <path class="lead"      d="M 990 578 Q 840 600 670 578" pathLength="1"/>
+        <circle class="lead-dot" cx="670" cy="578" r="6"/>
+        <rect class="lbl-slab" x="990" y="557" width="203" height="42" rx="2"/>
+        <text class="lbl-txt" x="1006" y="585">JERK CHICKEN</text>
       </g>
     </svg>
 
@@ -746,55 +676,20 @@
     <div class="gal-side">
       <p class="sec-num">The truck</p>
       <h2 class="sec-h" style="font-size:clamp(1.8rem,4.6vw,3.4rem)">Come<span class="ghost">Find Us</span></h2>
-      <p>Drag sideways. Every panel below is a shot waiting to be taken &mdash; that list
-        <em>is</em> the photo brief. Two are drawn in so you can see how they&rsquo;ll sit.</p>
+      <p>Drag sideways. The first two are yours; the rest are shots still to be taken, each
+        captioned with what it is &mdash; so this rail doubles as the photo brief.</p>
       <a class="gal-handle" href="#gallery" data-tbc>@talawa &mdash; handle to confirm</a>
     </div>
 
     <div class="gal-rail" id="rail">
       <figure class="shot shot--wide">
-        <svg class="shot-art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect width="400" height="300" fill="#151311"/>
-          <rect x="36" y="118" width="330" height="120" rx="6" fill="#8E8B82"/>
-          <rect x="44" y="72" width="314" height="44" rx="3" fill="#0A0908"/>
-          <text x="201" y="103" text-anchor="middle" font-family="Caveat Brush, cursive" font-size="30" fill="#FFC91C">Talawa</text>
-          <rect x="66" y="130" width="270" height="66" fill="#0D0C0A"/>
-          <rect x="80" y="142" width="110" height="42" fill="#2A2823"/>
-          <rect x="214" y="142" width="96" height="42" fill="#2A2823"/>
-          <rect x="58" y="196" width="286" height="15" fill="#B9B7AE"/>
-          <circle cx="200" cy="252" r="27" fill="#161512"/>
-          <circle cx="200" cy="252" r="12" fill="#6E6B63"/>
-          <g>
-            <rect x="52" y="212" width="52" height="34" fill="#FFC91C"/>
-            <polygon points="59,212 97,212 78,225" fill="#1E7A32"/>
-            <polygon points="59,246 97,246 78,233" fill="#1E7A32"/>
-            <polygon points="52,217 52,241 72,229" fill="#0A0908"/>
-            <polygon points="104,217 104,241 84,229" fill="#0A0908"/>
-          </g>
-          <g>
-            <rect x="296" y="212" width="52" height="34" fill="#FFC91C"/>
-            <polygon points="303,212 341,212 322,225" fill="#1E7A32"/>
-            <polygon points="303,246 341,246 322,233" fill="#1E7A32"/>
-            <polygon points="296,217 296,241 316,229" fill="#0A0908"/>
-            <polygon points="348,217 348,241 328,229" fill="#0A0908"/>
-          </g>
-        </svg>
+        <img class="shot-art" src="assets/truck.jpg" alt="The Talawa trailer, hatch open, Jamaican flags on the counter">
         <span class="shot-i">01</span>
         <figcaption class="shot-cap">The truck, front on, hatch open</figcaption>
       </figure>
 
       <figure class="shot">
-        <svg class="shot-art" viewBox="0 0 300 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect width="300" height="380" fill="#151311"/>
-          <rect x="34" y="72" width="232" height="236" rx="12" fill="#A6A39A"/>
-          <rect x="46" y="84" width="208" height="212" rx="6" fill="#7E7B72"/>
-          <ellipse cx="106" cy="140" rx="58" ry="40" fill="#C6A991"/>
-          <ellipse cx="206" cy="146" rx="46" ry="36" fill="#E7C169"/>
-          <ellipse cx="98" cy="216" rx="34" ry="20" fill="#D9963E"/>
-          <ellipse cx="196" cy="222" rx="32" ry="28" fill="#DDAE64"/>
-          <ellipse cx="140" cy="268" rx="62" ry="34" fill="#38220F"/>
-          <ellipse cx="66" cy="252" rx="26" ry="24" fill="#EFE8D9"/>
-        </svg>
+        <img class="shot-art" src="assets/tray.jpg" alt="A Talawa tray: rice and peas, mac and cheese, plantain, festival, slaw and jerk chicken">
         <span class="shot-i">02</span>
         <figcaption class="shot-cap">The tray, from directly above, daylight</figcaption>
       </figure>
@@ -928,6 +823,7 @@
 
 <!-- ===================== FOOTER ===================== -->
 <footer class="foot">
+  <img class="foot-banner" src="assets/banner.jpg" alt="Talawa Caribbean Food">
   <div class="foot-top">
     <p class="foot-script">See you Saturday.</p>
     <ul class="socials">
@@ -956,6 +852,15 @@
     <p>The full page for <strong>Direction 1 &mdash; &ldquo;Likkle But Talawa&rdquo;</strong>: opening screen,
       tray sequence, menu, gallery, find us, footer. Built for real so you can judge the feel
       rather than read a description.</p>
+
+    <h3>Now using your real photos</h3>
+    <ul>
+      <li>The tray sequence runs on your actual tray shot, with the six labels measured onto it.</li>
+      <li>Your logo is in the top corner and the hero; the sign artwork closes the footer.</li>
+      <li>The truck photo opens the gallery.</li>
+      <li>The tray photo is portrait and shot at an angle under indoor light &mdash; it works, but a
+        landscape top-down one in daylight would make this section noticeably better.</li>
+    </ul>
 
     <h3>Try these</h3>
     <ul>
@@ -996,9 +901,7 @@
 
     <h3>Send me these and it stops being a mock-up</h3>
     <ul>
-      <li>The tray photo from directly above, in daylight, on a dark surface &mdash; plus the rest of
-        the shot list in the gallery.</li>
-      <li>Your logo as the original file.</li>
+      <li>A landscape top-down tray shot in daylight &mdash; plus the rest of the shot list in the gallery.</li>
       <li>Town, full street address, postcode, and the rest of the phone number.</li>
       <li>Confirmed menu and prices.</li>
       <li>Instagram and Facebook handles.</li>
@@ -1022,7 +925,7 @@
     var stem = document.createElementNS(NS, 'path');
     stem.setAttribute('d', 'M 8 22 Q 180 90 388 232');
     stem.setAttribute('stroke', '#1E7A32');
-    stem.setAttribute('stroke-width', '5');
+    stem.setAttribute('stroke-width', '3.5');
     stem.setAttribute('fill', 'none');
     g.appendChild(stem);
     for (var i = 0; i < 30; i++) {
@@ -1031,19 +934,31 @@
       var y = 22 + (90 - 22) * 2 * t * (1 - t) + (232 - 22) * t * t;
       var len = 152 * Math.sin(Math.PI * (0.12 + t * 0.84));
       var side = (i % 2 === 0) ? 1 : -1;
+      var tx = x + len * 0.90, ty = y - side * len * 0.96;
+      var dx = tx - x, dy = ty - y, L = Math.hypot(dx, dy) || 1;
+      var px = -dy / L, py = dx / L;                  /* perpendicular */
+      var mx = x + dx * 0.45, my = y + dy * 0.45, w = 6.5;
       var leaf = document.createElementNS(NS, 'path');
       leaf.setAttribute('d',
         'M ' + x + ' ' + y +
-        ' Q ' + (x + len * 0.30) + ' ' + (y - side * len * 0.60) +
-        ' ' + (x + len * 0.90) + ' ' + (y - side * len * 0.96));
-      leaf.setAttribute('stroke', i % 3 === 0 ? '#2C9440' : '#20692C');
-      leaf.setAttribute('stroke-width', '5');
-      leaf.setAttribute('stroke-linecap', 'round');
-      leaf.setAttribute('fill', 'none');
+        ' Q ' + (mx + px * w) + ' ' + (my + py * w) + ' ' + tx + ' ' + ty +
+        ' Q ' + (mx - px * w) + ' ' + (my - py * w) + ' ' + x + ' ' + y + ' Z');
+      leaf.setAttribute('fill', i % 3 === 0 ? '#2C9440' : '#20692C');
       g.appendChild(leaf);
     }
     svg.appendChild(g);
   });
+
+  /* ---------- phones drop the labels, so crop the viewBox to the tray ---------- */
+  var trayArt = document.getElementById('trayArt');
+  if (trayArt) {
+    var wide = window.matchMedia('(min-width: 861px)');
+    var fitTray = function () {
+      trayArt.setAttribute('viewBox', wide.matches ? '0 0 1300 820' : '336 16 628 750');
+    };
+    fitTray();
+    wide.addEventListener('change', fitTray);
+  }
 
   /* ---------- the swappable ordering block (works with or without GSAP) ---------- */
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.order-tab'));
@@ -1112,7 +1027,7 @@
     document.querySelector('.tray-stage').classList.add('js-pin');
     var labels = gsap.utils.toArray('.lbl-group');
 
-    gsap.set('.lead', { strokeDasharray: 1, strokeDashoffset: 1 });
+    gsap.set('.lead, .lead-halo', { strokeDasharray: 1, strokeDashoffset: 1 });
     gsap.set('.lead-dot', { scale: 0, transformOrigin: '50% 50%' });
     gsap.set('.lbl-slab, .lbl-txt', { opacity: 0 });
     gsap.set('.tray-final', { opacity: 0, scale: .94 });
@@ -1125,7 +1040,7 @@
 
     labels.forEach(function (g, i) {
       var at = .07 + i * .105;
-      tray.to(g.querySelector('.lead'), { strokeDashoffset: 0, duration: .085, ease: 'power2.inOut' }, at)
+      tray.to(g.querySelectorAll('.lead, .lead-halo'), { strokeDashoffset: 0, duration: .085, ease: 'power2.inOut' }, at)
           .to(g.querySelector('.lead-dot'), { scale: 1, duration: .04, ease: 'back.out(2.5)' }, at + .075)
           .fromTo(g.querySelectorAll('.lbl-slab, .lbl-txt'),
                   { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .055, stagger: .012 }, at + .02);

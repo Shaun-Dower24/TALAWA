@@ -55,7 +55,7 @@ Everything below assumes the recommended route.
 
 ## 2a. Build status
 
-**Seven of the eleven are built and on the site.** All of Tier 1 and the first three of
+**Nine of the eleven are built and on the site.** All of Tier 1 and the first three of
 Tier 2 — rebuilt in the site's own plain code rather than pulled in as React components,
 exactly as section 2 recommends. The page is still one file and still has no build step.
 
@@ -68,12 +68,22 @@ exactly as section 2 recommends. The page is still one file and still has no bui
 | 4.1 | Tap a photo to enlarge | Built and working |
 | 4.2 | Arrow keys and snapping | Built and working |
 | 4.3 | Ticker pauses on hover | Built |
-| 4.4 | Counting numbers | Blocked — needs real figures |
-| 4.5 | Real map | Blocked — needs the postcode |
+| 4.4 | Counting numbers | Built — four true figures; ratings and years still welcome |
+| 4.5 | Real map | Wired and waiting — one config line away from live |
 | 5.1 | Mailing list | Later — needs a backend and consent wording |
 | 5.2 | Confirmation pop-ups | Later — needs online ordering first |
 
-The four that are not built are held up on **content or a decision from you**, not on code.
+The two that remain are deliberately deferred, not stuck.
+
+**On the map:** the address now lives in a single `VENUE` block at the top of the page's
+script. Fill in street, town, postcode and phone, and the directions link, the call button,
+the address list and the map caption all wire themselves up — tested with a dummy postcode.
+A live, tappable map cannot render inside the preview (its security settings block outside
+map tiles), so the drawing stands in there; on the real site it becomes a proper map.
+
+**On the numbers:** every figure shown is one I can stand behind — counted off the menu
+boards and the opening hours. Nothing invented. A star rating, years trading or trays served
+would all fit the row when you have them.
 
 ---
 
@@ -149,12 +159,12 @@ doesn't settle neatly on a photo. Fixing that helps anyone not using a mouse.
 it handles two things mine doesn't: pausing when you hover, and stopping entirely for people
 who've asked their phone to reduce motion. Worth a look.
 
-### 4.4 Counting numbers — **BLOCKED**
+### 4.4 Counting numbers — **BUILT**
 **Stats: 153.** Something like *"Trading since 2023 · 4.9 stars · 60 trays a Saturday"* with
 the figures counting up as you reach them. **Only if the numbers are real** — tell me the
 true ones or we skip it.
 
-### 4.5 A real map — **BLOCKED**
+### 4.5 A real map — **PART BUILT**
 **Maps: 51.** The map on the site now is drawn by me. Once you send the postcode it becomes
 a real one you can tap for directions.
 

@@ -76,8 +76,12 @@ them is then the highest-value thing you could do this month.
 
 Right now the only thing answering customer questions is one line about allergies. The
 questions that actually stop someone travelling are things like: *is there anything
-vegetarian, can I pre-order, do you take card, do you do parties, what time do you sell
-out, whereabouts in the car park are you.*
+vegetarian, can I pre-order, do you take card, what time do you sell out, whereabouts in
+the car park are you.*
+
+Include **"do you do catering or parties?"** with a plain **no, Saturdays only** as the
+answer. Confirmed: you don't do catering. It still earns its place, because a stated no
+stops the enquiry before it reaches you — leaving it out just means people ask anyway.
 
 A tidy list of questions that expand when tapped.
 
@@ -198,7 +202,6 @@ them. So the useful next step is you sending me those, not me building more.
 
 - [ ] Your Google / Facebook reviews (screenshots or copy-paste)
 - [ ] The 6–8 questions you get asked most, with your answers
-- [ ] Whether you do catering — it came up as a question and we'd left it out
 - [ ] Any real numbers worth showing (years trading, star rating, trays on a good Saturday)
 - [ ] **Still outstanding from before:** prices, town, full address, postcode, the rest of the
       phone number, and your Instagram and Facebook handles

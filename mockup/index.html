@@ -704,6 +704,60 @@
   }
   .venue-pending{color:var(--scotch)}
   .btn[aria-disabled="true"]{opacity:.45; cursor:not-allowed}
+
+  /* ============ MAILING LIST ============ */
+  .list-wrap{
+    display:grid; grid-template-columns:1fr 1fr;
+    gap:clamp(1.8rem,5vw,4rem); align-items:start;
+  }
+  .list-lead p{margin:0 0 1rem; color:var(--bone); opacity:.86; max-width:46ch}
+  .list-lead p:last-child{margin-bottom:0}
+  .list-form{
+    background:var(--ink-2); border:1px solid rgba(145,138,123,.28);
+    padding:clamp(1.3rem,3.4vw,2.1rem);
+  }
+  .field{display:flex; flex-direction:column; gap:.5rem; margin-bottom:1rem}
+  .field label{
+    font-family:var(--mono); font-size:10px; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--ash);
+  }
+  .field input[type="email"]{
+    font-family:var(--body); font-size:1rem; color:var(--bone);
+    background:var(--ink); border:1px solid rgba(145,138,123,.4);
+    border-radius:2px; padding:.85rem .9rem; width:100%;
+  }
+  .field input[type="email"]:focus-visible{outline:2px solid var(--gold); outline-offset:2px}
+  .field input[type="email"]::placeholder{color:rgba(145,138,123,.7)}
+  .consent{
+    display:flex; gap:.7rem; align-items:flex-start; margin-bottom:1.2rem;
+    font-size:.88rem; line-height:1.6; color:var(--bone); opacity:.86;
+  }
+  .consent input{
+    flex:0 0 auto; width:18px; height:18px; margin-top:.15rem;
+    accent-color:var(--gold);
+  }
+  .list-form button{
+    font-family:var(--mono); font-size:12px; letter-spacing:.16em; font-weight:500;
+    text-transform:uppercase; cursor:pointer; width:100%;
+    background:var(--gold); color:var(--ink); border:1px solid var(--gold);
+    border-radius:2px; padding:.95rem 1.4rem;
+  }
+  .list-form button:hover{background:var(--bone); border-color:var(--bone)}
+  .list-form button[disabled]{opacity:.5; cursor:not-allowed}
+  .list-msg{
+    margin:1rem 0 0; font-family:var(--mono); font-size:11px;
+    line-height:1.7; letter-spacing:.04em; color:var(--ash); min-height:1.2em;
+  }
+  .list-msg[data-tone="warn"]{color:var(--scotch)}
+  .list-msg[data-tone="good"]{color:var(--green)}
+  .list-small{
+    margin:1.1rem 0 0; padding-top:1.1rem;
+    border-top:1px solid rgba(145,138,123,.2);
+    font-family:var(--mono); font-size:10px; line-height:1.8;
+    letter-spacing:.04em; color:var(--ash);
+  }
+  .hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden}
+  @media (max-width:860px){ .list-wrap{grid-template-columns:1fr} }
 </style>
 
 <div class="grain"></div>
@@ -1232,6 +1286,51 @@
   }
   </script>
 </section>
+<hr class="rule">
+
+<!-- ===================== MAILING LIST ===================== -->
+<section class="sec" id="list">
+  <p class="sec-num">Saturday reminder</p>
+  <h2 class="sec-h">Never Miss<span class="ghost">A Saturday</span></h2>
+
+  <div class="list-wrap">
+    <div class="list-lead">
+      <p>The truck is out four hours a week. Most people who mean to come don&rsquo;t decide
+        against it &mdash; they just forget which Saturday it is.</p>
+      <p>So: one message on a Saturday morning saying we&rsquo;re on and what&rsquo;s cooking.
+        That is the whole thing. No offers, no newsletter, nothing on a Tuesday.</p>
+    </div>
+
+    <form class="list-form" id="listForm" novalidate>
+      <div class="field">
+        <label for="listEmail">Your email</label>
+        <input type="email" id="listEmail" name="email" placeholder="you@example.com"
+               autocomplete="email" required>
+      </div>
+
+      <p class="hp" aria-hidden="true">
+        <label for="listNick">Leave this empty</label>
+        <input type="text" id="listNick" name="nickname" tabindex="-1" autocomplete="off">
+      </p>
+
+      <label class="consent">
+        <input type="checkbox" id="listConsent" name="consent" required>
+        <span>Yes, Talawa can email me to say when the truck is out. One message on a
+          Saturday morning. I can unsubscribe any time.</span>
+      </label>
+
+      <button type="submit" id="listBtn">Send me the Saturday nudge</button>
+      <p class="list-msg" id="listMsg" role="status" aria-live="polite"></p>
+
+      <p class="list-small">
+        Your address is used for the Saturday message and nothing else. It is never sold or
+        passed on, and every email carries a one-click unsubscribe.
+        <span class="tbc">Privacy notice still to be written.</span>
+      </p>
+    </form>
+  </div>
+</section>
+
 
 <!-- ===================== FOOTER ===================== -->
 <footer class="foot">
@@ -1448,6 +1547,61 @@
       : '<span class="venue-pending">Postcode needed.</span> A live, tappable map belongs here. '
       + 'This preview cannot load one &mdash; the page&rsquo;s security settings block outside map '
       + 'tiles &mdash; but the real site will. The drawing is standing in.';
+  }
+
+  /* ---------- Saturday mailing list ----------
+     Paste the form URL from whichever email service you use (MailerLite,
+     Buttondown, Mailchimp, Formspree) into `endpoint` and this starts working.
+     Note: the artifact preview blocks outgoing requests, so it will only
+     actually send from a real deploy. */
+  var LIST = { endpoint: '', service: '' };
+
+  var listForm = document.getElementById('listForm');
+  if (listForm) {
+    var listMsg = document.getElementById('listMsg');
+    var listBtn = document.getElementById('listBtn');
+    var say = function (text, tone) {
+      listMsg.textContent = text;
+      if (tone) listMsg.setAttribute('data-tone', tone); else listMsg.removeAttribute('data-tone');
+    };
+
+    if (!LIST.endpoint) {
+      say('Not connected yet — this needs an email service behind it before it can take sign-ups.', 'warn');
+    }
+
+    listForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = document.getElementById('listEmail');
+      var consent = document.getElementById('listConsent');
+
+      /* honeypot: a bot filled the hidden field — say nothing useful */
+      if (document.getElementById('listNick').value) { say('You are on the list.', 'good'); return; }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+        say('That email address does not look right.', 'warn'); email.focus(); return;
+      }
+      if (!consent.checked) {
+        say('Tick the box to say we can email you.', 'warn'); consent.focus(); return;
+      }
+      if (!LIST.endpoint) {
+        say('Nothing was sent — there is no email service connected yet. Your address has not gone anywhere.', 'warn');
+        return;
+      }
+
+      listBtn.disabled = true;
+      say('Sending…');
+      fetch(LIST.endpoint, {
+        method: 'POST', body: new FormData(listForm), headers: { Accept: 'application/json' }
+      }).then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        listForm.reset();
+        say('You are on the list. See you Saturday.', 'good');
+      }).catch(function () {
+        say('That did not go through. Try again in a moment, or send us a message instead.', 'warn');
+      }).then(function () {
+        listBtn.disabled = false;
+      });
+    });
   }
 
   /* ---------- placeholder links must not jump the page ---------- */

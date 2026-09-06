@@ -55,7 +55,7 @@ Everything below assumes the recommended route.
 
 ## 2a. Build status
 
-**Nine of the eleven are built and on the site.** All of Tier 1 and the first three of
+**Ten of the eleven are built and on the site.** All of Tier 1 and the first three of
 Tier 2 — rebuilt in the site's own plain code rather than pulled in as React components,
 exactly as section 2 recommends. The page is still one file and still has no build step.
 
@@ -70,7 +70,7 @@ exactly as section 2 recommends. The page is still one file and still has no bui
 | 4.3 | Ticker pauses on hover | Built |
 | 4.4 | Counting numbers | Built — four true figures; ratings and years still welcome |
 | 4.5 | Real map | Wired and waiting — one config line away from live |
-| 5.1 | Mailing list | Later — needs a backend and consent wording |
+| 5.1 | Mailing list | Built — one config line from live; consent wording done |
 | 5.2 | Confirmation pop-ups | Later — needs online ordering first |
 
 The two that remain are deliberately deferred, not stuck.
@@ -84,6 +84,12 @@ map tiles), so the drawing stands in there; on the real site it becomes a proper
 **On the numbers:** every figure shown is one I can stand behind — counted off the menu
 boards and the opening hours. Nothing invented. A star rating, years trading or trays served
 would all fit the row when you have them.
+
+**On the mailing list:** the form, the validation, the spam trap and the UK-compliant consent
+wording are all done and tested. It needs an email service behind it — paste that service's
+form URL into the `LIST` block and it goes live. Until then it refuses to pretend: submitting
+says plainly that nothing was sent and the address went nowhere. A privacy notice still needs
+writing before it takes a single real address.
 
 ---
 
@@ -172,7 +178,7 @@ a real one you can tap for directions.
 
 ## 5. Later, if the business goes that way
 
-### 5.1 "Tell me when the truck's out" — **LATER**
+### 5.1 "Tell me when the truck's out" — **BUILT**
 **Forms: 1522.** An email or WhatsApp list people join to get a nudge on Saturday morning.
 
 For a Saturday-only trader this is genuinely valuable — it catches the people who meant to

@@ -43,7 +43,7 @@
   }
 
   .tag{
-    position:fixed; top:14px; right:14px; z-index:70;
+    position:fixed; bottom:14px; left:14px; z-index:70;
     font-family:var(--mono); font-size:10px; letter-spacing:.16em;
     text-transform:uppercase; color:var(--ash);
     border:1px solid rgba(145,138,123,.34); border-radius:2px;
@@ -245,13 +245,258 @@
   @media (prefers-reduced-motion:reduce){
     *{animation:none !important; transition:none !important}
   }
+
+  /* ============ NAV ============ */
+  .nav{
+    position:fixed; top:0; left:0; right:0; z-index:55;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:1rem; padding:.85rem var(--pad);
+    background:rgba(10,9,8,.9); backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(145,138,123,.2);
+    transform:translateY(-101%);
+  }
+  .nav-mark{font-family:var(--script); font-size:1.5rem; color:var(--gold); line-height:1; text-decoration:none}
+  .nav-links{display:flex; align-items:center; gap:clamp(.9rem,2.4vw,2rem)}
+  .nav-links a{
+    font-family:var(--mono); font-size:11px; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--bone); text-decoration:none;
+    padding:.3rem 0; border-bottom:1px solid transparent;
+  }
+  .nav-links a:hover{border-bottom-color:var(--gold); color:var(--gold)}
+  .nav-call{
+    font-family:var(--mono); font-size:11px; letter-spacing:.18em;
+    text-transform:uppercase; background:var(--gold); color:var(--ink);
+    text-decoration:none; padding:.55rem .95rem; border-radius:2px; font-weight:500;
+  }
+  .nav-call:hover{background:var(--bone); border-bottom-color:transparent}
+  @media (max-width:640px){ .nav-links a[data-opt]{display:none} }
+
+  /* ============ SHARED SECTION FURNITURE ============ */
+  .sec{padding:clamp(3.5rem,10vh,7rem) var(--pad); position:relative}
+  .sec-num{
+    font-family:var(--mono); font-size:10px; letter-spacing:.3em;
+    text-transform:uppercase; color:var(--ash); margin:0 0 .8rem;
+  }
+  .sec-h{
+    font-family:var(--display); font-weight:900; text-transform:uppercase;
+    font-size:clamp(2.1rem,8.6vw,7rem); line-height:.88;
+    letter-spacing:-.024em; margin:0 0 clamp(1.6rem,4vh,3rem);
+    color:var(--bone); text-wrap:balance;
+  }
+  .sec-h .ghost{color:transparent; -webkit-text-stroke:clamp(1px,.13vw,2px) var(--gold); display:block}
+  .rule{height:1px; background:rgba(145,138,123,.22); border:0; margin:0}
+
+  /* ============ MENU ============ */
+  .menu-board{
+    max-width:1180px; margin:0 auto; background:var(--ink-2);
+    border:1px solid rgba(242,236,223,.16);
+    padding:clamp(1.4rem,4vw,3rem); position:relative; overflow:hidden;
+  }
+  .menu-board::after{
+    content:''; position:absolute; inset:0; pointer-events:none;
+    opacity:.5; mix-blend-mode:soft-light;
+    background:
+      radial-gradient(60% 50% at 12% 8%, rgba(232,72,27,.5), transparent 60%),
+      radial-gradient(50% 40% at 92% 94%, rgba(255,201,28,.35), transparent 62%);
+  }
+  .menu-note{
+    font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--gold);
+    margin:0 0 clamp(1.4rem,3vw,2.2rem); border-left:2px solid var(--gold);
+    padding-left:.8rem; line-height:1.6; position:relative; z-index:1;
+  }
+  .menu-cols{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    gap:clamp(1.8rem,4vw,3.4rem); position:relative; z-index:1;
+  }
+  .menu-col h3{
+    font-family:var(--display); font-weight:900; text-transform:uppercase;
+    font-size:clamp(1rem,2vw,1.5rem); letter-spacing:.02em; color:var(--gold);
+    margin:0 0 1.2rem; padding-bottom:.6rem; border-bottom:2px solid var(--gold);
+  }
+  .menu-row{display:grid; grid-template-columns:1fr auto; gap:1rem; align-items:baseline; padding:.85rem 0}
+  .menu-row + .menu-row{border-top:1px solid rgba(242,236,223,.11)}
+  .menu-row dt{margin:0}
+  .menu-row .item{display:block; font-weight:500; color:var(--bone); font-size:1.02rem}
+  .menu-row .with{
+    display:block; font-family:var(--mono); font-size:11px;
+    letter-spacing:.06em; color:var(--ash); margin-top:.18rem;
+  }
+  .menu-row dd{margin:0; font-family:var(--mono); font-size:1rem; color:var(--gold); font-variant-numeric:tabular-nums}
+  .allergy{
+    position:relative; z-index:1; margin:clamp(1.8rem,4vw,3rem) 0 0;
+    padding:1.1rem 1.2rem; border:1px solid var(--scotch); color:var(--bone);
+    font-family:var(--mono); font-size:12px; letter-spacing:.05em;
+    line-height:1.7; text-transform:uppercase;
+  }
+  .allergy b{color:var(--scotch); font-weight:500}
+
+  /* ============ GALLERY ============ */
+  .gal{padding:clamp(3.5rem,10vh,7rem) 0}
+  .gal-grid{display:grid; grid-template-columns:minmax(240px,26%) 1fr; gap:clamp(1.5rem,4vw,3rem); align-items:start}
+  .gal-side{padding-left:var(--pad); position:sticky; top:6rem}
+  .gal-side p{color:var(--ash); font-size:.96rem; margin:0 0 1.2rem}
+  .gal-handle{
+    font-family:var(--mono); font-size:12px; letter-spacing:.16em; color:var(--gold);
+    text-decoration:none; text-transform:uppercase;
+    border-bottom:1px solid var(--gold); padding-bottom:2px;
+  }
+  .gal-rail{
+    display:flex; gap:clamp(.7rem,1.6vw,1.2rem);
+    overflow-x:auto; overflow-y:hidden; padding:0 var(--pad) 1.4rem 0;
+    scrollbar-width:thin; scrollbar-color:var(--gold) transparent; cursor:grab;
+  }
+  .gal-rail::-webkit-scrollbar{height:3px}
+  .gal-rail::-webkit-scrollbar-thumb{background:var(--gold)}
+  .gal-rail.is-drag{cursor:grabbing}
+  .gal-rail.is-drag *{pointer-events:none}
+  .shot{
+    flex:0 0 auto; width:clamp(210px,26vw,340px); aspect-ratio:4/5;
+    position:relative; background:var(--ink-2);
+    border:1px solid rgba(145,138,123,.3);
+    display:flex; flex-direction:column; justify-content:flex-end;
+    padding:1rem; overflow:hidden; margin:0; will-change:transform;
+  }
+  .shot--wide{width:clamp(300px,40vw,520px); aspect-ratio:3/2}
+  .shot-art{position:absolute; inset:0; width:100%; height:100%}
+  .shot-empty{
+    position:absolute; inset:0; opacity:.5;
+    background-image:repeating-linear-gradient(-45deg, transparent 0 13px, rgba(145,138,123,.14) 13px 14px);
+  }
+  .shot-i{
+    position:absolute; top:.8rem; left:.9rem; z-index:2;
+    font-family:var(--mono); font-size:10px; letter-spacing:.12em; color:var(--ash);
+  }
+  .shot-loop{
+    position:absolute; top:.7rem; right:.8rem; z-index:2;
+    font-family:var(--mono); font-size:9px; letter-spacing:.14em;
+    background:var(--scotch); color:var(--bone); padding:.25rem .45rem; text-transform:uppercase;
+  }
+  .shot-cap{
+    position:relative; z-index:2; font-family:var(--mono); font-size:11px;
+    line-height:1.5; letter-spacing:.03em; color:var(--bone);
+    background:rgba(10,9,8,.82); padding:.55rem .6rem; backdrop-filter:blur(3px);
+  }
+
+  /* ============ FIND US ============ */
+  .find-grid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(1.6rem,4vw,3.4rem); align-items:start}
+  .addr{list-style:none; margin:0 0 2rem; padding:0}
+  .addr li{
+    display:grid; grid-template-columns:8.5rem 1fr; gap:1rem;
+    padding:.85rem 0; border-top:1px solid rgba(145,138,123,.2); align-items:baseline;
+  }
+  .addr li:last-child{border-bottom:1px solid rgba(145,138,123,.2)}
+  .addr b{
+    font-family:var(--mono); font-size:10px; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--ash); font-weight:400;
+  }
+  .addr span{color:var(--bone)}
+  .tbc{color:var(--scotch); font-family:var(--mono); font-size:.86em}
+  .addr span.tbc{color:var(--scotch)}
+  .btn-row{display:flex; flex-wrap:wrap; gap:.7rem}
+  .btn{
+    font-family:var(--mono); font-size:12px; letter-spacing:.16em;
+    text-transform:uppercase; text-decoration:none; font-weight:500;
+    padding:.95rem 1.4rem; border-radius:2px;
+    background:var(--gold); color:var(--ink); border:1px solid var(--gold);
+  }
+  .btn--ghost{background:transparent; color:var(--gold)}
+  .btn:hover{background:var(--bone); border-color:var(--bone); color:var(--ink)}
+  .map-wrap{position:relative}
+  .map{width:100%; height:auto; display:block; border:1px solid rgba(145,138,123,.3)}
+  .stamp{position:absolute; right:-14px; bottom:-26px; width:clamp(96px,13vw,150px); height:auto; z-index:3}
+  .stamp text{font-family:var(--mono); font-size:15.5px; letter-spacing:.16em; fill:var(--gold); text-transform:uppercase}
+
+  .order{margin-top:clamp(2.4rem,6vw,4rem); border:1px solid rgba(145,138,123,.28); background:var(--ink-2)}
+  .order-head{
+    display:flex; flex-wrap:wrap; gap:.5rem; align-items:center;
+    padding:1rem 1.1rem; border-bottom:1px solid rgba(145,138,123,.22);
+  }
+  .order-head p{
+    margin:0 auto 0 0; font-family:var(--mono); font-size:10px;
+    letter-spacing:.22em; text-transform:uppercase; color:var(--ash);
+  }
+  .order-tab{
+    font-family:var(--mono); font-size:11px; letter-spacing:.12em;
+    text-transform:uppercase; cursor:pointer; background:transparent; color:var(--ash);
+    border:1px solid rgba(145,138,123,.4); border-radius:2px; padding:.5rem .8rem;
+  }
+  .order-tab[aria-pressed="true"]{background:var(--gold); color:var(--ink); border-color:var(--gold)}
+  .order-panel{padding:clamp(1.2rem,3.4vw,2.2rem) 1.1rem}
+  .order-panel h3{
+    font-family:var(--display); font-weight:900; text-transform:uppercase;
+    font-size:clamp(1.1rem,2.6vw,1.8rem); margin:0 0 .7rem; color:var(--bone);
+  }
+  .order-panel p{margin:0 0 1.2rem; color:var(--ash); max-width:52ch}
+
+  /* ============ FOOTER ============ */
+  .foot{border-top:1px solid rgba(145,138,123,.24); padding:clamp(3rem,8vh,5.5rem) var(--pad) 7rem}
+  .foot-top{
+    display:flex; flex-wrap:wrap; gap:2rem; align-items:flex-end;
+    justify-content:space-between; margin-bottom:clamp(2.4rem,6vw,4rem);
+  }
+  .foot-script{
+    font-family:var(--script); color:var(--green); font-size:clamp(1.4rem,4.4vw,3rem);
+    margin:0; transform:rotate(-2deg); transform-origin:left bottom; line-height:1.1;
+  }
+  .socials{display:flex; gap:1.4rem; list-style:none; margin:0; padding:0}
+  .socials a{
+    font-family:var(--mono); font-size:12px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--bone); text-decoration:none;
+    display:flex; align-items:center; gap:.5rem;
+  }
+  .socials a:hover{color:var(--gold)}
+  .socials svg{width:16px; height:16px; fill:currentColor}
+  .foot-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:2rem; padding-top:2rem; border-top:1px solid rgba(145,138,123,.2);
+  }
+  .foot-grid h4{
+    font-family:var(--mono); font-size:10px; letter-spacing:.24em;
+    text-transform:uppercase; color:var(--ash); margin:0 0 .8rem; font-weight:400;
+  }
+  .foot-grid p{margin:0; font-size:.9rem; color:var(--bone); opacity:.8; line-height:1.7}
+  .hyg{display:inline-flex; align-items:center; gap:.6rem; border:1px solid var(--green); padding:.5rem .75rem}
+  .hyg b{font-family:var(--display); font-weight:900; font-size:1.5rem; color:var(--green); line-height:1}
+  .hyg span{font-family:var(--mono); font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--ash); line-height:1.4}
+
+  /* ============ MOBILE ACTION BAR ============ */
+  .bar{position:fixed; left:0; right:0; bottom:0; z-index:58; display:none; gap:1px; background:rgba(145,138,123,.3)}
+  .bar a{
+    flex:1; text-align:center; text-decoration:none; font-family:var(--mono);
+    font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+    padding:1.05rem .5rem; font-weight:500;
+  }
+  .bar .b1{background:var(--gold); color:var(--ink)}
+  .bar .b2{background:var(--ink-2); color:var(--gold)}
+
+  @media (max-width:860px){
+    .tag{bottom:72px}
+    .bar{display:flex}
+    .gal-grid{grid-template-columns:1fr}
+    .gal-side{position:static; padding-right:var(--pad)}
+    .gal-rail{padding-left:var(--pad)}
+    .find-grid{grid-template-columns:1fr}
+    .map-wrap{order:-1}
+    .stamp{right:8px; bottom:-22px}
+    .addr li{grid-template-columns:1fr; gap:.2rem}
+  }
 </style>
 
 <div class="grain"></div>
 <div class="tag">Mock-up · Direction 1</div>
 
+<nav class="nav" aria-label="Main">
+  <a class="nav-mark" href="#top">Talawa</a>
+  <div class="nav-links">
+    <a href="#menu">Menu</a>
+    <a href="#gallery" data-opt>The truck</a>
+    <a href="#find">Find us</a>
+    <a class="nav-call" href="#find" data-tbc>Call</a>
+  </div>
+</nav>
+
 <!-- ===================== HERO ===================== -->
-<header class="hero">
+<header class="hero" id="top">
   <div class="hero-glow"></div>
   <svg class="frond frond--tl" viewBox="0 0 400 300" aria-hidden="true"></svg>
   <svg class="frond frond--tr" viewBox="0 0 400 300" aria-hidden="true"></svg>
@@ -422,26 +667,309 @@
   </div>
 </section>
 
+<!-- ===================== MENU ===================== -->
+<section class="sec" id="menu">
+  <p class="sec-num">The board</p>
+  <h2 class="sec-h">What&rsquo;s<span class="ghost">Cooking</span></h2>
+
+  <div class="menu-board">
+    <p class="menu-note">
+      Prices are left blank on purpose &mdash; I read the items off your menu boards
+      but I&rsquo;m not publishing a number I&rsquo;ve guessed at. Send them over and they drop in.
+    </p>
+
+    <div class="menu-cols">
+      <div class="menu-col">
+        <h3>Mains</h3>
+        <dl>
+          <div class="menu-row">
+            <dt><span class="item">Boneless Curry Goat</span><span class="with">Served with rice &amp; peas</span></dt>
+            <dd>&pound;&mdash;</dd>
+          </div>
+          <div class="menu-row">
+            <dt><span class="item">Boneless Jerk Chicken</span><span class="with">Served with rice &amp; peas</span></dt>
+            <dd>&pound;&mdash;</dd>
+          </div>
+          <div class="menu-row">
+            <dt><span class="item">Jerk Chicken Burger</span><span class="with">Served with slaw</span></dt>
+            <dd>&pound;&mdash;</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="menu-col">
+        <h3>Sides</h3>
+        <dl>
+          <div class="menu-row"><dt><span class="item">Fried Dumplings</span></dt><dd>&pound;&mdash;</dd></div>
+          <div class="menu-row"><dt><span class="item">Rice &amp; Peas</span></dt><dd>&pound;&mdash;</dd></div>
+          <div class="menu-row"><dt><span class="item">Mac &amp; Cheese</span></dt><dd>&pound;&mdash;</dd></div>
+          <div class="menu-row"><dt><span class="item">Plantain</span></dt><dd>&pound;&mdash;</dd></div>
+          <div class="menu-row"><dt><span class="item">Coleslaw</span></dt><dd>&pound;&mdash;</dd></div>
+          <div class="menu-row"><dt><span class="item">Chips</span></dt><dd>&pound;&mdash;</dd></div>
+        </dl>
+      </div>
+
+      <div class="menu-col">
+        <h3>Kids</h3>
+        <dl>
+          <div class="menu-row"><dt><span class="item">Chicken Nuggets &amp; Chips</span></dt><dd>&pound;&mdash;</dd></div>
+          <div class="menu-row">
+            <dt><span class="item">Boneless Jerk Chicken</span><span class="with">With rice or chips</span></dt>
+            <dd>&pound;&mdash;</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <p class="allergy"><b>Allergies &middot;</b> Please inform us of any allergies or dietary requirements when placing your order.</p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ===================== GALLERY ===================== -->
+<section class="gal" id="gallery">
+  <div class="gal-grid">
+    <div class="gal-side">
+      <p class="sec-num">The truck</p>
+      <h2 class="sec-h" style="font-size:clamp(1.8rem,4.6vw,3.4rem)">Come<span class="ghost">Find Us</span></h2>
+      <p>Drag sideways. Every panel below is a shot waiting to be taken &mdash; that list
+        <em>is</em> the photo brief. Two are drawn in so you can see how they&rsquo;ll sit.</p>
+      <a class="gal-handle" href="#gallery" data-tbc>@talawa &mdash; handle to confirm</a>
+    </div>
+
+    <div class="gal-rail" id="rail">
+      <figure class="shot shot--wide">
+        <svg class="shot-art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="400" height="300" fill="#151311"/>
+          <rect x="36" y="118" width="330" height="120" rx="6" fill="#8E8B82"/>
+          <rect x="44" y="72" width="314" height="44" rx="3" fill="#0A0908"/>
+          <text x="201" y="103" text-anchor="middle" font-family="Caveat Brush, cursive" font-size="30" fill="#FFC91C">Talawa</text>
+          <rect x="66" y="130" width="270" height="66" fill="#0D0C0A"/>
+          <rect x="80" y="142" width="110" height="42" fill="#2A2823"/>
+          <rect x="214" y="142" width="96" height="42" fill="#2A2823"/>
+          <rect x="58" y="196" width="286" height="15" fill="#B9B7AE"/>
+          <circle cx="200" cy="252" r="27" fill="#161512"/>
+          <circle cx="200" cy="252" r="12" fill="#6E6B63"/>
+          <g>
+            <rect x="52" y="212" width="52" height="34" fill="#FFC91C"/>
+            <polygon points="59,212 97,212 78,225" fill="#1E7A32"/>
+            <polygon points="59,246 97,246 78,233" fill="#1E7A32"/>
+            <polygon points="52,217 52,241 72,229" fill="#0A0908"/>
+            <polygon points="104,217 104,241 84,229" fill="#0A0908"/>
+          </g>
+          <g>
+            <rect x="296" y="212" width="52" height="34" fill="#FFC91C"/>
+            <polygon points="303,212 341,212 322,225" fill="#1E7A32"/>
+            <polygon points="303,246 341,246 322,233" fill="#1E7A32"/>
+            <polygon points="296,217 296,241 316,229" fill="#0A0908"/>
+            <polygon points="348,217 348,241 328,229" fill="#0A0908"/>
+          </g>
+        </svg>
+        <span class="shot-i">01</span>
+        <figcaption class="shot-cap">The truck, front on, hatch open</figcaption>
+      </figure>
+
+      <figure class="shot">
+        <svg class="shot-art" viewBox="0 0 300 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="300" height="380" fill="#151311"/>
+          <rect x="34" y="72" width="232" height="236" rx="12" fill="#A6A39A"/>
+          <rect x="46" y="84" width="208" height="212" rx="6" fill="#7E7B72"/>
+          <ellipse cx="106" cy="140" rx="58" ry="40" fill="#D9CFB6"/>
+          <ellipse cx="206" cy="146" rx="46" ry="36" fill="#E7C169"/>
+          <ellipse cx="98" cy="216" rx="34" ry="20" fill="#D9963E"/>
+          <ellipse cx="196" cy="222" rx="32" ry="28" fill="#DDAE64"/>
+          <ellipse cx="140" cy="268" rx="62" ry="34" fill="#38220F"/>
+          <ellipse cx="66" cy="252" rx="26" ry="24" fill="#EFE8D9"/>
+        </svg>
+        <span class="shot-i">02</span>
+        <figcaption class="shot-cap">The tray, from directly above, daylight</figcaption>
+      </figure>
+
+      <figure class="shot"><span class="shot-empty"></span><span class="shot-i">03</span>
+        <figcaption class="shot-cap">Jerk chicken, close enough to see the char</figcaption></figure>
+
+      <figure class="shot"><span class="shot-empty"></span><span class="shot-i">04</span><span class="shot-loop">Loop</span>
+        <figcaption class="shot-cap">Chicken turning on the grill, steam coming off</figcaption></figure>
+
+      <figure class="shot"><span class="shot-empty"></span><span class="shot-i">05</span>
+        <figcaption class="shot-cap">Rice &amp; peas on its own</figcaption></figure>
+
+      <figure class="shot"><span class="shot-empty"></span><span class="shot-i">06</span><span class="shot-loop">Loop</span>
+        <figcaption class="shot-cap">Festival going into the oil</figcaption></figure>
+
+      <figure class="shot shot--wide"><span class="shot-empty"></span><span class="shot-i">07</span>
+        <figcaption class="shot-cap">The truck at dusk, lights on</figcaption></figure>
+
+      <figure class="shot"><span class="shot-empty"></span><span class="shot-i">08</span><span class="shot-loop">Loop</span>
+        <figcaption class="shot-cap">Hands passing a tray over the counter</figcaption></figure>
+
+      <figure class="shot"><span class="shot-empty"></span><span class="shot-i">09</span>
+        <figcaption class="shot-cap">Sweet plantain on its own</figcaption></figure>
+
+      <figure class="shot"><span class="shot-empty"></span><span class="shot-i">10</span>
+        <figcaption class="shot-cap">The owner at the hatch &mdash; a real face sells this better than anything</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ===================== FIND US ===================== -->
+<section class="sec" id="find">
+  <p class="sec-num">Saturdays</p>
+  <h2 class="sec-h">Find<span class="ghost">The Truck</span></h2>
+
+  <div class="find-grid">
+    <div>
+      <ul class="addr">
+        <li><b>Where</b><span>Man in the Moon &mdash; pub car park</span></li>
+        <li><b>Address</b><span class="tbc">[ street address to confirm ]</span></li>
+        <li><b>Postcode</b><span class="tbc">[ postcode to confirm ]</span></li>
+        <li><b>When</b><span>Every Saturday, 4&ndash;8pm &mdash; or until it&rsquo;s gone</span></li>
+        <li><b>Parking</b><span>Free in the pub car park</span></li>
+        <li><b>Phone</b><span>07841 4&mdash;&mdash; <span class="tbc">rest to confirm</span></span></li>
+      </ul>
+      <div class="btn-row">
+        <a class="btn" href="#find" data-tbc>Get directions</a>
+        <a class="btn btn--ghost" href="#find" data-tbc>Call the truck</a>
+      </div>
+    </div>
+
+    <div class="map-wrap">
+      <svg class="map" viewBox="0 0 640 440" role="img" aria-label="Stylised map showing the truck at the Man in the Moon pub car park.">
+        <rect width="640" height="440" fill="#12110F"/>
+        <rect x="60" y="40" width="150" height="110" fill="#1B2A1C"/>
+        <rect x="430" y="250" width="160" height="130" fill="#1B2A1C"/>
+        <g fill="#191713">
+          <rect x="250" y="60" width="120" height="90"/>
+          <rect x="430" y="70" width="140" height="70"/>
+          <rect x="70" y="250" width="130" height="90"/>
+        </g>
+        <g stroke="#2E2B25" stroke-width="26" fill="none" stroke-linecap="square">
+          <path d="M0 200 H640"/><path d="M390 0 V440"/>
+        </g>
+        <g stroke="#3C382F" stroke-width="10" fill="none">
+          <path d="M0 360 H640"/><path d="M170 0 V440"/>
+        </g>
+        <path d="M390 200 L300 236" stroke="#FFC91C" stroke-width="2" stroke-dasharray="7 7" fill="none" opacity=".6"/>
+        <circle cx="300" cy="236" r="34" fill="rgba(255,201,28,.14)"/>
+        <path d="M300 208 c-12 0 -21 9.5 -21 21 c0 15 21 33 21 33 s21 -18 21 -33 c0 -11.5 -9 -21 -21 -21 z" fill="#FFC91C"/>
+        <circle cx="300" cy="229" r="7.5" fill="#0A0908"/>
+        <text x="300" y="292" text-anchor="middle" font-family="DM Mono, monospace" font-size="15" letter-spacing="2.4" fill="#F2ECDF">MAN IN THE MOON</text>
+        <text x="300" y="313" text-anchor="middle" font-family="DM Mono, monospace" font-size="11.5" letter-spacing="2" fill="#918A7B">SATURDAYS 4&#8211;8PM</text>
+        <g stroke="#918A7B" stroke-width="1.6" fill="none">
+          <path d="M40 408 H100"/><path d="M40 403 V413"/><path d="M100 403 V413"/>
+        </g>
+        <text x="70" y="398" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" letter-spacing="1.6" fill="#918A7B">100m</text>
+        <text x="600" y="60" text-anchor="middle" font-family="DM Mono, monospace" font-size="15" fill="#918A7B">N</text>
+        <path d="M600 68 L594 84 L600 79 L606 84 Z" fill="#918A7B"/>
+      </svg>
+
+      <svg class="stamp" viewBox="0 0 200 200" aria-hidden="true">
+        <defs><path id="stampPath" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0" fill="none"/></defs>
+        <circle cx="100" cy="100" r="92" fill="#0A0908" stroke="#FFC91C" stroke-width="2"/>
+        <circle cx="100" cy="100" r="60" fill="none" stroke="#FFC91C" stroke-width="1" opacity=".45"/>
+        <text><textPath href="#stampPath" startOffset="0">Fresh &#183; Vibrant &#183; Authentic &#183; Freshly Homemade &#183;&#160;</textPath></text>
+        <text x="100" y="94" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="900" font-size="34" fill="#F2ECDF">5</text>
+        <text x="100" y="118" text-anchor="middle" font-family="DM Mono, monospace" font-size="10.5" letter-spacing="1.6" fill="#918A7B">HYGIENE</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="order">
+    <div class="order-head">
+      <p>How to order &mdash; click to compare</p>
+      <button class="order-tab" aria-pressed="true"  aria-controls="op-0" type="button">Turn up</button>
+      <button class="order-tab" aria-pressed="false" aria-controls="op-1" type="button">Ring or DM</button>
+      <button class="order-tab" aria-pressed="false" aria-controls="op-2" type="button">Order online</button>
+    </div>
+
+    <div class="order-panel" id="op-0">
+      <h3>Just turn up</h3>
+      <p>No need to order ahead. Come and find the truck from 4pm on Saturday &mdash; when it&rsquo;s gone, it&rsquo;s gone.</p>
+      <div class="btn-row">
+        <a class="btn" href="#find" data-tbc>Get directions</a>
+        <a class="btn btn--ghost" href="#menu">See the menu</a>
+      </div>
+    </div>
+
+    <div class="order-panel" id="op-1" hidden>
+      <h3>Ring ahead or send a message</h3>
+      <p>Call and we&rsquo;ll have it ready for you, or send a message on Instagram and we&rsquo;ll sort it out there.</p>
+      <div class="btn-row">
+        <a class="btn" href="#find" data-tbc>Call the truck</a>
+        <a class="btn btn--ghost" href="#find" data-tbc>Message on Instagram</a>
+      </div>
+    </div>
+
+    <div class="order-panel" id="op-2" hidden>
+      <h3>Order and pay online</h3>
+      <p>Pick your tray, pay, and collect at a time that suits you. Worth knowing: this one is a
+        much bigger job than the other two &mdash; it needs a payment provider and somewhere for you
+        to see orders coming in. A separate conversation rather than part of this build.</p>
+      <div class="btn-row"><a class="btn" href="#menu" data-tbc>Start an order</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="foot">
+  <div class="foot-top">
+    <p class="foot-script">See you Saturday.</p>
+    <ul class="socials">
+      <li><a href="#find" data-tbc><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 3.24A6.6 6.6 0 1 0 18.6 12 6.6 6.6 0 0 0 12 5.4zm0 10.89A4.29 4.29 0 1 1 16.29 12 4.29 4.29 0 0 1 12 16.29zm8.4-11.15a1.54 1.54 0 1 1-1.54-1.54 1.54 1.54 0 0 1 1.54 1.54z"/></svg>Instagram</a></li>
+      <li><a href="#find" data-tbc><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.91h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>Facebook</a></li>
+    </ul>
+  </div>
+
+  <div class="foot-grid">
+    <div><h4>Hygiene</h4><span class="hyg"><b>5</b><span>Food hygiene<br>rating</span></span></div>
+    <div><h4>Allergies</h4><p>Please tell us about any allergies or dietary requirements when you order. Our food is prepared in a small kitchen where allergens are present.</p></div>
+    <div><h4>Trading</h4><p>Talawa Caribbean Food<br><span class="tbc">[ trading details to confirm ]</span></p></div>
+    <div><h4>Find us</h4><p>Man in the Moon car park<br>Every Saturday, 4&ndash;8pm</p></div>
+  </div>
+</footer>
+
+<nav class="bar" aria-label="Quick actions">
+  <a class="b1" href="#find" data-tbc>Call</a>
+  <a class="b2" href="#find" data-tbc>Directions</a>
+</nav>
+
 <!-- ===================== NOTE ===================== -->
 <section class="note">
   <div class="note-wrap">
     <h2>About this mock-up</h2>
-    <p>This is the opening screen and the tray sequence from <strong>Direction 1 &mdash; &ldquo;Likkle But Talawa&rdquo;</strong>, built for real so you can judge the feel rather than read a description. Scroll back up and take it slowly &mdash; the tray sequence only reads properly at scrolling speed.</p>
+    <p>The full page for <strong>Direction 1 &mdash; &ldquo;Likkle But Talawa&rdquo;</strong>: opening screen,
+      tray sequence, menu, gallery, find us, footer. Built for real so you can judge the feel
+      rather than read a description.</p>
 
-    <h3>What&rsquo;s real</h3>
+    <h3>Try these</h3>
     <ul>
-      <li>The typography, palette, spacing and motion &mdash; all final-quality.</li>
-      <li>The label choreography: each slab and its hand-drawn leader line draws in on its own beat, then everything clears for the closing line.</li>
-      <li>The gold ticker band speeds up and slows down with how fast you scroll.</li>
-      <li>Palm fronds drift with the mouse on desktop.</li>
+      <li>Scroll the tray section slowly &mdash; it only reads properly at scrolling speed.</li>
+      <li><strong>Drag the gallery sideways.</strong> The panels lean as it moves.</li>
+      <li><strong>Click through the three &ldquo;How to order&rdquo; tabs</strong> in Find Us. You said you
+        hadn&rsquo;t decided &mdash; this is that decision made visible. Whichever you pick, the rest of
+        the page doesn&rsquo;t move.</li>
+      <li>Open it on your phone: the tray labels become a list, and a Call / Directions bar sticks
+        to the bottom of the screen.</li>
     </ul>
 
     <h3>What&rsquo;s standing in</h3>
     <ul>
-      <li><strong>The tray is drawn, not photographed.</strong> Your photos came through as chat attachments, so I could see them but not use the files. The drawing sits at the exact position and proportions of your real tray shot, so swapping it in is one line of code &mdash; the six labels and leader lines already point at the right spots.</li>
-      <li>The Talawa logo isn&rsquo;t here yet &mdash; the real one goes top-left, and I&rsquo;d want the original file rather than a screenshot.</li>
-      <li>Your town is missing from the strapline until you confirm it.</li>
-      <li>On a phone the labels become a simple list under the tray &mdash; leader lines pointing across a small screen don&rsquo;t work.</li>
+      <li><strong>The tray is drawn, not photographed.</strong> Your photos came through as chat
+        attachments, so I could see them but not use the files. The drawing sits at the exact
+        position and proportions of your real shot, and the labels share its coordinate grid &mdash;
+        the photo drops in behind them without moving anything.</li>
+      <li><strong>The gallery is the photo brief.</strong> Every panel is a shot waiting to be taken.
+        Two are drawn in so you can see the sizing.</li>
+      <li><strong>Prices are blank</strong> and anything in <span class="tbc">orange</span> is
+        unconfirmed. I&rsquo;m not publishing a number or an address I&rsquo;ve guessed at.</li>
+      <li>The map is drawn rather than a real map &mdash; a proper one needs your postcode.</li>
+      <li>The logo isn&rsquo;t here. It goes top-left, and I want the original file, not a screenshot.</li>
+      <li>The 5 hygiene rating is read off the green sticker in your truck photo. Confirm it.</li>
+      <li><em>&ldquo;See you Saturday&rdquo;</em> in the footer is my placeholder. Give me a line you
+        actually say and it&rsquo;ll be better.</li>
     </ul>
 
     <h3>Palette</h3>
@@ -455,10 +983,12 @@
 
     <h3>Send me these and it stops being a mock-up</h3>
     <ul>
-      <li>The tray photo from directly above, in daylight, on a dark surface.</li>
+      <li>The tray photo from directly above, in daylight, on a dark surface &mdash; plus the rest of
+        the shot list in the gallery.</li>
       <li>Your logo as the original file.</li>
-      <li>Town, full postcode, and the rest of the phone number.</li>
+      <li>Town, full street address, postcode, and the rest of the phone number.</li>
       <li>Confirmed menu and prices.</li>
+      <li>Instagram and Facebook handles.</li>
     </ul>
   </div>
 </section>
@@ -472,7 +1002,7 @@
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var small   = window.matchMedia('(max-width: 860px)').matches;
 
-  /* ---- palm fronds, drawn procedurally ---- */
+  /* ---------- palm fronds, drawn procedurally ---------- */
   var NS = 'http://www.w3.org/2000/svg';
   document.querySelectorAll('.frond').forEach(function (svg) {
     var g = document.createElementNS(NS, 'g');
@@ -483,9 +1013,9 @@
     stem.setAttribute('fill', 'none');
     g.appendChild(stem);
     for (var i = 0; i < 30; i++) {
-      var t   = i / 29;
-      var x   = 8 + (180 - 8) * 2 * t * (1 - t) + (388 - 8) * t * t;
-      var y   = 22 + (90 - 22) * 2 * t * (1 - t) + (232 - 22) * t * t;
+      var t = i / 29;
+      var x = 8 + (180 - 8) * 2 * t * (1 - t) + (388 - 8) * t * t;
+      var y = 22 + (90 - 22) * 2 * t * (1 - t) + (232 - 22) * t * t;
       var len = 152 * Math.sin(Math.PI * (0.12 + t * 0.84));
       var side = (i % 2 === 0) ? 1 : -1;
       var leaf = document.createElementNS(NS, 'path');
@@ -502,10 +1032,45 @@
     svg.appendChild(g);
   });
 
+  /* ---------- the swappable ordering block (works with or without GSAP) ---------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.order-tab'));
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) {
+        var on = (t === tab);
+        t.setAttribute('aria-pressed', on ? 'true' : 'false');
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      });
+    });
+  });
+
+  /* ---------- placeholder links must not jump the page ---------- */
+  document.querySelectorAll('[data-tbc]').forEach(function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); });
+  });
+
+  /* ---------- gallery: click and drag to scroll ---------- */
+  var rail = document.getElementById('rail');
+  if (rail) {
+    var down = false, startX = 0, startLeft = 0;
+    rail.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'touch') return;          /* touch already scrolls */
+      down = true; startX = e.clientX; startLeft = rail.scrollLeft;
+      rail.classList.add('is-drag');
+      rail.setPointerCapture(e.pointerId);
+    });
+    rail.addEventListener('pointermove', function (e) {
+      if (down) rail.scrollLeft = startLeft - (e.clientX - startX);
+    });
+    ['pointerup', 'pointercancel'].forEach(function (ev) {
+      rail.addEventListener(ev, function () { down = false; rail.classList.remove('is-drag'); });
+    });
+  }
+
   if (reduced || !window.gsap) return;
   gsap.registerPlugin(ScrollTrigger);
 
-  /* ---- smooth scroll (optional; native scroll if the lib is blocked) ---- */
+  /* ---------- smooth scroll (falls back to native if the lib is blocked) ---------- */
   if (window.Lenis) {
     var lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 0.95 });
     lenis.on('scroll', ScrollTrigger.update);
@@ -513,22 +1078,22 @@
     gsap.ticker.lagSmoothing(0);
   }
 
-  /* ---- 1. hero entrance (runs on load; .from() leaves CSS as the resting state) ---- */
-  var intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
-  intro.from('.eyebrow', { opacity: 0, y: 12, duration: .7 })
-       .from('.likkle',  { opacity: 0, y: 26, duration: .9 }, .15)
-       .from('.talawa span', {
-          opacity: 0, yPercent: 118, scaleY: 2.4, transformOrigin: '50% 100%',
-          duration: 1.05, stagger: .045
-        }, .55)
-       .from('.aside',    { opacity: 0, y: 16, rotate: -8, duration: .8 }, 1.15)
-       .from('.strap',    { opacity: 0, y: 14, duration: .7 }, 1.3)
-       .from('.cue',      { opacity: 0, duration: .6 }, 1.45)
-       .from('.cue i',    { scaleX: 0, duration: .9 }, 1.45);
+  /* ---------- 1. hero entrance (.from() leaves CSS as the resting state) ---------- */
+  gsap.timeline({ defaults: { ease: 'power3.out' } })
+    .from('.eyebrow', { opacity: 0, y: 12, duration: .7 })
+    .from('.likkle',  { opacity: 0, y: 26, duration: .9 }, .15)
+    .from('.talawa span', {
+       opacity: 0, yPercent: 118, scaleY: 2.4, transformOrigin: '50% 100%',
+       duration: 1.05, stagger: .045
+     }, .55)
+    .from('.aside', { opacity: 0, y: 16, rotate: -8, duration: .8 }, 1.15)
+    .from('.strap', { opacity: 0, y: 14, duration: .7 }, 1.3)
+    .from('.cue',   { opacity: 0, duration: .6 }, 1.45)
+    .from('.cue i', { scaleX: 0, duration: .9 }, 1.45);
 
-  /* ---- 2. PINNED SCENE FIRST: the tray ----
+  /* ---------- 2. PINNED SCENE FIRST: the tray ----------
      ScrollTrigger creation order is refresh order, so the pin is built before
-     any ambient trigger below it. Reverse this and everything after the pin
+     every ambient trigger below. Reverse this and everything after the pin
      spacer silently lands in the wrong place. */
   if (!small) {
     document.querySelector('.tray-stage').classList.add('js-pin');
@@ -540,13 +1105,7 @@
     gsap.set('.tray-final', { opacity: 0, scale: .94 });
 
     var tray = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.tray-stage',
-        start: 'top top',
-        end: '+=3000',
-        pin: true,
-        scrub: .7
-      }
+      scrollTrigger: { trigger: '.tray-stage', start: 'top top', end: '+=3000', pin: true, scrub: .7 }
     });
 
     tray.fromTo('#plate', { scale: .965 }, { scale: 1.055, ease: 'none' }, 0);
@@ -556,8 +1115,7 @@
       tray.to(g.querySelector('.lead'), { strokeDashoffset: 0, duration: .085, ease: 'power2.inOut' }, at)
           .to(g.querySelector('.lead-dot'), { scale: 1, duration: .04, ease: 'back.out(2.5)' }, at + .075)
           .fromTo(g.querySelectorAll('.lbl-slab, .lbl-txt'),
-                  { opacity: 0, y: 10 },
-                  { opacity: 1, y: 0, duration: .055, stagger: .012 }, at + .02);
+                  { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .055, stagger: .012 }, at + .02);
     });
 
     tray.to('.lbl-group', { opacity: 0, duration: .07, stagger: .008 }, .80)
@@ -565,15 +1123,14 @@
         .to('.tray-final', { opacity: 1, scale: 1, duration: .11, ease: 'power3.out' }, .86);
   }
 
-  /* ---- 3. ambient triggers, created AFTER the pin ---- */
+  /* ---------- 3. everything below is ambient, created AFTER the pin ---------- */
+
   gsap.to('.hero-glow', {
     yPercent: 16, ease: 'none',
     scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
   });
 
-  var marquee = gsap.to('.band-track', {
-    xPercent: -33.333, duration: 18, ease: 'none', repeat: -1
-  });
+  var marquee = gsap.to('.band-track', { xPercent: -33.333, duration: 18, ease: 'none', repeat: -1 });
   ScrollTrigger.create({
     trigger: 'body', start: 'top top', end: 'bottom bottom',
     onUpdate: function (self) {
@@ -587,15 +1144,82 @@
     scrollTrigger: { trigger: '.facts', start: 'top 88%' }
   });
 
-  /* ---- mouse parallax on the fronds (desktop only) ---- */
+  /* section headings wipe in — the hero keeps the letter-by-letter moment to itself */
+  gsap.utils.toArray('.sec-h').forEach(function (h) {
+    gsap.from(h, {
+      clipPath: 'inset(0 100% 0 0)', y: 18, duration: 1.05, ease: 'power3.out',
+      scrollTrigger: { trigger: h, start: 'top 86%' }
+    });
+  });
+
+  /* menu: each heading and its gold rule wipe together, then the rows land */
+  gsap.utils.toArray('.menu-col').forEach(function (col, i) {
+    gsap.from(col.querySelector('h3'), {
+      clipPath: 'inset(0 100% 0 0)', duration: .85, ease: 'power3.out', delay: i * .12,
+      scrollTrigger: { trigger: '.menu-board', start: 'top 78%' }
+    });
+    gsap.from(col.querySelectorAll('.menu-row'), {
+      opacity: 0, x: -14, duration: .6, stagger: .06, ease: 'power2.out', delay: .25 + i * .12,
+      scrollTrigger: { trigger: '.menu-board', start: 'top 78%' }
+    });
+  });
+
+  gsap.from('.allergy', {
+    opacity: 0, y: 16, duration: .7, ease: 'power2.out',
+    scrollTrigger: { trigger: '.allergy', start: 'top 92%' }
+  });
+
+  /* gallery panels lean into the drag */
+  if (rail) {
+    gsap.from('.shot', {
+      opacity: 0, y: 34, duration: .8, stagger: .07, ease: 'power3.out',
+      scrollTrigger: { trigger: '.gal-rail', start: 'top 88%' }
+    });
+
+    var shots = gsap.utils.toArray('.shot');
+    var last = rail.scrollLeft, raf = null;
+    rail.addEventListener('scroll', function () {
+      if (raf) return;
+      raf = requestAnimationFrame(function () {
+        var v = rail.scrollLeft - last;
+        last = rail.scrollLeft; raf = null;
+        gsap.to(shots, {
+          skewX: gsap.utils.clamp(-6, 6, -v * 0.28),
+          duration: .5, ease: 'power2.out', overwrite: 'auto'
+        });
+      });
+    }, { passive: true });
+  }
+
+  gsap.to('.stamp', {
+    rotate: 128, ease: 'none',
+    scrollTrigger: { trigger: '.find-grid', start: 'top bottom', end: 'bottom top', scrub: 1 }
+  });
+
+  gsap.from('.addr li', {
+    opacity: 0, x: -16, duration: .6, stagger: .07, ease: 'power2.out',
+    scrollTrigger: { trigger: '.addr', start: 'top 86%' }
+  });
+
+  /* nav drops in once the hero is behind you.
+     gsap.set() first, so GSAP owns the transform instead of reading the CSS
+     percentage translate as pixels. */
+  gsap.set('.nav', { yPercent: -101, y: 0 });
+  ScrollTrigger.create({
+    trigger: '.hero', start: 'bottom top+=60',
+    onEnter:     function () { gsap.to('.nav', { yPercent: 0,    duration: .45, ease: 'power3.out' }); },
+    onLeaveBack: function () { gsap.to('.nav', { yPercent: -101, duration: .35, ease: 'power2.in' }); }
+  });
+
+  /* mouse parallax on the fronds (desktop only) */
   if (window.matchMedia('(hover: hover)').matches) {
     var fronds = gsap.utils.toArray('.frond');
     window.addEventListener('mousemove', function (e) {
       var dx = (e.clientX / window.innerWidth - .5);
       var dy = (e.clientY / window.innerHeight - .5);
       fronds.forEach(function (f, i) {
-        var d = 16 + i * 9;
-        gsap.to(f, { x: -dx * d, y: -dy * d, duration: 1.1, ease: 'power2.out', overwrite: 'auto' });
+        gsap.to(f, { x: -dx * (16 + i * 9), y: -dy * (16 + i * 9),
+                     duration: 1.1, ease: 'power2.out', overwrite: 'auto' });
       });
     }, { passive: true });
   }

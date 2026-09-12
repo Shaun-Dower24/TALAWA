@@ -130,10 +130,11 @@ markers — is **not from the logo.** I introduced it so unverified information 
 
 - [x] **Make one section light. Done — first the menu, now the reviews.**
 
-      > **Superseded.** The menu was the original light section and has since gone back to
-      > the black ground at Shaun's request, keeping only the green rule under its column
-      > headings. The scheme below is unchanged and still live — it is what the **reviews**
-      > section runs on. Kept here because it is the record of how the values were derived.
+      > **Partly superseded.** The menu section is still light, but the board panel inside
+      > it has since gone back to black (see the blackboard entry below), so the inverted
+      > accents below no longer apply *inside* the menu — only to its eyebrow, heading and
+      > margins. The scheme is otherwise unchanged and still live: it is what the
+      > **reviews** section runs on in full.
 
       A menu belongs on paper, so the menu got paper, and it sat mid-page so it broke the
       black in the middle rather than at an end.
@@ -192,24 +193,38 @@ markers — is **not from the logo.** I introduced it so unverified information 
 
       The same contrast walker now covers both light sections, not just the menu.
 
-- [x] **The menu goes back to black, keeping the green heading rules.** Shaun's call, and it
-      leaves the reviews as the single light section — which is where the page started
-      before the menu was ever put on paper.
+- [x] **The menu becomes a blackboard on paper.** Shaun's call, and the best version of the
+      three. The **section** keeps the paper ground; the **board panel inside it** goes back
+      to black. So the eyebrow, the "WHAT'S COOKING" heading and the margins are cream, and
+      the menu itself is a black board sitting on them.
 
-      One thing survives the revert. The rules under **MAINS / SIDES / KIDS** were gold
-      originally and green on paper; they stay green on the black ground, under headings
-      that are gold again. That keeps a little of the logo's green in the menu, and the
-      gold-over-green pairing is the wordmark's own gradient in miniature.
+      It settles an argument the all-paper version was quietly losing. Putting a menu on
+      paper is the obvious move, but a food truck's menu is not a printed card — it is a
+      board propped in a hatch. The eyebrow above it has said **"THE BOARD"** since the
+      first build, and only now does the design say the same thing.
+
+      It is also the cheapest of the three versions to maintain: the board keeps every
+      dark-palette value it always had — gold headings, bone dishes, gold prices, scotch
+      allergy box — so nothing inside it needs a light counterpart, and the ten
+      menu-specific light overrides stay deleted.
+
+      One thing carries over from the all-paper spell. The rules under
+      **MAINS / SIDES / KIDS** were gold originally and green on paper; they stay green on
+      the black board, under headings that are gold again. Gold over green is the wordmark's
+      own gradient in miniature.
 
       **It could not be the same green.** The paper version used leaf `#1A6003`, which
       measures **2.6:1 on black** — and a 2px rule is a graphic, needing 3:1. So the rule
       uses the lime `#7A9E03` at **6.4:1**, the same green as every section eyebrow. A test
-      now asserts both the value and the ratio that forced it.
+      asserts both the value and the ratio that forced it.
 
-      The two green bands that bracketed the menu came out with it — they existed to mark
-      the black-to-paper edge, and with the menu black they would mark nothing. The plain
-      hairline is back on both sides. Three bands remain: one under the ticker, two around
-      the reviews.
+      **An accidental gain:** because the board now sits inside a section marked light, the
+      contrast walker sweeps it too. It resolves 31 pieces of text onto the black board and
+      23 onto the paper, and every one clears AA — worst on the board is the scotch
+      "Allergies" label at 4.7:1, worst on paper is a review source line at 5.0:1. The dark
+      palette had never actually been measured this way before.
+
+      Five bands again: one under the ticker, two bracketing each light section.
 
 ---
 

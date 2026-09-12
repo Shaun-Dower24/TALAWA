@@ -29,6 +29,7 @@
     --lite-panel:#DDCFAB;       /* 12.9:1 with ink */
     --lite-accent:#1A6003;      /* 5.7:1 / 5.0:1 — the logo's leaf green */
     --lite-muted:#544B3E;       /* 6.4:1 / 5.5:1 — darkened with the ground */
+    --lite-star:#8A5A00;        /* 4.4:1 / 3.8:1 — graphics need 3:1 */
     --lite-warn:#96290A;        /* 6.0:1 / 5.2:1 — darkened with the ground */
 
     --display:'Archivo','Archivo Black',Impact,sans-serif;
@@ -824,6 +825,33 @@
     color:var(--ink); border-color:var(--lite-warn);
   }
   .sec--light .allergy b{color:var(--lite-warn)}
+
+  /* ---- the reviews section on paper. Gold measures 1.1:1 here, so the stars
+     become burnt amber (4.4:1 / 3.8:1 — graphics need 3:1, and it still reads
+     as a gold star) and the accents follow the menu's light scheme. ---- */
+  .sec--light .rev-note{color:var(--lite-muted); border-left-color:var(--lite-warn)}
+  .sec--light .rev-summary{border-bottom-color:rgb(var(--line-rgb) / .45)}
+  .sec--light .rev-score b{
+    background:none; -webkit-text-fill-color:var(--lite-accent); color:var(--lite-accent);
+  }
+  /* The score placeholder is an em dash set at 4.4rem in a 900-weight display
+     face, so it paints as a solid bar. In accent green on paper that reads as a
+     filled-in value rather than a blank, so it stays muted. Delete the class
+     along with the dash when a real average lands and it inherits the green. */
+  .rev-score b.tbc-num{color:var(--ash); -webkit-text-fill-color:var(--ash)}
+  .sec--light .rev-score b.tbc-num{color:var(--lite-muted); -webkit-text-fill-color:var(--lite-muted)}
+  .sec--light .rev-score span{color:var(--lite-muted)}
+  .sec--light .stars svg{fill:var(--lite-star)}
+  .sec--light .stars--muted svg{fill:none; stroke:var(--lite-muted)}
+  .sec--light .rev-wall::before{background:linear-gradient(90deg, var(--lite-bg), transparent)}
+  .sec--light .rev-wall::after{background:linear-gradient(270deg, var(--lite-bg), transparent)}
+  .sec--light .rev{
+    background:var(--lite-panel); border-color:rgb(var(--line-rgb) / .55);
+  }
+  .sec--light .rev-tag{background:var(--lite-warn); color:var(--lite-bg)}
+  .sec--light .rev-q{color:var(--ink)}
+  .sec--light .rev-by{color:var(--lite-muted)}
+  .sec--light .rev-src{color:var(--lite-accent)}
 </style>
 
 <div class="grain"></div>
@@ -1107,10 +1135,10 @@
   </div>
 </section>
 
-<hr class="rule">
+<div class="band-under" aria-hidden="true"></div>
 
-<!-- ===================== REVIEWS ===================== -->
-<section class="sec" id="reviews">
+<!-- ===================== REVIEWS (light) ===================== -->
+<section class="sec sec--light" id="reviews">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
     <symbol id="star" viewBox="0 0 24 24"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.58 1.11 6.47L12 17.44 6.19 20.5 7.3 14.03 2.6 9.45l6.5-.95L12 2.6z"/></symbol>
   </defs></svg>
@@ -1126,14 +1154,14 @@
 
   <div class="rev-summary">
     <div class="rev-score">
-      <b>&mdash;</b>
+      <b class="tbc-num">&mdash;</b>
       <span>Average rating<br>to confirm</span>
     </div>
     <div class="stars stars--muted" aria-hidden="true">
       <svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg>
     </div>
     <div class="rev-score">
-      <b>&mdash;</b>
+      <b class="tbc-num">&mdash;</b>
       <span>Reviews<br>to confirm</span>
     </div>
   </div>
@@ -1185,7 +1213,7 @@
   </div>
 </section>
 
-<hr class="rule">
+<div class="band-under" aria-hidden="true"></div>
 
 <!-- ===================== FIND US ===================== -->
 <section class="sec" id="find">

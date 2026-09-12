@@ -10,9 +10,12 @@
   :root{
     --ink:#0A0908;
     --ink-2:#151311;
-    --gold:#FFC91C;
+    --gold:#FDCB04;          /* sampled: the paint splatter and wordmark top */
     --gold-deep:#C98A00;
-    --green:#35B14A;
+    --hot:#F7E003;           /* sampled: the bright middle of the wordmark */
+    --green:#7A9E03;         /* sampled: lime — 6.4:1 on ink, text-safe */
+    --green-deep:#1A6003;    /* sampled: leaf — 2.6:1, DECORATION ONLY */
+    --brand-grad:linear-gradient(180deg, var(--gold) 0%, var(--hot) 34%, var(--green) 72%, var(--green-deep) 100%);
     --bone:#F2ECDF;
     --ash:#918A7B;
     --scotch:#E8481B;
@@ -100,7 +103,16 @@
     font-family:var(--display); font-weight:900;
     font-size:clamp(2.9rem,12.4vw,13.5rem);
     line-height:.84; letter-spacing:-.022em; margin:0;
-    color:var(--gold); white-space:nowrap;
+    white-space:nowrap; color:var(--gold);
+  }
+  /* the logo's signature gold-to-green run, on the one word that IS the logo */
+  .talawa span{
+    background:var(--brand-grad);
+    -webkit-background-clip:text; background-clip:text;
+    color:transparent;
+  }
+  @supports not ((-webkit-background-clip:text) or (background-clip:text)){
+    .talawa span{background:none; color:var(--gold)}
   }
   .talawa span{display:inline-block; will-change:transform}
 
@@ -142,6 +154,7 @@
     padding-right:1.1em; text-transform:uppercase;
   }
 
+  .band-under{height:clamp(7px,1vw,12px); background:var(--green-deep)}
   .facts{
     display:grid; grid-template-columns:repeat(3,1fr);
     border-bottom:1px solid rgba(145,138,123,.2);
@@ -288,7 +301,7 @@
   .sec{padding:clamp(3.5rem,10vh,7rem) var(--pad); position:relative}
   .sec-num{
     font-family:var(--mono); font-size:10px; letter-spacing:.3em;
-    text-transform:uppercase; color:var(--ash); margin:0 0 .8rem;
+    text-transform:uppercase; color:var(--green); margin:0 0 .8rem;
   }
   .sec-h{
     font-family:var(--display); font-weight:900; text-transform:uppercase;
@@ -606,10 +619,10 @@
     flex:0 0 auto; position:relative;
   }
   .status[data-open="true"]{color:var(--bone); border-color:rgba(53,177,74,.55)}
-  .status[data-open="true"] .status-dot{background:var(--green)}
+  .status[data-open="true"] .status-dot{background:var(--hot)}
   .status[data-open="true"] .status-dot::after{
     content:''; position:absolute; inset:-4px; border-radius:50%;
-    border:1px solid var(--green); animation:ping 2.1s ease-out infinite;
+    border:1px solid var(--hot); animation:ping 2.1s ease-out infinite;
   }
   @keyframes ping{
     0%{transform:scale(.6); opacity:.9}
@@ -660,7 +673,7 @@
   }
   .bar-status[data-open="true"]{color:var(--bone)}
   .bar-status .status-dot{background:var(--ash)}
-  .bar-status[data-open="true"] .status-dot{background:var(--green)}
+  .bar-status[data-open="true"] .status-dot{background:var(--hot)}
 
   /* ============ STATS ============ */
   .stats{border-top:1px solid rgba(145,138,123,.2); border-bottom:1px solid rgba(145,138,123,.2)}
@@ -681,8 +694,14 @@
   }
   .stat-n{
     font-family:var(--display); font-weight:900; line-height:.86;
-    font-size:clamp(2.6rem,7.4vw,5rem); color:var(--gold);
+    font-size:clamp(2.6rem,7.4vw,5rem);
     font-variant-numeric:tabular-nums;
+    background:var(--brand-grad);
+    -webkit-background-clip:text; background-clip:text;
+    color:transparent;
+  }
+  @supports not ((-webkit-background-clip:text) or (background-clip:text)){
+    .stat-n{background:none; color:var(--gold)}
   }
   .stat-l{
     font-family:var(--mono); font-size:10px; letter-spacing:.2em;
@@ -805,6 +824,8 @@
     <em>Every Saturday &middot; 4pm til sold out &middot; Man in the Moon &middot;&nbsp;</em>
   </div>
 </div>
+
+<div class="band-under" aria-hidden="true"></div>
 
 <dl class="facts">
   <div class="fact"><dt>When</dt><dd>Saturday</dd></div>
@@ -1141,8 +1162,8 @@
     <div class="map-wrap">
       <svg class="map" viewBox="0 0 640 440" role="img" aria-label="Stylised map showing the truck at the Man in the Moon pub car park.">
         <rect width="640" height="440" fill="#12110F"/>
-        <rect x="60" y="40" width="150" height="110" fill="#1B2A1C"/>
-        <rect x="430" y="250" width="160" height="130" fill="#1B2A1C"/>
+        <rect x="60" y="40" width="150" height="110" fill="#16240A"/>
+        <rect x="430" y="250" width="160" height="130" fill="#16240A"/>
         <g fill="#191713">
           <rect x="250" y="60" width="120" height="90"/>
           <rect x="430" y="70" width="140" height="70"/>
@@ -1154,9 +1175,9 @@
         <g stroke="#3C382F" stroke-width="10" fill="none">
           <path d="M0 360 H640"/><path d="M170 0 V440"/>
         </g>
-        <path d="M390 200 L300 236" stroke="#FFC91C" stroke-width="2" stroke-dasharray="7 7" fill="none" opacity=".6"/>
+        <path d="M390 200 L300 236" stroke="#FDCB04" stroke-width="2" stroke-dasharray="7 7" fill="none" opacity=".6"/>
         <circle cx="300" cy="236" r="34" fill="rgba(255,201,28,.14)"/>
-        <path d="M300 208 c-12 0 -21 9.5 -21 21 c0 15 21 33 21 33 s21 -18 21 -33 c0 -11.5 -9 -21 -21 -21 z" fill="#FFC91C"/>
+        <path d="M300 208 c-12 0 -21 9.5 -21 21 c0 15 21 33 21 33 s21 -18 21 -33 c0 -11.5 -9 -21 -21 -21 z" fill="#FDCB04"/>
         <circle cx="300" cy="229" r="7.5" fill="#0A0908"/>
         <text x="300" y="288" text-anchor="middle" font-family="DM Mono, monospace" font-size="15" letter-spacing="2.4" fill="#F2ECDF">MAN IN THE MOON</text>
         <text x="300" y="308" text-anchor="middle" font-family="DM Mono, monospace" font-size="11" letter-spacing="1.8" fill="#918A7B">BROADWATER CRES &#183; SG2 8ET</text>
@@ -1172,8 +1193,8 @@
 
       <svg class="stamp" viewBox="0 0 200 200" aria-hidden="true">
         <defs><path id="stampPath" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0" fill="none"/></defs>
-        <circle cx="100" cy="100" r="92" fill="#0A0908" stroke="#FFC91C" stroke-width="2"/>
-        <circle cx="100" cy="100" r="60" fill="none" stroke="#FFC91C" stroke-width="1" opacity=".45"/>
+        <circle cx="100" cy="100" r="92" fill="#0A0908" stroke="#FDCB04" stroke-width="2"/>
+        <circle cx="100" cy="100" r="60" fill="none" stroke="#FDCB04" stroke-width="1" opacity=".45"/>
         <text><textPath href="#stampPath" startOffset="0">Fresh &#183; Vibrant &#183; Authentic &#183; Freshly Homemade &#183;&#160;</textPath></text>
         <text x="100" y="94" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="900" font-size="34" fill="#F2ECDF">5</text>
         <text x="100" y="118" text-anchor="middle" font-family="DM Mono, monospace" font-size="10.5" letter-spacing="1.6" fill="#918A7B">HYGIENE</text>
@@ -1423,8 +1444,10 @@
     <h3>Palette</h3>
     <div class="swatches">
       <span class="sw"><i style="background:#0A0908"></i>#0A0908 Ink</span>
-      <span class="sw"><i style="background:#FFC91C"></i>#FFC91C Gold</span>
-      <span class="sw"><i style="background:#35B14A"></i>#35B14A Green</span>
+      <span class="sw"><i style="background:#FDCB04"></i>#FDCB04 Gold</span>
+      <span class="sw"><i style="background:#F7E003"></i>#F7E003 Hot yellow</span>
+      <span class="sw"><i style="background:#7A9E03"></i>#7A9E03 Lime</span>
+      <span class="sw"><i style="background:#1A6003"></i>#1A6003 Leaf</span>
       <span class="sw"><i style="background:#F2ECDF"></i>#F2ECDF Bone</span>
       <span class="sw"><i style="background:#E8481B"></i>#E8481B Scotch bonnet</span>
     </div>
@@ -1453,7 +1476,7 @@
     var g = document.createElementNS(NS, 'g');
     var stem = document.createElementNS(NS, 'path');
     stem.setAttribute('d', 'M 8 22 Q 180 90 388 232');
-    stem.setAttribute('stroke', '#1E7A32');
+    stem.setAttribute('stroke', '#1A6003');
     stem.setAttribute('stroke-width', '3.5');
     stem.setAttribute('fill', 'none');
     g.appendChild(stem);
@@ -1472,7 +1495,7 @@
         'M ' + x + ' ' + y +
         ' Q ' + (mx + px * w) + ' ' + (my + py * w) + ' ' + tx + ' ' + ty +
         ' Q ' + (mx - px * w) + ' ' + (my - py * w) + ' ' + x + ' ' + y + ' Z');
-      leaf.setAttribute('fill', i % 3 === 0 ? '#2C9440' : '#20692C');
+      leaf.setAttribute('fill', i % 3 === 0 ? '#7A9E03' : '#1A6003');
       g.appendChild(leaf);
     }
     svg.appendChild(g);

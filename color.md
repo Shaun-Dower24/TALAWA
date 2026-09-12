@@ -137,12 +137,19 @@ markers — is **not from the logo.** I introduced it so unverified information 
 
       | Role | Dark sections | The light menu | Contrast |
       |---|---|---|---|
-      | Ground | ink `#0A0908` | paper `#F2ECDF` | — |
-      | Panel | `#151311` | `#E8DFC9` | 15.0:1 with ink |
-      | Text | bone | ink `#0A0908` | 16.9:1 |
-      | Accent (prices, rules) | gold | **leaf green** `#1A6003` | 6.6:1 |
-      | Muted (sub-lines) | ash | `#6B6253` | 5.1:1 |
-      | Warning (allergies) | scotch `#E8481B` | `#A8300D` | 5.8:1 |
+      | Ground | ink `#0A0908` | paper `#E9DDC4` | — |
+      | Panel | `#151311` | `#DDCFAB` | 12.9:1 with ink |
+      | Text | bone | ink `#0A0908` | 14.8:1 |
+      | Accent (prices, rules) | gold | **leaf green** `#1A6003` | 5.0:1 |
+      | Muted (sub-lines) | ash | `#544B3E` | 5.5:1 |
+      | Warning (allergies) | scotch `#E8481B` | `#96290A` | 5.2:1 |
+
+      *(Ratios shown against the panel, which is the tighter of the two grounds.)*
+
+      **Softened after a first look.** The first version used plain bone `#F2ECDF`, which
+      was too stark a jolt out of the black. The ground is now warmer and deeper — but
+      that could not be done alone: deepening it pushed the muted tone to 3.9:1 and the
+      warning to 4.4:1 on the panel, both below AA. All three moved together.
 
       Every one of those was measured against both the paper and the deeper panel sitting on
       it, and a test now walks every piece of text in the section and fails the build if

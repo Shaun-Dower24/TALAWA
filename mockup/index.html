@@ -426,21 +426,41 @@
   .stamp{position:absolute; right:-14px; bottom:-26px; width:clamp(96px,13vw,150px); height:auto; z-index:3}
   .stamp text{font-family:var(--mono); font-size:15.5px; letter-spacing:.16em; fill:var(--gold); text-transform:uppercase}
 
-  .order{margin-top:clamp(2.4rem,6vw,4rem); border:1px solid rgb(var(--line-rgb) / .28); background:var(--ink-2)}
+  /* This is the single most important instruction on the site — there is no
+     ordering system, you just show up — so it opens Find Us rather than
+     trailing it, and it is sized to be read before the address list. The
+     leaf-green top edge is the same band device used between sections. */
+  .order{
+    margin:0 0 clamp(2.4rem,6vw,3.6rem);
+    border:1px solid rgb(var(--line-rgb) / .28);
+    border-top:4px solid var(--green);
+    background:var(--ink-2);
+  }
   .order-head{
     display:flex; flex-wrap:wrap; gap:.5rem; align-items:center;
-    padding:1rem 1.1rem; border-bottom:1px solid rgb(var(--line-rgb) / .22);
+    padding:1rem clamp(1.1rem,3vw,2.2rem); border-bottom:1px solid rgb(var(--line-rgb) / .22);
   }
   .order-head p{
     margin:0 auto 0 0; font-family:var(--mono); font-size:10px;
-    letter-spacing:.22em; text-transform:uppercase; color:var(--ash);
+    letter-spacing:.3em; text-transform:uppercase; color:var(--green);
   }
-  .order-panel{padding:clamp(1.2rem,3.4vw,2.2rem) 1.1rem}
+  /* Headline left, explanation right — same two-column rhythm as the address
+     and map grid below it, so the panel fills its width instead of leaving
+     half of it empty. Collapses with every other grid at 860px. */
+  .order-panel{
+    padding:clamp(1.6rem,4vw,2.6rem) clamp(1.1rem,3vw,2.2rem);
+    display:grid; grid-template-columns:1fr 1fr;
+    gap:clamp(1.4rem,4vw,3.4rem); align-items:center;
+  }
   .order-panel h3{
     font-family:var(--display); font-weight:900; text-transform:uppercase;
-    font-size:clamp(1.1rem,2.6vw,1.8rem); margin:0 0 .7rem; color:var(--bone);
+    font-size:clamp(2rem,5.4vw,3.6rem); line-height:.94; letter-spacing:-.015em;
+    margin:0; color:var(--gold);
   }
-  .order-panel p{margin:0 0 1.2rem; color:var(--ash); max-width:52ch}
+  .order-panel p{
+    margin:0 0 1.5rem; color:var(--bone); max-width:46ch;
+    font-size:clamp(1rem,1.4vw,1.12rem); line-height:1.55;
+  }
 
   /* ============ FOOTER ============ */
   .foot{border-top:1px solid rgb(var(--line-rgb) / .24); padding:clamp(3rem,8vh,5.5rem) var(--pad) 7rem}
@@ -490,6 +510,7 @@
     .gal-side{position:static; padding-right:var(--pad)}
     .gal-rail{padding-left:var(--pad)}
     .find-grid{grid-template-columns:1fr}
+    .order-panel{grid-template-columns:1fr; gap:1rem}
     .map-wrap{order:-1}
     .stamp{right:8px; bottom:-22px}
     .addr li{grid-template-columns:1fr; gap:.2rem}
@@ -1191,6 +1212,24 @@
   <p class="sec-num">Saturdays</p>
   <h2 class="sec-h">Find<span class="ghost">The Truck</span></h2>
 
+  <div class="order">
+    <div class="order-head">
+      <p>How to order</p>
+    </div>
+
+    <div class="order-panel" id="op-0">
+      <h3>Just turn up</h3>
+      <div class="order-body">
+        <p>No need to order ahead &mdash; everything is cooked fresh on the day and served in the
+          order people arrive. Come and find the truck from 4pm on Saturday; when it&rsquo;s gone,
+          it&rsquo;s gone. Card and cash both fine.</p>
+        <div class="btn-row">
+          <a class="btn" href="#menu">See the menu</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="find-grid">
     <div>
       <ul class="addr">
@@ -1248,23 +1287,6 @@
         <text x="100" y="94" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="900" font-size="34" fill="#F2ECDF">5</text>
         <text x="100" y="118" text-anchor="middle" font-family="DM Mono, monospace" font-size="10.5" letter-spacing="1.6" fill="#918A7B">HYGIENE</text>
       </svg>
-    </div>
-  </div>
-
-  <div class="order">
-    <div class="order-head">
-      <p>How to order</p>
-    </div>
-
-    <div class="order-panel" id="op-0">
-      <h3>Just turn up</h3>
-      <p>No need to order ahead &mdash; everything is cooked fresh on the day and served in the
-        order people arrive. Come and find the truck from 4pm on Saturday; when it&rsquo;s gone,
-        it&rsquo;s gone. Card and cash both fine.</p>
-      <div class="btn-row">
-        <a class="btn js-directions" href="#find" data-tbc>Get directions</a>
-        <a class="btn btn--ghost" href="#menu">See the menu</a>
-      </div>
     </div>
   </div>
 </section>

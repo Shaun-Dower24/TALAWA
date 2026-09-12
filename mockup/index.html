@@ -327,7 +327,10 @@
   .menu-col h3{
     font-family:var(--display); font-weight:900; text-transform:uppercase;
     font-size:clamp(1rem,2vw,1.5rem); letter-spacing:.02em; color:var(--gold);
-    margin:0 0 1.2rem; padding-bottom:.6rem; border-bottom:2px solid var(--gold);
+    /* Gold heading over a green rule, kept from the light version. Leaf green
+       measures 2.6:1 on ink and a 2px rule is a graphic needing 3:1, so this is
+       the lime at 6.4:1 — the same green the section eyebrows use. */
+    margin:0 0 1.2rem; padding-bottom:.6rem; border-bottom:2px solid var(--green);
   }
   .menu-row{display:grid; grid-template-columns:1fr auto; gap:1rem; align-items:baseline; padding:.85rem 0}
   .menu-row + .menu-row{border-top:1px solid rgba(242,236,223,.11)}
@@ -785,11 +788,13 @@
   .hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden}
   @media (max-width:860px){ .list-wrap{grid-template-columns:1fr} }
 
-  /* ============ THE ONE LIGHT SECTION ============
-     A menu belongs on paper, so the menu gets paper. Everything about the dark
-     palette inverts here: gold measures 1.3:1 on this ground and is unusable,
-     so the accent becomes the logo's leaf green. All four values below clear
-     AA on both the paper and the deeper panel that sits on it. */
+  /* ============ THE LIGHT SECTION ============
+     A testimonial wall reads better on paper, so the reviews get paper.
+     Everything about the dark palette inverts here: gold measures 1.3:1 on this
+     ground and is unusable, so the accent becomes the logo's leaf green. All
+     four values below clear AA on both the paper and the deeper panel that
+     sits on it. (The menu was light too and has since gone back to the dark
+     ground, keeping only the green rule under its column headings.) */
   .sec--light{
     background:var(--lite-bg); color:var(--ink);
   }
@@ -799,28 +804,8 @@
     color:transparent; -webkit-text-stroke:clamp(1px,.13vw,2px) var(--lite-accent);
   }
 
-  .sec--light .menu-board{
-    background:var(--lite-panel); border-color:rgba(10,9,8,.18);
-  }
-  .sec--light .menu-board::after{content:none}          /* the dark glow makes no sense on paper */
-  .sec--light .menu-note{
-    color:var(--lite-muted); border-left-color:var(--lite-accent);
-  }
-  .sec--light .menu-col h3{
-    color:var(--ink); border-bottom-color:var(--lite-accent);
-  }
-  .sec--light .menu-row + .menu-row{border-top-color:rgba(10,9,8,.14)}
-  .sec--light .menu-row .item{color:var(--ink)}
-  .sec--light .menu-row .with{color:var(--lite-muted)}
-  .sec--light .menu-row dd{color:var(--lite-accent)}
-  .sec--light .allergy{
-    color:var(--ink); border-color:var(--lite-warn);
-  }
-  .sec--light .allergy b{color:var(--lite-warn)}
-
-  /* ---- the reviews section on paper. Gold measures 1.1:1 here, so the stars
-     become burnt amber (4.4:1 / 3.8:1 — graphics need 3:1, and it still reads
-     as a gold star) and the accents follow the menu's light scheme. ---- */
+  /* ---- Gold measures 1.1:1 here, so the stars become burnt amber (4.4:1 /
+     3.8:1 — graphics need 3:1, and it still reads as a gold star). ---- */
   .sec--light .rev-note{color:var(--lite-muted); border-left-color:var(--lite-warn)}
   .sec--light .rev-summary{border-bottom-color:rgb(var(--line-rgb) / .45)}
   .sec--light .rev-score b{
@@ -1014,10 +999,10 @@
   </div>
 </section>
 
-<div class="band-under" aria-hidden="true"></div>
+<hr class="rule">
 
-<!-- ===================== MENU (the one light section) ===================== -->
-<section class="sec sec--light" id="menu">
+<!-- ===================== MENU ===================== -->
+<section class="sec" id="menu">
   <p class="sec-num">The board</p>
   <h2 class="sec-h">What&rsquo;s<span class="ghost">Cooking</span></h2>
 
@@ -1074,7 +1059,7 @@
   </div>
 </section>
 
-<div class="band-under" aria-hidden="true"></div>
+<hr class="rule">
 
 <!-- ===================== GALLERY ===================== -->
 <section class="gal" id="gallery">

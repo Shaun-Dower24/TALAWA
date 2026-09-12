@@ -128,14 +128,20 @@ markers — is **not from the logo.** I introduced it so unverified information 
 
 ## 6. The structural change — also done
 
-- [x] **Make one section light. Done — the menu.** A menu belongs on paper, so it reads as
-      meaningful rather than arbitrary, and it sits mid-page so it breaks the black in the
-      middle rather than at an end.
+- [x] **Make one section light. Done — first the menu, now the reviews.**
+
+      > **Superseded.** The menu was the original light section and has since gone back to
+      > the black ground at Shaun's request, keeping only the green rule under its column
+      > headings. The scheme below is unchanged and still live — it is what the **reviews**
+      > section runs on. Kept here because it is the record of how the values were derived.
+
+      A menu belongs on paper, so the menu got paper, and it sat mid-page so it broke the
+      black in the middle rather than at an end.
 
       It needed a genuine design pass, not a background swap. **Gold measures 1.3:1 on a
       paper ground — completely unreadable** — so the whole accent system had to invert:
 
-      | Role | Dark sections | The light menu | Contrast |
+      | Role | Dark sections | The light section | Contrast |
       |---|---|---|---|
       | Ground | ink `#0A0908` | paper `#E9DDC4` | — |
       | Panel | `#151311` | `#DDCFAB` | 12.9:1 with ink |
@@ -185,6 +191,25 @@ markers — is **not from the logo.** I introduced it so unverified information 
         real average replaces it.
 
       The same contrast walker now covers both light sections, not just the menu.
+
+- [x] **The menu goes back to black, keeping the green heading rules.** Shaun's call, and it
+      leaves the reviews as the single light section — which is where the page started
+      before the menu was ever put on paper.
+
+      One thing survives the revert. The rules under **MAINS / SIDES / KIDS** were gold
+      originally and green on paper; they stay green on the black ground, under headings
+      that are gold again. That keeps a little of the logo's green in the menu, and the
+      gold-over-green pairing is the wordmark's own gradient in miniature.
+
+      **It could not be the same green.** The paper version used leaf `#1A6003`, which
+      measures **2.6:1 on black** — and a 2px rule is a graphic, needing 3:1. So the rule
+      uses the lime `#7A9E03` at **6.4:1**, the same green as every section eyebrow. A test
+      now asserts both the value and the ratio that forced it.
+
+      The two green bands that bracketed the menu came out with it — they existed to mark
+      the black-to-paper edge, and with the menu black they would mark nothing. The plain
+      hairline is back on both sides. Three bands remain: one under the ticker, two around
+      the reviews.
 
 ---
 

@@ -126,17 +126,30 @@ markers — is **not from the logo.** I introduced it so unverified information 
 
 ---
 
-## 6. If she wants more after all this
+## 6. The structural change — also done
 
-If the page still feels too dark once the above is done, the next lever is structural
-rather than a colour swap:
+- [x] **Make one section light. Done — the menu.** A menu belongs on paper, so it reads as
+      meaningful rather than arbitrary, and it sits mid-page so it breaks the black in the
+      middle rather than at an end.
 
-- [ ] **Make one section light.** Put the menu, say, on a warm off-white ground with black
-      type — one bright block in the middle of all that black. It breaks up the darkness
-      properly and makes the black sections either side hit harder.
+      It needed a genuine design pass, not a background swap. **Gold measures 1.3:1 on a
+      paper ground — completely unreadable** — so the whole accent system had to invert:
 
-I'd hold this back until the colour fixes are in, because they may well be enough on their
-own. And it is a bigger change: it needs its own design pass rather than a find-and-replace.
+      | Role | Dark sections | The light menu | Contrast |
+      |---|---|---|---|
+      | Ground | ink `#0A0908` | paper `#F2ECDF` | — |
+      | Panel | `#151311` | `#E8DFC9` | 15.0:1 with ink |
+      | Text | bone | ink `#0A0908` | 16.9:1 |
+      | Accent (prices, rules) | gold | **leaf green** `#1A6003` | 6.6:1 |
+      | Muted (sub-lines) | ash | `#6B6253` | 5.1:1 |
+      | Warning (allergies) | scotch `#E8481B` | `#A8300D` | 5.8:1 |
+
+      Every one of those was measured against both the paper and the deeper panel sitting on
+      it, and a test now walks every piece of text in the section and fails the build if
+      anything drops below AA.
+
+      The leaf-green band device brackets the section top and bottom, so the switch from
+      black to paper reads as a deliberate edge rather than an accident.
 
 ---
 

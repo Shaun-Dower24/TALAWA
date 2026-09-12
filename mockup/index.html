@@ -21,6 +21,14 @@
     --scotch:#E8481B;
     --foil:#B9B7AE;
 
+    /* the light section. gold is 1.3:1 on paper, so the accent inverts to leaf
+       green. every value checked on the paper AND the panel that sits on it. */
+    --lite-bg:var(--bone);      /* 16.9:1 with ink */
+    --lite-panel:#E8DFC9;       /* 15.0:1 with ink */
+    --lite-accent:#1A6003;      /* 6.6:1 / 5.8:1 — the logo's leaf green */
+    --lite-muted:#6B6253;       /* 5.1:1 / 4.5:1 */
+    --lite-warn:#A8300D;        /* 5.8:1 / 5.1:1 */
+
     --display:'Archivo','Archivo Black',Impact,sans-serif;
     --script:'Caveat Brush','Bradley Hand',cursive;
     --mono:'DM Mono','SFMono-Regular',Menlo,monospace;
@@ -774,6 +782,39 @@
   }
   .hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden}
   @media (max-width:860px){ .list-wrap{grid-template-columns:1fr} }
+
+  /* ============ THE ONE LIGHT SECTION ============
+     A menu belongs on paper, so the menu gets paper. Everything about the dark
+     palette inverts here: gold measures 1.3:1 on this ground and is unusable,
+     so the accent becomes the logo's leaf green. All four values below clear
+     AA on both the paper and the deeper panel that sits on it. */
+  .sec--light{
+    background:var(--lite-bg); color:var(--ink);
+  }
+  .sec--light .sec-num{color:var(--lite-accent)}
+  .sec--light .sec-h{color:var(--ink)}
+  .sec--light .sec-h .ghost{
+    color:transparent; -webkit-text-stroke:clamp(1px,.13vw,2px) var(--lite-accent);
+  }
+
+  .sec--light .menu-board{
+    background:var(--lite-panel); border-color:rgba(10,9,8,.18);
+  }
+  .sec--light .menu-board::after{content:none}          /* the dark glow makes no sense on paper */
+  .sec--light .menu-note{
+    color:var(--lite-muted); border-left-color:var(--lite-accent);
+  }
+  .sec--light .menu-col h3{
+    color:var(--ink); border-bottom-color:var(--lite-accent);
+  }
+  .sec--light .menu-row + .menu-row{border-top-color:rgba(10,9,8,.14)}
+  .sec--light .menu-row .item{color:var(--ink)}
+  .sec--light .menu-row .with{color:var(--lite-muted)}
+  .sec--light .menu-row dd{color:var(--lite-accent)}
+  .sec--light .allergy{
+    color:var(--ink); border-color:var(--lite-warn);
+  }
+  .sec--light .allergy b{color:var(--lite-warn)}
 </style>
 
 <div class="grain"></div>
@@ -944,10 +985,10 @@
   </div>
 </section>
 
-<hr class="rule">
+<div class="band-under" aria-hidden="true"></div>
 
-<!-- ===================== MENU ===================== -->
-<section class="sec" id="menu">
+<!-- ===================== MENU (the one light section) ===================== -->
+<section class="sec sec--light" id="menu">
   <p class="sec-num">The board</p>
   <h2 class="sec-h">What&rsquo;s<span class="ghost">Cooking</span></h2>
 
@@ -1004,7 +1045,7 @@
   </div>
 </section>
 
-<hr class="rule">
+<div class="band-under" aria-hidden="true"></div>
 
 <!-- ===================== GALLERY ===================== -->
 <section class="gal" id="gallery">

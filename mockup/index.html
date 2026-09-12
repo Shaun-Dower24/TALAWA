@@ -233,35 +233,6 @@
 
   .legend{display:none}
 
-  /* ============ NOTE ============ */
-  .note{
-    border-top:1px solid rgb(var(--line-rgb) / .24);
-    background:var(--ink-2);
-    padding:clamp(2.6rem,7vw,5rem) var(--pad);
-  }
-  .note-wrap{max-width:70ch; margin:0 auto}
-  .note h2{
-    font-family:var(--display); font-weight:900; text-transform:uppercase;
-    font-size:clamp(1.3rem,3.4vw,2.2rem); letter-spacing:-.01em;
-    margin:0 0 1.6rem; color:var(--bone);
-  }
-  .note h3{
-    font-family:var(--mono); font-size:10px; letter-spacing:.28em;
-    text-transform:uppercase; color:var(--gold);
-    margin:2.2rem 0 .7rem; font-weight:500;
-  }
-  .note p{margin:0 0 1rem; color:var(--bone); opacity:.86}
-  .note ul{margin:0; padding-left:1.1rem; color:var(--bone); opacity:.86}
-  .note li{margin-bottom:.5rem}
-  .note li::marker{color:var(--gold)}
-  .swatches{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.9rem}
-  .sw{
-    font-family:var(--mono); font-size:10px; letter-spacing:.1em;
-    padding:.45rem .6rem; border:1px solid rgb(var(--line-rgb) / .3);
-    display:flex; align-items:center; gap:.45rem; color:var(--ash);
-  }
-  .sw i{width:13px; height:13px; display:block; border-radius:1px}
-
   a{color:var(--gold)}
   :focus-visible{outline:2px solid var(--gold); outline-offset:3px}
 
@@ -1474,71 +1445,6 @@
   <button class="lb-btn lb-prev"  id="lbPrev"  type="button" aria-label="Previous photo">&#10094;</button>
   <button class="lb-btn lb-next"  id="lbNext"  type="button" aria-label="Next photo">&#10095;</button>
 </dialog>
-
-<!-- ===================== NOTE ===================== -->
-<section class="note">
-  <div class="note-wrap">
-    <h2>About this mock-up</h2>
-    <p>The full page for <strong>Direction 1 &mdash; &ldquo;Likkle But Talawa&rdquo;</strong>: opening screen,
-      tray sequence, menu, gallery, find us, footer. Built for real so you can judge the feel
-      rather than read a description.</p>
-
-    <h3>Now using your real photos</h3>
-    <ul>
-      <li>The tray sequence runs on your actual tray shot, with the six labels measured onto it.</li>
-      <li>Your logo is in the top corner and the hero; the sign artwork closes the footer.</li>
-      <li>The truck photo opens the gallery.</li>
-      <li>The tray photo is portrait and shot at an angle under indoor light &mdash; it works, but a
-        landscape top-down one in daylight would make this section noticeably better.</li>
-    </ul>
-
-    <h3>Try these</h3>
-    <ul>
-      <li>Scroll the tray section slowly &mdash; it only reads properly at scrolling speed.</li>
-      <li><strong>Drag the gallery sideways.</strong> The panels lean as it moves.</li>
-      <li><strong>Click through the three &ldquo;How to order&rdquo; tabs</strong> in Find Us. You said you
-        hadn&rsquo;t decided &mdash; this is that decision made visible. Whichever you pick, the rest of
-        the page doesn&rsquo;t move.</li>
-      <li>Open it on your phone: the tray labels become a list, and a Call / Directions bar sticks
-        to the bottom of the screen.</li>
-    </ul>
-
-    <h3>What&rsquo;s standing in</h3>
-    <ul>
-      <li><strong>The tray is drawn, not photographed.</strong> Your photos came through as chat
-        attachments, so I could see them but not use the files. The drawing sits at the exact
-        position and proportions of your real shot, and the labels share its coordinate grid &mdash;
-        the photo drops in behind them without moving anything.</li>
-      <li><strong>The gallery is the photo brief.</strong> Every panel is a shot waiting to be taken.
-        Two are drawn in so you can see the sizing.</li>
-      <li><strong>Prices are blank</strong> and anything in <span class="tbc">orange</span> is
-        unconfirmed. I&rsquo;m not publishing a number or an address I&rsquo;ve guessed at.</li>
-      <li>The map is drawn rather than a real map &mdash; a proper one needs your postcode.</li>
-      <li>The logo isn&rsquo;t here. It goes top-left, and I want the original file, not a screenshot.</li>
-      <li><em>&ldquo;See you Saturday&rdquo;</em> in the footer is my placeholder. Give me a line you
-        actually say and it&rsquo;ll be better.</li>
-    </ul>
-
-    <h3>Palette</h3>
-    <div class="swatches">
-      <span class="sw"><i style="background:#0A0908"></i>#0A0908 Ink</span>
-      <span class="sw"><i style="background:#FDCB04"></i>#FDCB04 Gold</span>
-      <span class="sw"><i style="background:#F7E003"></i>#F7E003 Hot yellow</span>
-      <span class="sw"><i style="background:#7A9E03"></i>#7A9E03 Lime</span>
-      <span class="sw"><i style="background:#1A6003"></i>#1A6003 Leaf</span>
-      <span class="sw"><i style="background:#F2ECDF"></i>#F2ECDF Bone</span>
-      <span class="sw"><i style="background:#E8481B"></i>#E8481B Scotch bonnet</span>
-    </div>
-
-    <h3>Still needed before this goes live</h3>
-    <ul>
-      <li>A landscape top-down tray shot in daylight &mdash; plus the rest of the shot list in the gallery.</li>
-      <li>Town, full street address, postcode, and the rest of the phone number.</li>
-      <li>Confirmed menu and prices.</li>
-      <li>The Facebook handle &mdash; Instagram is in.</li>
-    </ul>
-  </div>
-</section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>

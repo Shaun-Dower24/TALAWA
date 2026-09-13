@@ -100,9 +100,10 @@
     background:url("assets/tray.jpg") center 38%/cover no-repeat;
     /* The food should read. 24% was the ceiling only because one small grey
        line bottom-left had to stay legible over it; the scrim now pools dark
-       under that copy instead, which frees the rest of the frame. At 40% the
-       worst text contrast is 4.86:1 against the 4.5:1 needed. */
-    opacity:.40;
+       under that copy instead, which frees the rest of the frame. Shaun's
+       call at 55%, which is the top of the range that still clears AA:
+       measured 4.74:1 on the tightest line against the 4.5:1 needed. */
+    opacity:.55;
   }
   .hero-scrim{
     position:absolute; inset:0; z-index:0; pointer-events:none;

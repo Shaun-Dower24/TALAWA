@@ -73,7 +73,10 @@
   .hero-photo{
     position:absolute; inset:0; z-index:0; pointer-events:none;
     background:url("assets/tray.jpg") center 38%/cover no-repeat;
-    opacity:.12;
+    /* Measured, not chosen. 26% is the ceiling with no grain; the grain costs
+       a little, so this sits at 24% and the pair clears AA together. See
+       HERO.MD for the table. */
+    opacity:.24;
   }
   .hero-scrim{
     position:absolute; inset:0; z-index:0; pointer-events:none;
@@ -94,6 +97,23 @@
   .frond--tl{top:-9%; left:-7%; width:min(46vw,540px); transform:rotate(-8deg)}
   .frond--tr{top:-13%; right:-9%; width:min(44vw,520px); transform:scaleX(-1) rotate(-14deg)}
   .frond--br{bottom:-16%; right:-6%; width:min(38vw,440px); transform:scaleX(-1) rotate(24deg); opacity:.18}
+
+  /* Fine grain over the hero backdrop. Sits at z-index 1, so it grains the
+     photo, glow and fronds but never the text — grain over type would only
+     cost contrast. Drawn by the browser from an inline SVG, so it is no extra
+     download and no shader library. stitchTiles keeps the 300px tile seamless;
+     saturate 0 keeps it grey, so it cannot shift the palette.
+     It earns its place twice: it suits a street-food brand, and it breaks up
+     the banding that the large soft radial glows show on cheaper screens. */
+  .hero::after{
+    content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+    /* overlay, not normal. Drawn normally, pale noise over a near-black ground
+       lifts the blacks and drops the small grey line below AA (4.28:1 measured).
+       Overlay darkens where the ground is dark, so the texture costs almost no
+       contrast: 4.59:1 here against 4.62:1 with no grain at all. */
+    mix-blend-mode:overlay; opacity:.12;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)'/%3E%3C/svg%3E");
+  }
 
   .hero-inner{position:relative; z-index:2; width:100%}
 

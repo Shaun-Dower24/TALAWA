@@ -95,11 +95,15 @@ Two reasons it's worth it:
    visible *stripes* on cheaper screens and phones. A fine grain breaks those stripes up. This
    is the standard fix, not a decoration.
 
-- [ ] **Add a fine grain over the hero only**, not the whole page.
-- [ ] Build it with a few lines of built-in browser drawing, **not** the shader library they
-      use — no extra download, no battery cost.
-- [ ] Keep it subtle enough that you notice the page feels warmer, not that there's a texture
-      on it.
+- [x] **Built.** Drawn by the browser from an inline instruction, so nothing extra downloads
+      and there is no shader library. It covers the backdrop only, never the words.
+- [x] **It had to be blended, not just laid on top.** Laid on normally, pale grain over a
+      near-black ground *lifts* the black and dragged the small grey line to **4.28:1** —
+      under the readable limit. Blending it as "overlay" darkens where the ground is already
+      dark, so the texture now costs almost nothing: **4.59:1**, against 4.62:1 with no grain
+      at all. The photo came down a touch (26% → 24%) to pay for the rest.
+- [x] A test now flips the blend back to normal and confirms the page fails, so the fix
+      cannot be quietly undone.
 
 ---
 
@@ -176,9 +180,9 @@ The hero category on 21st.dev is full of things that would actively make your si
 
 ## 6. What I need from you
 
-- [x] **2.1 — the photo. Recommended: raise it to 26% and change nothing else.** Measured
-      ceiling; see the table above. Shaun has confirmed the photo stays in the hero.
-- [ ] **2.2 — the grain. Recommended: yes.** Small, suits the brand, and fixes real banding.
+- [x] **2.1 — the photo. BUILT at 24%.** Twice what it was. 26% was the ceiling on its own,
+      but the grain costs a little contrast, so the pair settled at 24% and clears together.
+- [x] **2.2 — the grain. BUILT**, blended overlay. See above.
 - [x] **3.1 — mouse-reactive letters. Recommended: no.** Nothing on a phone, heavier font
       download for everyone.
 - [x] **3.2 — the slow drift. Recommended: no.** With the photo properly visible it is not

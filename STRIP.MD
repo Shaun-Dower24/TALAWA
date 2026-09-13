@@ -1,138 +1,146 @@
-# STRIP.MD — the band beneath the hero
+# STRIP.MD — components for the band beneath the hero
 
-Same rule as `HERO.MD` and `COMPONENTS.MD`: nothing here is built, and nothing gets built
-until you tick it.
+Nothing here is built. Tick what you want.
 
-"The strip" is three things stacked: the **gold scrolling ticker**, the thin **green stripe**
-under it, and the **When / Hours / Where row** below that.
+"The strip" is three things stacked: the **gold scrolling ticker**, the thin **green stripe**,
+and the **three-fact row** under it.
 
----
-
-## 1. The finding that isn't a component
-
-I went through all 113 marquee components on 21st.dev. Before any of that matters, there's
-something wrong with this strip that no component fixes.
-
-**The same three facts are stated three times in a row, within about 300 pixels of scrolling:**
-
-| Where | What it says |
-|---|---|
-| Bottom of the hero | Jamaican food · Stevenage · **Every Saturday, 4–8pm** |
-| The gold ticker | **Every Saturday** · **4pm til sold out** · **Man in the Moon** |
-| The row below it | WHEN **Saturday** — HOURS **4–8pm** — WHERE **Man in the Moon** |
-
-A customer reads "Saturday" three times and "Man in the Moon" twice before they've scrolled
-past the first screen. The row at the bottom is doing no work: by the time anyone reaches it,
-they already know.
-
-That's not a small thing. That row takes up a **209px band on a desktop and 296px on a phone**
-— a third of a phone screen — to repeat what was just said twice.
-
-- [ ] **Give the When/Hours/Where row a different job.** It's prime space directly under the
-      hero and it should tell people something they don't already know. Everything you've
-      confirmed that *isn't* already said up there:
-      - **Free parking** in the pub car park
-      - **Card and cash** both fine
-      - **5** food hygiene rating
-      These are the three things someone actually wonders before setting off, and none of
-      them appears anywhere near the top of the page at the moment.
-- [ ] **Or cut the row entirely** and let the ticker carry it. Faster, and the tray section
-      starts sooner. Less to look at, which isn't automatically worse.
-
-My recommendation is the first. The second is the safer one if in doubt.
+Searched: Marquees (113), Stats & KPIs (153), Announcements (71). Copy is out of scope here —
+noted separately at the bottom.
 
 ---
 
-## 2. Worth doing — the one real component idea
+## A. The gold ticker
 
-### 2.1 Soften the ends of the ticker
+### A1. Fade the ends — **my strongest recommendation**
+*Progressive blur* by Julien Thibeaut · also *Blurred Marquee* by grootstudio
 
-Right now the ticker **hard-cuts at both edges**. In the screenshot the word "EVERY SATURDAY"
-is sliced clean through mid-letter at the left, and "4PM TIL SOL—" at the right. It reads as
-a mistake rather than as movement.
+The band currently **hard-cuts at both edges**, slicing words mid-letter. In the screenshot
+"EVERY SATURDAY" is chopped through on the left and "4PM TIL SOL—" on the right. It reads as
+a fault, not as movement. Fading each end makes words dissolve instead.
 
-From **Progressive blur** by Julien Thibeaut (also in *Blurred Marquee* by grootstudio): fade
-the strip out at each end so words dissolve instead of being guillotined.
+- [ ] Build as a plain gold gradient at each end, **not** their blur filter — a live blur over
+      a moving strip is expensive on phones and looks identical at this size.
 
-- [ ] **Fade both ends of the gold band.** Words should melt out rather than be cut off.
-- [ ] Build it as a simple gradient over each end, **not** their blur filter — a real blur
-      across a moving strip is expensive on phones, and at this size a plain fade looks the
-      same.
-- [ ] The fade has to be gold, matching the band, not a dark fade — the band is the light
-      thing on a dark page.
+### A2. A slow shine travelling across the gold
+*Animated Shiny Text* by Dillion Verma
 
-This is small, cheap, and fixes something that currently looks unfinished.
+The band is the **largest area of flat colour on the whole page**. A slow highlight moving
+across it would make it read like painted metal or an enamel sign rather than a flat swatch —
+which is the right reference for a food trailer.
 
----
+- [ ] Very slow and very subtle, or it becomes a "shiny SaaS button".
 
-## 3. Worth considering — your call
+### A3. Alternate solid and hollow words
+*Infinite Marquee* by framecn
 
-### 3.1 Alternate solid and hollow words in the ticker
+**Hollow lettering is already your motif** — CARIBBEAN in the hero, and the second word of
+every section heading (FIND *THE TRUCK*, WHAT'S *COOKING*). The ticker is the only place that
+ignores it.
 
-From **Infinite Marquee** by framecn — a looping strip where some words are solid and some
-are outlined.
+- [ ] Risk: the band is 84px tall on desktop but only **49px on a phone**, where outlined caps
+      may read as weak rather than deliberate. Worth mocking up both ways before deciding.
 
-It would tie the strip to the rest of the site, because **hollow lettering is already your
-motif**: CARIBBEAN in the hero, and the second word of every section heading
-(FIND *THE TRUCK*, WHAT'S *COOKING*). The ticker is currently the only place that ignores it.
+### A4. Tilt the band
+*Infinite Ribbon* by Edwin Vakayil
 
-Honest risk: the band is only 84px tall on a desktop and **49px on a phone**, and outlined
-letters at that size on a moving strip could read as thin and weak rather than deliberate.
-I'd want to show it to you rather than just do it.
+Your logo puts "CARIBBEAN FOOD" on a **slanted green band**, so a tilt would be lifted from
+your own branding rather than invented.
 
-- [ ] Show two versions side by side and decide.
+- [ ] Risk: a tilted full-width band leaves triangular gaps at the corners to fill, and it
+      fights the strict horizontal rhythm of everything below. Could be great, could look like
+      a mistake. Lowest priority of the four.
 
-### 3.2 Tilt the band slightly
-
-From **Infinite Ribbon** by Edwin Vakayil. Your logo has "CARIBBEAN FOOD" sitting on a
-**slanted green band** — so a small tilt would be lifted straight from your own branding
-rather than invented.
-
-Honest risk: a tilted full-width band leaves triangular gaps at the top and bottom corners
-that have to be filled, and it fights the strict horizontal rhythm of everything below it.
-Could look brilliant, could look like a mistake.
-
-- [ ] Worth a mock-up before committing either way. Lower priority than the rest.
+### Already built — checked, nothing to take
+- **Speeds up as you scroll** — *Scroll Based Velocity* (Dillion Verma), *Scroll Velocity Text*
+  (Cnippet). Already in.
+- **Pauses when you point at it** — *Infinite Slider with custom hover speed* (Julien
+  Thibeaut). Already in.
 
 ---
 
-## 4. Already built — checked, nothing to take
+## B. The three-fact row
 
-Two things I'd have recommended are in there already, from the earlier pass:
+Right now: three equal columns, plain label above plain value, thin dividers between. On a
+desktop each fact uses only about **40% of its column**, so the row reads mostly as empty
+space — 209px of it, and 296px on a phone.
 
-- **Speeds up as you scroll.** *Scroll Based Velocity* (Dillion Verma), *Scroll Velocity Text*
-  (Cnippet) — the band already reads your scroll speed and moves faster the harder you flick.
-- **Pauses when you point at it.** *Infinite Slider with custom hover speed* (Julien Thibeaut)
-  — already there.
+### B1. Give it a proper typographic treatment
+*Bold Stats* by ui layout · *Stats (info-and-numbers / info / metric)* by Méschac Irung
+
+Several clean three-up rows that set the value large and confident instead of the current
+modest size. **No cards, no boxes** — which matters, because boxed cards would fight the rest
+of the page and you have just had me strip badge-boxes out.
+
+- [ ] Closest in spirit to the site. My pick of this section.
+
+### B2. Break the equal-column grid
+*Stats Bento* / *Feature Bento* / *About Bento* by ui layout
+
+Instead of three identical columns with dead space, an uneven arrangement where one fact is
+given more room than the others. Directly fixes the emptiness rather than decorating it.
+
+- [ ] Bigger structural change than B1. Worth seeing side by side.
+
+### B3. Each fact rolls into place
+*Text Roll — stats row* by Cnippet
+
+The values flip/roll in as the row comes into view. Movement without gimmick, and it matches
+the letter-by-letter entrance the hero already uses.
+
+- [ ] Must switch itself off for reduced-motion visitors.
+
+### B4. Counting numbers — **only if the row carries numbers**
+*Count Up* (unlumen) · *Number Ticker* (Daniel Petho) · *Shuffle Number* (reuno-ui) ·
+*Animated Blur Number* (Serafim)
+
+**Already built** on the stats section further down the page, so reusing it here costs nothing.
+But it only makes sense if this row ends up showing a number worth counting to.
+
+- [ ] Parked until the copy is settled.
+
+### B5. A light travelling down the dividers
+*Grid Beam* by cult/ui
+
+The row already has vertical dividing lines. A slow beam running down them is a quiet way to
+give the row life without adding anything to read.
+
+- [ ] Subtle, cheap, easy to overdo. Lower priority.
 
 ---
 
-## 5. What I would not take
+## C. What I would not take
 
-- [ ] **3D Marquee, Gooey Marquee, Marquee Along SVG Path, Great UI Diagonal Marquee.**
-      Gimmicks. They'd draw attention to the strip rather than to what it says.
-- [ ] **Every logo-cloud variant** — Logo Marquee, Logo Cloud, Brand Scroller, Logo Carousel,
-      Stepped Logo Marquee and about twenty more. These are for showing off which companies
-      use your software. You sell food from a trailer.
-- [ ] **All the testimonial marquees.** Your reviews section is built and waiting for real
-      reviews; a scrolling wall of them at the top of the page would be the wrong shape and
-      would make the emptiness louder.
-- [ ] **Anything that turns the strip into a call-to-action block** (the various CTA-with-
-      Marquee variants). The strip's job is a glance, not a decision.
-
----
-
-## 6. What I need from you
-
-- [ ] **The big one: what should the When/Hours/Where row say?** My recommendation is
-      parking, payment and the hygiene 5. Or say the word and I'll remove it.
-- [ ] Fade the ends of the ticker? (Recommendation: yes.)
-- [ ] Want to see the hollow-word ticker mocked up? (Recommendation: worth a look.)
-- [ ] Want to see the tilted band mocked up? (Recommendation: later, if at all.)
+- [ ] **3D Marquee, Gooey Marquee, Marquee Along SVG Path, Great UI Diagonal Marquee Carousel.**
+      Gimmicks that draw attention to the strip instead of to what it says.
+- [ ] **Every logo-cloud variant** — Logo Marquee, Logo Cloud 3/4/15, Brand Scroller, Logo
+      Carousel, Stepped Logo Marquee, MultiLogoScroller and about twenty more. These exist to
+      show which companies use your software.
+- [ ] **All testimonial marquees.** Your reviews section is built and waiting for real reviews.
+- [ ] **The whole Announcements category.** 71 components and they are almost all dismissible
+      SaaS banners, cookie bars and "upgrade now" prompts. Your band is permanent trading
+      information, not a notification. *Animated Shiny Text* (A2) was the only thing worth
+      taking out of it.
+- [ ] **Text Scramble / scrambled stats.** Scrambling letters is one of the clearest
+      machine-built tells, and you have just had me strip that quality out of the site.
+- [ ] **Every stat component built as a card** — Stat Card, Glowing Card, Shine Border Stats
+      Card, Progress Card and the rest. Boxes around three short facts is exactly the badge
+      styling you asked me to remove.
 
 ---
 
-## 7. If you only do one thing
+## D. My order, if you want one
 
-Stop the row under the ticker repeating what the two things above it just said. Everything
-else on this page is fighting to earn its space; that row currently isn't.
+1. **A1 — fade the ticker ends.** Fixes a visible fault. Small.
+2. **A2 — slow shine on the gold.** Cheap, and suits a hand-painted trailer.
+3. **B1 — bolder typographic row.** Best fit for the site of the stat options.
+4. **A3 — hollow words in the ticker.** Worth mocking up; genuinely might not work at phone size.
+5. **B2 / B3 / B5 / A4.** Only if you want to keep going.
+
+---
+
+## E. Noted, for when you come back to copy
+
+Not a component issue, so parked — but the row currently repeats what the hero strap and the
+ticker have both already said ("Saturday", "4–8pm", "Man in the Moon"). Whichever component
+that row ends up using, it will land better once it's saying something new.

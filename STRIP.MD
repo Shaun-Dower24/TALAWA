@@ -1,6 +1,7 @@
 # STRIP.MD — components for the band beneath the hero
 
-Nothing here is built. Tick what you want.
+**A1, A2 and B1 are built** — the first three recommendations approved in the
+previous conversation. The other unchecked ideas remain optional.
 
 "The strip" is three things stacked: the **gold scrolling ticker**, the thin **green stripe**,
 and the **three-fact row** under it.
@@ -19,8 +20,8 @@ The band currently **hard-cuts at both edges**, slicing words mid-letter. In the
 "EVERY SATURDAY" is chopped through on the left and "4PM TIL SOL—" on the right. It reads as
 a fault, not as movement. Fading each end makes words dissolve instead.
 
-- [ ] Build as a plain gold gradient at each end, **not** their blur filter — a live blur over
-      a moving strip is expensive on phones and looks identical at this size.
+- [x] Built as stationary gold gradients at each end, **not** a blur filter. The fade
+      scales from 28px on phones to a maximum of 96px on wide screens.
 
 ### A2. A slow shine travelling across the gold
 *Animated Shiny Text* by Dillion Verma
@@ -29,7 +30,8 @@ The band is the **largest area of flat colour on the whole page**. A slow highli
 across it would make it read like painted metal or an enamel sign rather than a flat swatch —
 which is the right reference for a food trailer.
 
-- [ ] Very slow and very subtle, or it becomes a "shiny SaaS button".
+- [x] Built as a soft, 28-second highlight underneath the black lettering. It pauses
+      with the ticker on hover and is hidden for reduced-motion visitors.
 
 ### A3. Alternate solid and hollow words
 *Infinite Marquee* by framecn
@@ -61,8 +63,8 @@ your own branding rather than invented.
 
 ## B. The three-fact row
 
-Right now: three equal columns, plain label above plain value, thin dividers between. On a
-desktop each fact uses only about **40% of its column**, so the row reads mostly as empty
+Before this pass: three equal columns, plain label above plain value, thin dividers between.
+On a desktop each fact used only about **40% of its column**, so the row read mostly as empty
 space — 209px of it, and 296px on a phone.
 
 ### B1. Give it a proper typographic treatment
@@ -72,7 +74,10 @@ Several clean three-up rows that set the value large and confident instead of th
 modest size. **No cards, no boxes** — which matters, because boxed cards would fight the rest
 of the page and you have just had me strip badge-boxes out.
 
-- [ ] Closest in spirit to the site. My pick of this section.
+- [x] Built with larger Archivo values and tighter letter spacing. The three equal
+      desktop columns and thin dividers remain; on phones the labels sit beside the
+      values. At 1440px the values are 56px; at 390px they are 29px and the whole row
+      is 238px tall. No cards or boxes; the wording stays unchanged.
 
 ### B2. Break the equal-column grid
 *Stats Bento* / *Feature Bento* / *About Bento* by ui layout
@@ -131,9 +136,9 @@ give the row life without adding anything to read.
 
 ## D. My order, if you want one
 
-1. **A1 — fade the ticker ends.** Fixes a visible fault. Small.
-2. **A2 — slow shine on the gold.** Cheap, and suits a hand-painted trailer.
-3. **B1 — bolder typographic row.** Best fit for the site of the stat options.
+1. **A1 — fade the ticker ends. Built.**
+2. **A2 — slow shine on the gold. Built.**
+3. **B1 — bolder typographic row. Built.**
 4. **A3 — hollow words in the ticker.** Worth mocking up; genuinely might not work at phone size.
 5. **B2 / B3 / B5 / A4.** Only if you want to keep going.
 
@@ -144,3 +149,20 @@ give the row life without adding anything to read.
 Not a component issue, so parked — but the row currently repeats what the hero strap and the
 ticker have both already said ("Saturday", "4–8pm", "Man in the Moon"). Whichever component
 that row ends up using, it will land better once it's saying something new.
+
+---
+
+## F. Verification — 13 September 2026
+
+- Chrome checked at 320, 390, 640, 860, 861, 1024, 1440, 1878 and 2560px.
+- Confirmed the local Archivo 900 font was actually loaded before measuring text.
+  Every value fits inside its available width, including both sides of the 860px
+  layout breakpoint. Checked text ranges against their cells rather than relying
+  on page scroll width, which can hide clipped content.
+- Hover pauses both the ticker and shine; leaving resumes both. Reduced motion
+  stops the ticker, hides the shine and leaves every fact visible.
+- Visually checked the desktop and phone layouts. Desktop checked from a fresh
+  load with normal scrolling so the existing tray pin had time to initialise.
+- The local 21st UI review reported no findings. No new runtime dependencies.
+
+The earlier hero/font fix was already committed and is unchanged by this pass.

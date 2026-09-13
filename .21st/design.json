@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "project": {
+    "name": "TALAWA",
+    "productType": "Caribbean food truck website",
+    "stack": [
+      "Static HTML",
+      "CSS",
+      "Vanilla JavaScript",
+      "GSAP"
+    ]
+  },
+  "sources": {
+    "tokens": [
+      "mockup/index.html"
+    ],
+    "components": [
+      "mockup/index.html"
+    ],
+    "assets": [],
+    "instructions": [
+      "TALAWA.MD",
+      "COMPONENTS.MD",
+      "STRIP.MD"
+    ]
+  },
+  "design": {
+    "colorMode": "dark",
+    "colors": {},
+    "typography": {},
+    "spacing": {},
+    "radius": {},
+    "shadows": {},
+    "motion": {},
+    "density": "unknown"
+  },
+  "components": {
+    "installed": [],
+    "preferredPrimitives": [],
+    "patterns": []
+  },
+  "constraints": {
+    "must": [
+      "Keep the site a static page with no build step.",
+      "Reuse the existing brand colours, local fonts and real business copy.",
+      "Respect reduced motion."
+    ],
+    "avoid": [
+      "React or new runtime dependencies for strip polish.",
+      "Cards, badge boxes, blur filters or invented business claims."
+    ]
+  },
+  "decisions": [
+    {
+      "id": "strip-a1-a2-b1",
+      "decision": "Use stationary gold ticker fades, a subtle 28-second shine beneath the type, and larger Archivo fact values. Keep three equal desktop columns; put labels beside values on phones.",
+      "createdAt": "2026-09-13",
+      "source": "STRIP.MD and user-approved continuation"
+    }
+  ],
+  "evidence": [],
+  "generatedAt": "2026-09-13T16:23:23.685Z"
+}

@@ -98,14 +98,20 @@
   .hero-photo{
     position:absolute; inset:0; z-index:0; pointer-events:none;
     background:url("assets/tray.jpg") center 38%/cover no-repeat;
-    /* Measured, not chosen. 26% is the ceiling with no grain; the grain costs
-       a little, so this sits at 24% and the pair clears AA together. See
-       HERO.MD for the table. */
-    opacity:.24;
+    /* The food should read. 24% was the ceiling only because one small grey
+       line bottom-left had to stay legible over it; the scrim now pools dark
+       under that copy instead, which frees the rest of the frame. At 40% the
+       worst text contrast is 4.86:1 against the 4.5:1 needed. */
+    opacity:.40;
   }
   .hero-scrim{
     position:absolute; inset:0; z-index:0; pointer-events:none;
     background:
+      /* A pool of dark under the bottom-left copy only. Without it the whole
+         photograph has to stay dim for the sake of one small grey line, which
+         is where the scrim is thinnest. Darkening just this corner lets the
+         food come up everywhere else. */
+      radial-gradient(54% 46% at 22% 78%, rgba(10,9,8,.92), rgba(10,9,8,.5) 58%, transparent 82%),
       radial-gradient(78% 62% at 42% 52%, rgba(10,9,8,.94), rgba(10,9,8,.55) 62%, transparent),
       linear-gradient(180deg, rgba(10,9,8,.9), transparent 26%, transparent 62%, rgba(10,9,8,.95));
   }
@@ -295,6 +301,19 @@
 
   @media (max-width:860px){
     .hero-mark{--mark:clamp(2.4rem,14vw,7.5rem)}
+    /* Measured: on a phone the hero copy runs x 5-95% at y 56-71%, i.e. a
+       full-width band mid-hero, not the bottom-left corner it occupies on a
+       desktop. The desktop pool misses it almost entirely, so the phone gets
+       a band instead. */
+    .hero-scrim{
+      background:
+        linear-gradient(180deg, rgba(10,9,8,.88), transparent 24%, transparent 40%,
+                        rgba(10,9,8,.68) 58%, rgba(10,9,8,.92));
+    }
+    /* And the photo itself comes down on a phone. With the copy running the
+       full width there is nowhere for it to sit clear of the food, so the
+       ceiling here is 34% (4.51:1, right on the line); 30% keeps a margin. */
+    .hero-photo{opacity:.30}
     .facts{grid-template-columns:1fr}
     .fact{border-right:0; border-bottom:1px solid rgb(var(--line-rgb) / .2)}
     .fact:last-child{border-bottom:0}

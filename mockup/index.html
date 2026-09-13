@@ -630,28 +630,17 @@
   }
 
   /* ============ OPEN / CLOSED STATUS ============ */
+  /* Plain text, not a badge. The lettering matches .sec-num, .eyebrow and
+     .addr b everywhere else on the site; it was the box and the pulsing dot
+     that read as a landing-page widget. The live behaviour is untouched —
+     the script writes to .js-status and .status-txt, nothing else. */
   .status{
-    display:inline-flex; align-items:center; gap:.5rem;
-    font-family:var(--mono); font-size:10px; letter-spacing:.16em;
-    text-transform:uppercase; color:var(--ash);
-    border:1px solid rgb(var(--line-rgb) / .4); border-radius:2px;
-    padding:.42rem .6rem; white-space:nowrap;
+    display:inline-block; font-family:var(--mono); font-size:10px;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--ash);
+    white-space:nowrap;
   }
-  .status-dot{
-    width:7px; height:7px; border-radius:50%; background:var(--ash);
-    flex:0 0 auto; position:relative;
-  }
-  .status[data-open="true"]{color:var(--bone); border-color:rgba(53,177,74,.55)}
-  .status[data-open="true"] .status-dot{background:var(--hot)}
-  .status[data-open="true"] .status-dot::after{
-    content:''; position:absolute; inset:-4px; border-radius:50%;
-    border:1px solid var(--hot); animation:ping 2.1s ease-out infinite;
-  }
-  @keyframes ping{
-    0%{transform:scale(.6); opacity:.9}
-    70%,100%{transform:scale(1.5); opacity:0}
-  }
-  .hero-status{margin:0 0 1rem}
+  .status[data-open="true"]{color:var(--bone)}
+  .hero-status{margin:.9rem 0 1rem}   /* the badge box used to supply this gap */
   @media (max-width:560px){ .nav .status{display:none} }
 
   /* ============ LIGHTBOX ============ */
@@ -695,8 +684,6 @@
     text-transform:uppercase; padding:.5rem;
   }
   .bar-status[data-open="true"]{color:var(--bone)}
-  .bar-status .status-dot{background:var(--ash)}
-  .bar-status[data-open="true"] .status-dot{background:var(--hot)}
 
   /* ============ STATS ============ */
   .stats{border-top:1px solid rgb(var(--line-rgb) / .2); border-bottom:1px solid rgb(var(--line-rgb) / .2)}
@@ -845,7 +832,7 @@
 
 <nav class="nav" aria-label="Main">
   <a class="nav-mark" href="#top"><img src="assets/logo.jpg" alt="Talawa Caribbean Takeaway"></a>
-  <span class="status js-status" data-open="false"><i class="status-dot"></i><span class="status-txt">Saturdays 4&ndash;8pm</span></span>
+  <span class="status js-status" data-open="false"><span class="status-txt">Saturdays 4&ndash;8pm</span></span>
   <div class="nav-links">
     <a href="#menu">Menu</a>
     <a href="#gallery" data-opt>The truck</a>
@@ -873,8 +860,8 @@
 
   <div class="hero-foot">
     <div>
-      <p class="aside">likkle but talawa &mdash; small, but mighty.</p>
-      <p class="hero-status"><span class="status js-status" data-open="false"><i class="status-dot"></i><span class="status-txt">Saturdays 4&ndash;8pm</span></span></p>
+      <p class="aside">likkle but talawa. Small, but mighty.</p>
+      <p class="hero-status"><span class="status js-status" data-open="false"><span class="status-txt">Saturdays 4&ndash;8pm</span></span></p>
       <p class="strap" style="margin-top:1.1rem">Jamaican food &nbsp;&middot;&nbsp; Stevenage &nbsp;&middot;&nbsp; <b>Every Saturday, 4&ndash;8pm</b></p>
     </div>
     <div class="cue"><i></i> Scroll</div>
@@ -980,7 +967,7 @@
   <h2 class="sec-h">Small But<span class="ghost">Mighty</span></h2>
 
   <p class="stats-note">
-    <b>Every figure here is one I can actually stand behind</b> &mdash; counted off your own
+    <b>Every figure here is one I can actually stand behind</b>. Counted off your own
     menu boards and opening hours, not invented. Star ratings, years trading and trays served
     would all sit well in this row; send me the real ones and they go in.
   </p>
@@ -1078,8 +1065,8 @@
       <p class="sec-num">The truck</p>
       <h2 class="sec-h" style="font-size:clamp(1.8rem,4.6vw,3.4rem)">Come<span class="ghost">Find Us</span></h2>
       <p>Drag sideways. The first two are yours; the rest are shots still to be taken, each
-        captioned with what it is &mdash; so this rail doubles as the photo brief.</p>
-      <a class="gal-handle" data-social="instagram" href="#gallery" data-tbc><span data-social-label>@talawa &mdash; to confirm</span></a>
+        captioned with what it is, so this rail doubles as the photo brief.</p>
+      <a class="gal-handle" data-social="instagram" href="#gallery" data-tbc><span data-social-label>@talawa, to confirm</span></a>
     </div>
 
     <div class="gal-rail" id="rail" tabindex="0" role="region" aria-label="Photo gallery, scrollable">
@@ -1117,7 +1104,7 @@
         <figcaption class="shot-cap">Sweet plantain on its own</figcaption></figure>
 
       <figure class="shot"><span class="shot-empty"></span><span class="shot-i">10</span>
-        <figcaption class="shot-cap">The owner at the hatch &mdash; a real face sells this better than anything</figcaption></figure>
+        <figcaption class="shot-cap">The owner at the hatch. A real face sells this better than anything</figcaption></figure>
     </div>
   </div>
 </section>
@@ -1135,7 +1122,7 @@
 
   <p class="rev-note">
     Every card below is a blank. Real Google and Facebook reviews drop straight in here
-    &mdash; none have been written, because inventing reviews for a trading business is
+    None have been written, because inventing reviews for a trading business is
     illegal in the UK and the fastest way to lose the trust the rest of this page builds.
   </p>
 
@@ -1165,14 +1152,14 @@
       <figure class="rev">
         <span class="rev-tag">Placeholder</span>
         <div class="stars" aria-hidden="true"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></div>
-        <blockquote class="rev-q">A middling one runs to about this much &mdash; two or three lines, which is the length most people actually write.</blockquote>
+        <blockquote class="rev-q">A middling one runs to about this much: two or three lines, which is the length most people actually write.</blockquote>
         <figcaption class="rev-by">Customer name <span class="rev-src">Google</span></figcaption>
       </figure>
 
       <figure class="rev">
         <span class="rev-tag">Placeholder</span>
         <div class="stars" aria-hidden="true"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></div>
-        <blockquote class="rev-q">And a long one goes to roughly here &mdash; the sort where somebody really gets going, names the dish, says how far they drove, and promises to be back next Saturday. The card grows to fit rather than cutting it off.</blockquote>
+        <blockquote class="rev-q">And a long one goes to roughly here: the sort where somebody really gets going, names the dish, says how far they drove, and promises to be back next Saturday. The card grows to fit rather than cutting it off.</blockquote>
         <figcaption class="rev-by">Customer name <span class="rev-src">Facebook</span></figcaption>
       </figure>
 
@@ -1186,7 +1173,7 @@
       <figure class="rev">
         <span class="rev-tag">Placeholder</span>
         <div class="stars" aria-hidden="true"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></div>
-        <blockquote class="rev-q">Medium again &mdash; about two lines on a phone screen, which is the size that reads best in a row like this.</blockquote>
+        <blockquote class="rev-q">Medium again: about two lines on a phone screen, which is the size that reads best in a row like this.</blockquote>
         <figcaption class="rev-by">Customer name <span class="rev-src">Google</span></figcaption>
       </figure>
 
@@ -1215,7 +1202,7 @@
     <div class="order-panel" id="op-0">
       <h3>Just turn up</h3>
       <div class="order-body">
-        <p>No need to order ahead &mdash; everything is cooked fresh on the day and served in the
+        <p>No need to order ahead. Everything is cooked fresh on the day and served in the
           order people arrive. Come and find the truck from 4pm on Saturday; when it&rsquo;s gone,
           it&rsquo;s gone. Card and cash both fine.</p>
         <div class="btn-row">
@@ -1228,10 +1215,10 @@
   <div class="find-grid">
     <div>
       <ul class="addr">
-        <li><b>Where</b><span>Man in the Moon &mdash; pub car park</span></li>
+        <li><b>Where</b><span>Man in the Moon, pub car park</span></li>
         <li><b>Address</b><span class="tbc" data-venue="street">[ street address to confirm ]</span></li>
         <li><b>Postcode</b><span class="tbc" data-venue="postcode">[ postcode to confirm ]</span></li>
-        <li><b>When</b><span>Every Saturday, 4&ndash;8pm &mdash; or until it&rsquo;s gone</span></li>
+        <li><b>When</b><span>Every Saturday, 4&ndash;8pm, or until it&rsquo;s gone</span></li>
         <li><b>Parking</b><span>Free in the pub car park</span></li>
         <li><b>Payment</b><span>Card and cash</span></li>
         <li><b>Phone</b><span data-venue="phone">07841 625488</span></li>
@@ -1296,7 +1283,7 @@
   <div class="faq-list">
     <details class="faq-item" name="faq" open>
       <summary>When are you open?<span class="faq-mark" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p>Every Saturday, 4pm until 8pm &mdash; or until we sell out, whichever comes first. We are not open any other day.</p></div>
+      <div class="faq-a"><p>Every Saturday, 4pm until 8pm, or until we sell out, whichever comes first. We are not open any other day.</p></div>
     </details>
 
     <details class="faq-item" name="faq">
@@ -1306,17 +1293,17 @@
 
     <details class="faq-item" name="faq">
       <summary>Do you do catering or parties?<span class="faq-mark" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p>No. We are Saturdays at the Man in the Moon and nothing else &mdash; it keeps the food consistent and the queue moving.</p></div>
+      <div class="faq-a"><p>No. We are Saturdays at the Man in the Moon and nothing else. It keeps the food consistent and the queue moving.</p></div>
     </details>
 
     <details class="faq-item" name="faq">
-      <summary>I&rsquo;ve got an allergy &mdash; what should I do?<span class="faq-mark" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p>Tell us when you place your order and we will talk it through with you. Please inform us of any allergies or dietary requirements before you order &mdash; our food is prepared in a small kitchen where allergens are present.</p></div>
+      <summary>I&rsquo;ve got an allergy. What should I do?<span class="faq-mark" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p>Tell us when you place your order and we will talk it through with you. Please inform us of any allergies or dietary requirements before you order. Our food is prepared in a small kitchen where allergens are present.</p></div>
     </details>
 
     <details class="faq-item" name="faq">
       <summary>Can I order ahead?<span class="faq-mark" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p>No &mdash; everything is cooked fresh on the day and served in the order people arrive. Come down and join the queue.</p></div>
+      <div class="faq-a"><p>No. Everything is cooked fresh on the day and served in the order people arrive. Come down and join the queue.</p></div>
     </details>
 
     <details class="faq-item" name="faq">
@@ -1331,12 +1318,12 @@
 
     <details class="faq-item" name="faq">
       <summary>What time do you usually sell out?<span class="faq-mark" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p><span class="faq-todo">Answer needed</span></p><p>A rough honest answer &mdash; &ldquo;the goat usually goes by 6&rdquo; &mdash; gets people there earlier.</p></div>
+      <div class="faq-a"><p><span class="faq-todo">Answer needed</span></p><p>A rough honest answer, like &ldquo;the goat usually goes by 6&rdquo;, gets people there earlier.</p></div>
     </details>
 
     <details class="faq-item" name="faq">
       <summary>Is there parking?<span class="faq-mark" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p>Yes &mdash; free parking in the Man in the Moon car park, which is where you will find the trailer.</p></div>
+      <div class="faq-a"><p>Yes, free parking in the Man in the Moon car park, which is where you will find the trailer.</p></div>
     </details>
   </div>
 
@@ -1348,7 +1335,7 @@
       {"@type":"Question","name":"When are you open?","acceptedAnswer":{"@type":"Answer","text":"Every Saturday, 4pm until 8pm, or until we sell out. We are not open any other day."}},
       {"@type":"Question","name":"Where do I find you?","acceptedAnswer":{"@type":"Answer","text":"In the car park at the Man in the Moon pub."}},
       {"@type":"Question","name":"Do you do catering or parties?","acceptedAnswer":{"@type":"Answer","text":"No. Talawa trades on Saturdays at the Man in the Moon only."}},
-      {"@type":"Question","name":"I have an allergy - what should I do?","acceptedAnswer":{"@type":"Answer","text":"Tell us when you place your order. Our food is prepared in a small kitchen where allergens are present."}}
+      {"@type":"Question","name":"I have an allergy. What should I do?","acceptedAnswer":{"@type":"Answer","text":"Tell us when you place your order. Our food is prepared in a small kitchen where allergens are present."}}
     ]
   }
   </script>
@@ -1363,7 +1350,7 @@
   <div class="list-wrap">
     <div class="list-lead">
       <p>The truck is out four hours a week. Most people who mean to come don&rsquo;t decide
-        against it &mdash; they just forget which Saturday it is.</p>
+        against it. They just forget which Saturday it is.</p>
       <p>So: one message on a Saturday morning saying we&rsquo;re on and what&rsquo;s cooking.
         That is the whole thing. No offers, no newsletter, nothing on a Tuesday.</p>
     </div>
@@ -1446,7 +1433,7 @@
 
 <nav class="bar" aria-label="Quick actions">
   <p class="bar-status js-status" data-open="false">
-    <i class="status-dot"></i><span class="status-txt">Saturdays 4&ndash;8pm</span>
+    <span class="status-txt">Saturdays 4&ndash;8pm</span>
   </p>
   <a class="b1" href="#find" data-tbc>Call</a>
   <a class="b2" href="#find" data-tbc>Directions</a>
@@ -1559,10 +1546,10 @@
   var mapNote = document.getElementById('mapNote');
   if (mapNote) {
     mapNote.innerHTML = venueReady
-      ? 'Tap for directions &mdash; opens in Maps.'
+      ? 'Tap for directions. Opens in Maps.'
       : '<span class="venue-pending">Postcode needed.</span> A live, tappable map belongs here. '
-      + 'This preview cannot load one &mdash; the page&rsquo;s security settings block outside map '
-      + 'tiles &mdash; but the real site will. The drawing is standing in.';
+      + 'This preview cannot load one, because the page&rsquo;s security settings block '
+      + 'outside map tiles. The real site will. The drawing is standing in.';
   }
 
   /* ---------- Saturday mailing list ----------
@@ -1596,7 +1583,7 @@
     };
 
     if (!LIST.endpoint) {
-      say('Not connected yet — this needs an email service behind it before it can take sign-ups.', 'warn');
+      say('Not connected yet. This needs an email service behind it before it can take sign-ups.', 'warn');
     }
 
     listForm.addEventListener('submit', function (e) {
@@ -1614,7 +1601,7 @@
         say('Tick the box to say we can email you.', 'warn'); consent.focus(); return;
       }
       if (!LIST.endpoint) {
-        say('Nothing was sent — there is no email service connected yet. Your address has not gone anywhere.', 'warn');
+        say('Nothing was sent. There is no email service connected yet. Your address has not gone anywhere.', 'warn');
         return;
       }
 
@@ -1677,7 +1664,7 @@
 
     var h = parseInt(p.hour, 10) % 24;          /* some locales render midnight as 24 */
     var sat = p.weekday === 'Sat';
-    if (sat && h >= 16 && h < 20) return { open: true,  text: 'Open now — til 8pm' };
+    if (sat && h >= 16 && h < 20) return { open: true,  text: 'Open now til 8pm' };
     if (sat && h < 16)            return { open: false, text: 'Opens today, 4pm' };
     return { open: false, text: 'Opens Saturday, 4pm' };
   }

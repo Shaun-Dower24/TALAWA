@@ -438,7 +438,7 @@
   .menu-board{
     max-width:1180px; margin:0 auto; background:var(--ink-2);
     border:1px solid rgba(242,236,223,.16);
-    padding:clamp(1.4rem,4vw,3rem); position:relative; overflow:hidden;
+    padding:clamp(1.25rem,4vw,3rem); position:relative;
   }
   .menu-board::after{
     content:''; position:absolute; inset:0; pointer-events:none;
@@ -452,27 +452,38 @@
     margin:0 0 clamp(1.4rem,3vw,2.2rem); border-left:2px solid var(--gold);
     padding-left:.8rem; line-height:1.6; position:relative; z-index:1;
   }
-  .menu-cols{
-    display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
-    gap:clamp(1.8rem,4vw,3.4rem); position:relative; z-index:1;
-  }
-  .menu-col h3{
+  .menu-categories{position:relative; z-index:1}
+  .menu-category + .menu-category{margin-top:clamp(1.8rem,4vw,3rem)}
+  .menu-category h3{
+    position:relative; z-index:2; align-self:start;
     font-family:var(--display); font-weight:900; text-transform:uppercase;
-    font-size:clamp(1rem,2vw,1.5rem); letter-spacing:.02em; color:var(--gold);
-    /* Gold heading over a green rule, kept from the light version. Leaf green
-       measures 2.6:1 on ink and a 2px rule is a graphic needing 3:1, so this is
-       the lime at 6.4:1 — the same green the section eyebrows use. */
-    margin:0 0 1.2rem; padding-bottom:.6rem; border-bottom:2px solid var(--green);
+    font-size:clamp(1.8rem,3.4vw,3rem); line-height:1.1;
+    letter-spacing:-.02em; color:var(--gold); background:var(--ink-2);
+    margin:0; padding:.75rem 0; border-bottom:2px solid var(--green);
   }
-  .menu-row{display:grid; grid-template-columns:1fr auto; gap:1rem; align-items:baseline; padding:.85rem 0}
+  .menu-category dl{min-width:0; margin:0}
+  @media (min-width:861px){
+    .menu-category{
+      display:grid; grid-template-columns:minmax(0,3fr) minmax(0,7fr);
+      gap:clamp(1.8rem,4vw,3rem); align-items:start;
+      border-top:2px solid var(--green);
+    }
+    .menu-category h3{border-bottom:0}
+  }
+  /* Keep the current category below the fixed nav, within its own section.
+     Short windows use normal flow so the heading cannot crowd the dishes. */
+  @media (min-height:700px){
+    .menu-category h3{position:sticky; top:5.25rem}
+  }
+  .menu-row{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:clamp(.65rem,2vw,1.5rem); align-items:baseline; padding:.85rem 0}
   .menu-row + .menu-row{border-top:1px solid rgba(242,236,223,.11)}
-  .menu-row dt{margin:0}
-  .menu-row .item{display:block; font-weight:500; color:var(--bone); font-size:1.02rem}
+  .menu-row dt{min-width:0; margin:0; overflow-wrap:break-word}
+  .menu-row .item{display:block; font-weight:500; color:var(--bone); font-size:clamp(1.02rem,1.6vw,1.25rem)}
   .menu-row .with{
     display:block; font-family:var(--mono); font-size:11px;
     letter-spacing:.06em; color:var(--ash); margin-top:.18rem;
   }
-  .menu-row dd{margin:0; font-family:var(--mono); font-size:1rem; color:var(--gold); font-variant-numeric:tabular-nums}
+  .menu-row dd{margin:0; font-family:var(--mono); font-size:1rem; color:var(--gold); font-variant-numeric:tabular-nums; white-space:nowrap}
   .allergy{
     position:relative; z-index:1; margin:clamp(1.8rem,4vw,3rem) 0 0;
     padding:1.1rem 1.2rem; border:1px solid var(--scotch); color:var(--bone);
@@ -1140,9 +1151,9 @@
       no price has been guessed at or filled in with a placeholder figure.
     </p>
 
-    <div class="menu-cols">
-      <div class="menu-col">
-        <h3>Mains</h3>
+    <div class="menu-categories">
+      <section class="menu-category" aria-labelledby="menu-mains">
+        <h3 id="menu-mains">Mains</h3>
         <dl>
           <div class="menu-row">
             <dt><span class="item">Boneless Curry Goat</span><span class="with">Served with rice &amp; peas</span></dt>
@@ -1157,10 +1168,10 @@
             <dd>&pound;&mdash;</dd>
           </div>
         </dl>
-      </div>
+      </section>
 
-      <div class="menu-col">
-        <h3>Sides</h3>
+      <section class="menu-category" aria-labelledby="menu-sides">
+        <h3 id="menu-sides">Sides</h3>
         <dl>
           <div class="menu-row"><dt><span class="item">Fried Dumplings</span></dt><dd>&pound;&mdash;</dd></div>
           <div class="menu-row"><dt><span class="item">Rice &amp; Peas</span></dt><dd>&pound;&mdash;</dd></div>
@@ -1169,10 +1180,10 @@
           <div class="menu-row"><dt><span class="item">Coleslaw</span></dt><dd>&pound;&mdash;</dd></div>
           <div class="menu-row"><dt><span class="item">Chips</span></dt><dd>&pound;&mdash;</dd></div>
         </dl>
-      </div>
+      </section>
 
-      <div class="menu-col">
-        <h3>Kids</h3>
+      <section class="menu-category" aria-labelledby="menu-kids">
+        <h3 id="menu-kids">Kids</h3>
         <dl>
           <div class="menu-row"><dt><span class="item">Chicken Nuggets &amp; Chips</span></dt><dd>&pound;&mdash;</dd></div>
           <div class="menu-row">
@@ -1180,7 +1191,7 @@
             <dd>&pound;&mdash;</dd>
           </div>
         </dl>
-      </div>
+      </section>
     </div>
 
     <p class="allergy"><b>Allergies &middot;</b> Please inform us of any allergies or dietary requirements when placing your order.</p>
@@ -1975,23 +1986,6 @@
       clipPath: 'inset(0 100% 0 0)', y: 18, duration: 1.05, ease: 'power3.out',
       scrollTrigger: { trigger: h, start: 'top 86%' }
     });
-  });
-
-  /* menu: each heading and its gold rule wipe together, then the rows land */
-  gsap.utils.toArray('.menu-col').forEach(function (col, i) {
-    gsap.from(col.querySelector('h3'), {
-      clipPath: 'inset(0 100% 0 0)', duration: .85, ease: 'power3.out', delay: i * .12,
-      scrollTrigger: { trigger: '.menu-board', start: 'top 78%' }
-    });
-    gsap.from(col.querySelectorAll('.menu-row'), {
-      opacity: 0, x: -14, duration: .6, stagger: .06, ease: 'power2.out', delay: .25 + i * .12,
-      scrollTrigger: { trigger: '.menu-board', start: 'top 78%' }
-    });
-  });
-
-  gsap.from('.allergy', {
-    opacity: 0, y: 16, duration: .7, ease: 'power2.out',
-    scrollTrigger: { trigger: '.allergy', start: 'top 92%' }
   });
 
   /* gallery panels lean into the drag */

@@ -1,7 +1,7 @@
 <!-- PREVIEW ONLY: remove this tag (and the Disallow lines in robots.txt)
      when the real prices and reviews are in and the site goes live. -->
 <meta name="robots" content="noindex, nofollow">
-<title>Likkle But Talawa</title>
+<title>Talawa Caribbean Food</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,500;125,900&family=Caveat+Brush&family=DM+Mono:wght@400;500&family=Work+Sans:wght@400;500&display=swap">
@@ -105,17 +105,15 @@
   }
 
   .eyebrow-logo{width:42px; height:42px; border-radius:50%; display:block}
-  .likkle{
-    font-family:var(--display); font-weight:900;
-    font-size:clamp(2rem,6.4vw,5rem);
-    line-height:.92; letter-spacing:.01em; margin:0 0 .06em;
-    padding-left:clamp(.2rem,4.5vw,4.5rem);
-    color:transparent;
-    -webkit-text-stroke:clamp(1px,.16vw,2.2px) var(--gold);
-  }
+  /* A two-line lockup: TALAWA filled with the brand gradient, CARIBBEAN hollow
+     beneath it. One custom property drives both sizes so they cannot drift, and
+     both lines are block — left inline, they would sit on one line or two purely
+     by accident of their combined width. */
+  .hero-mark{--mark:clamp(2.9rem,17vw,21rem); margin:0}
   .talawa{
+    display:block;
     font-family:var(--display); font-weight:900;
-    font-size:clamp(2.9rem,12.4vw,13.5rem);
+    font-size:var(--mark);
     line-height:.84; letter-spacing:-.022em; margin:0;
     white-space:nowrap; color:var(--gold);
   }
@@ -129,6 +127,18 @@
     .talawa span{background:none; color:var(--gold)}
   }
   .talawa span{display:inline-block; will-change:transform}
+  /* .69 sets CARIBBEAN to exactly TALAWA's width at every viewport — both
+     letter-spacings are em-relative, so the ratio holds as the size changes —
+     and it is the only value that also fits a 320px phone. At the same size as
+     TALAWA it overflows a 390px screen by 18px. */
+  .hero-sub{
+    display:block;
+    font-family:var(--display); font-weight:900; text-transform:uppercase;
+    font-size:calc(var(--mark) * .69);
+    line-height:.92; letter-spacing:.01em; margin:.06em 0 0;
+    white-space:nowrap; color:transparent;
+    -webkit-text-stroke:clamp(1px,.16vw,2.2px) var(--gold);
+  }
 
   .hero-foot{
     position:relative; z-index:2;
@@ -237,7 +247,7 @@
   :focus-visible{outline:2px solid var(--gold); outline-offset:3px}
 
   @media (max-width:860px){
-    .talawa{white-space:normal; font-size:clamp(2.6rem,15.5vw,6rem)}
+    .hero-mark{--mark:clamp(2.6rem,15.5vw,6rem)}
     .facts{grid-template-columns:1fr}
     .fact{border-right:0; border-bottom:1px solid rgb(var(--line-rgb) / .2)}
     .fact:last-child{border-bottom:0}
@@ -855,9 +865,9 @@
 
   <div class="hero-inner">
     <p class="eyebrow"><img class="eyebrow-logo" src="assets/logo.jpg" alt="">Talawa &middot; Caribbean Food</p>
-    <h1>
-      <span class="likkle" aria-hidden="true">LIKKLE</span>
-      <span class="talawa" aria-label="Likkle but Talawa"><span>B</span><span>U</span><span>T</span><span>&nbsp;</span><span>T</span><span>A</span><span>L</span><span>A</span><span>W</span><span>A</span></span>
+    <h1 class="hero-mark">
+      <span class="talawa" aria-label="Talawa"><span>T</span><span>A</span><span>L</span><span>A</span><span>W</span><span>A</span></span>
+      <span class="hero-sub">Caribbean</span>
     </h1>
   </div>
 
@@ -1755,11 +1765,11 @@
   /* ---------- 1. hero entrance (.from() leaves CSS as the resting state) ---------- */
   gsap.timeline({ defaults: { ease: 'power3.out' } })
     .from('.eyebrow', { opacity: 0, y: 12, duration: .7 })
-    .from('.likkle',  { opacity: 0, y: 26, duration: .9 }, .15)
     .from('.talawa span', {
        opacity: 0, yPercent: 118, scaleY: 2.4, transformOrigin: '50% 100%',
        duration: 1.05, stagger: .045
-     }, .55)
+     }, .2)
+    .from('.hero-sub', { opacity: 0, y: 26, duration: .9 }, .85)
     .from('.aside', { opacity: 0, y: 16, rotate: -8, duration: .8 }, 1.15)
     .from('.strap', { opacity: 0, y: 14, duration: .7 }, 1.3)
     .from('.cue',   { opacity: 0, duration: .6 }, 1.45)

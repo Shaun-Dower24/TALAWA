@@ -809,39 +809,40 @@
 
   /* ============ STATS ============ */
   .stats{border-top:1px solid rgb(var(--line-rgb) / .2); border-bottom:1px solid rgb(var(--line-rgb) / .2)}
-  .stats-note{
-    max-width:70ch; margin:0 0 clamp(2rem,5vw,3.2rem);
-    border-left:2px solid var(--gold); padding-left:.9rem;
-    font-family:var(--mono); font-size:11px; letter-spacing:.05em;
-    line-height:1.7; color:var(--ash);
-  }
-  .stats-note b{color:var(--bone); font-weight:400}
+  /* Tailark Stats Info: open columns, adapted to the truck's existing type. */
   .stat-grid{
-    display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-    gap:1px; background:rgb(var(--line-rgb) / .2); border:1px solid rgb(var(--line-rgb) / .2);
+    display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
+    list-style:none; padding:0; margin:clamp(2.5rem,5vw,4.5rem) 0 0;
   }
   .stat{
-    background:var(--ink); padding:clamp(1.4rem,3.6vw,2.4rem) clamp(1rem,2.4vw,1.6rem);
-    display:flex; flex-direction:column; gap:.55rem;
+    min-width:0; padding:0 clamp(1rem,3vw,3rem);
+    border-left:1px solid rgb(var(--line-rgb) / .3);
+    display:flex; flex-direction:column;
   }
+  .stat:first-child{padding-left:0; border-left:0}
+  .stat:last-child{padding-right:0}
   .stat-n{
-    font-family:var(--display); font-weight:900; line-height:.86;
-    font-size:clamp(2.6rem,7.4vw,5rem);
+    font-family:var(--display); font-weight:900; line-height:.95;
+    font-size:clamp(3.75rem,8vw,7rem); letter-spacing:-.04em;
     font-variant-numeric:tabular-nums;
-    background:var(--brand-grad);
-    -webkit-background-clip:text; background-clip:text;
-    color:transparent;
-  }
-  @supports not ((-webkit-background-clip:text) or (background-clip:text)){
-    .stat-n{background:none; color:var(--gold)}
+    color:var(--gold); margin-bottom:1.25rem;
   }
   .stat-l{
-    font-family:var(--mono); font-size:10px; letter-spacing:.2em;
-    text-transform:uppercase; color:var(--bone); line-height:1.5;
+    font-family:var(--mono); font-size:11px; font-weight:400; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--bone); line-height:1.6;
+    min-height:3.2em; margin:0 0 .65rem;
   }
   .stat-s{
-    font-family:var(--mono); font-size:10px; letter-spacing:.05em;
-    color:var(--ash); line-height:1.6; margin-top:auto;
+    font-family:var(--body); font-size:14px;
+    color:var(--ash); line-height:1.65; margin:0; max-width:28ch;
+  }
+  @media (max-width:860px){
+    .stat-grid{grid-template-columns:repeat(2,minmax(0,1fr)); row-gap:1.75rem}
+    .stat{padding:0 clamp(1rem,4vw,2rem)}
+    .stat:nth-child(odd){padding-left:0; border-left:0}
+    .stat:nth-child(even){padding-right:0}
+    .stat:nth-child(n+3){padding-top:1.75rem; border-top:1px solid rgb(var(--line-rgb) / .3)}
+    .stat-n{font-size:clamp(3.75rem,12vw,6rem)}
   }
 
   /* ============ MAP / VENUE ============ */
@@ -1098,38 +1099,32 @@
 </section>
 
 <!-- ===================== STATS ===================== -->
-<section class="sec stats" id="stats">
+<section class="sec stats" id="stats" aria-labelledby="stats-heading">
   <p class="sec-num">By the numbers</p>
-  <h2 class="sec-h">Small But<span class="ghost">Mighty</span></h2>
+  <h2 class="sec-h" id="stats-heading">Small But<span class="ghost">Mighty</span></h2>
 
-  <p class="stats-note">
-    <b>Every figure here is one I can actually stand behind</b>. Counted off your own
-    menu boards and opening hours, not invented. Star ratings, years trading and trays served
-    would all sit well in this row; send me the real ones and they go in.
-  </p>
-
-  <div class="stat-grid">
-    <div class="stat">
+  <ul class="stat-grid" role="list">
+    <li class="stat">
       <span class="stat-n" data-count="1">1</span>
-      <span class="stat-l">Truck</span>
-      <span class="stat-s">That&rsquo;s the whole operation. Likkle but talawa.</span>
-    </div>
-    <div class="stat">
+      <h3 class="stat-l">Truck</h3>
+      <p class="stat-s">That&rsquo;s the whole operation. Likkle but talawa.</p>
+    </li>
+    <li class="stat">
       <span class="stat-n" data-count="4">4</span>
-      <span class="stat-l">Hours a week</span>
-      <span class="stat-s">Saturday, 4 til 8. Miss it and you wait seven days.</span>
-    </div>
-    <div class="stat">
+      <h3 class="stat-l">Hours a week</h3>
+      <p class="stat-s">Saturday, 4 til 8. Miss it and you wait seven days.</p>
+    </li>
+    <li class="stat">
       <span class="stat-n" data-count="11">11</span>
-      <span class="stat-l">Dishes on the board</span>
-      <span class="stat-s">Three mains, six sides, two for the kids.</span>
-    </div>
-    <div class="stat">
+      <h3 class="stat-l">Dishes on the board</h3>
+      <p class="stat-s">Three mains, six sides, two for the kids.</p>
+    </li>
+    <li class="stat">
       <span class="stat-n" data-count="5">5</span>
-      <span class="stat-l">Food hygiene rating</span>
-      <span class="stat-s">The top score under the Food Standards Agency scheme.</span>
-    </div>
-  </div>
+      <h3 class="stat-l">Food hygiene rating</h3>
+      <p class="stat-s">The top score under the Food Standards Agency scheme.</p>
+    </li>
+  </ul>
 </section>
 
 <div class="band-under" aria-hidden="true"></div>

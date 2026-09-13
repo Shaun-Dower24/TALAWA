@@ -58,8 +58,28 @@ food. For a business that sells food, that is the whole ball game.
       exactly what makes outlines hard to read. This needs measuring against the brighter
       background, not eyeballing — it may need a slightly heavier outline or a touch more
       wash directly behind it.
-- [ ] **Decide the level together.** I'd want to show you two or three strengths side by side
-      rather than pick one for you — this changes the whole feel of the page.
+- [x] **Level decided: 26%.** More than double what is there now, and measured rather than
+      guessed. Working upward until something broke:
+
+      | Photo | Tagline | Status line | "Jamaican food…" | |
+      |---|---|---|---|---|
+      | 12% (now) | 5.4:1 | 4.9:1 | 14.3:1 | fine |
+      | **26%** | 5.1:1 | **4.6:1** | 13.5:1 | **fine — the ceiling** |
+      | 34% | 4.9:1 | 4.4:1 | 12.9:1 | just under |
+      | 45% | 4.5:1 | 4.1:1 | 12.0:1 | clearly under |
+
+      Readable text needs 4.5:1. **The limit is not the outline — it is the small grey
+      "opens Saturday" line**, which sits bottom-left where the dark wash is thinnest. 26% is
+      the last step where everything still clears.
+
+      **A concern I raised and then disproved:** I expected the gold CARIBBEAN outline to fail
+      against the mac and cheese and plantain behind it. It does not — worst case is 6.3:1
+      even at 45%, against a 3:1 requirement, because the dark wash is strongest exactly where
+      that line sits. Worth recording so nobody re-raises it.
+
+      Going brighter than 26% is possible, but only by also changing something else — either
+      darkening the wash just behind that bottom-left text, or lifting the grey to a lighter
+      tone. Not worth it now; 26% already does the job.
 
 ### 2.2 A fine grain over the hero
 
@@ -156,10 +176,14 @@ The hero category on 21st.dev is full of things that would actively make your si
 
 ## 6. What I need from you
 
-- [ ] **A ruling on 2.1** — how visible should the food be? This is the one that matters.
-- [ ] Yes or no on the grain (2.2). My recommendation is yes.
-- [ ] Yes or no on the mouse-reactive letters (3.1). My recommendation is no, for now.
-- [ ] Yes or no on the slow drift (3.2).
+- [x] **2.1 — the photo. Recommended: raise it to 26% and change nothing else.** Measured
+      ceiling; see the table above. Shaun has confirmed the photo stays in the hero.
+- [ ] **2.2 — the grain. Recommended: yes.** Small, suits the brand, and fixes real banding.
+- [x] **3.1 — mouse-reactive letters. Recommended: no.** Nothing on a phone, heavier font
+      download for everyone.
+- [x] **3.2 — the slow drift. Recommended: no.** With the photo properly visible it is not
+      needed, and the hero already has its letter-by-letter entrance. Holding still is the
+      stronger choice.
 - [ ] **Still outstanding from before, unrelated to the hero:** prices and dish descriptions,
       your Google/Facebook reviews, the Facebook handle, and roughly what time you sell out.
 

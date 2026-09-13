@@ -2,11 +2,36 @@
      when the real prices and reviews are in and the site goes live. -->
 <meta name="robots" content="noindex, nofollow">
 <title>Talawa Caribbean Food</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,500;125,900&family=Caveat+Brush&family=DM+Mono:wght@400;500&family=Work+Sans:wght@400;500&display=swap">
 
 <style>
+  /* ============ FONTS ============
+     Served from this site rather than Google. Three reasons, in order of how
+     much they matter:
+       1. It is the only way these fonts can be measured during development.
+          Google Fonts is unreachable from the build environment, so every
+          local render silently used a substitute ~34% narrower than Archivo —
+          which is how a clipped hero shipped with the width tests passing.
+       2. No render-blocking third-party stylesheet, and no request to Google
+          from anyone who visits.
+       3. The page stops depending on a service we do not control.
+     Latin subsets only, matching what the Google stylesheet served. Archivo
+     and Work Sans are variable fonts: one file covers both declared weights,
+     exactly as Google delivered them. */
+  @font-face{font-family:'Archivo'; font-style:normal; font-weight:500; font-stretch:125%;
+    font-display:swap; src:url('assets/fonts/archivo-var.woff2') format('woff2')}
+  @font-face{font-family:'Archivo'; font-style:normal; font-weight:900; font-stretch:125%;
+    font-display:swap; src:url('assets/fonts/archivo-var.woff2') format('woff2')}
+  @font-face{font-family:'Caveat Brush'; font-style:normal; font-weight:400;
+    font-display:swap; src:url('assets/fonts/caveat-brush-400.woff2') format('woff2')}
+  @font-face{font-family:'DM Mono'; font-style:normal; font-weight:400;
+    font-display:swap; src:url('assets/fonts/dm-mono-400.woff2') format('woff2')}
+  @font-face{font-family:'DM Mono'; font-style:normal; font-weight:500;
+    font-display:swap; src:url('assets/fonts/dm-mono-500.woff2') format('woff2')}
+  @font-face{font-family:'Work Sans'; font-style:normal; font-weight:400;
+    font-display:swap; src:url('assets/fonts/work-sans-var.woff2') format('woff2')}
+  @font-face{font-family:'Work Sans'; font-style:normal; font-weight:500;
+    font-display:swap; src:url('assets/fonts/work-sans-var.woff2') format('woff2')}
+
   :root{
     --ink:#0A0908;
     --ink-2:#151311;
@@ -129,7 +154,7 @@
      beneath it. One custom property drives both sizes so they cannot drift, and
      both lines are block — left inline, they would sit on one line or two purely
      by accident of their combined width. */
-  .hero-mark{--mark:clamp(2.9rem,17vw,21rem); margin:0}
+  .hero-mark{--mark:clamp(2.9rem,14.4vw,21rem); margin:0}
   .talawa{
     display:block;
     font-family:var(--display); font-weight:900;
@@ -147,14 +172,16 @@
     .talawa span{background:none; color:var(--gold)}
   }
   .talawa span{display:inline-block; will-change:transform}
-  /* .69 sets CARIBBEAN to exactly TALAWA's width at every viewport — both
-     letter-spacings are em-relative, so the ratio holds as the size changes —
-     and it is the only value that also fits a 320px phone. At the same size as
-     TALAWA it overflows a 390px screen by 18px. */
+  /* .705 sets CARIBBEAN to exactly TALAWA's width at every viewport. Both
+     letter-spacings are em-relative, so the ratio holds as the size changes.
+     Measured against the real Archivo: TALAWA renders 5.623x its font-size,
+     CARIBBEAN 7.971x, and 5.623/7.971 = .705. The .69 this replaced was
+     derived from a substitute font the build environment fell back to, and was
+     wrong on every real device. */
   .hero-sub{
     display:block;
     font-family:var(--display); font-weight:900; text-transform:uppercase;
-    font-size:calc(var(--mark) * .69);
+    font-size:calc(var(--mark) * .705);
     line-height:.92; letter-spacing:.01em; margin:.06em 0 0;
     white-space:nowrap; color:transparent;
     -webkit-text-stroke:clamp(1px,.16vw,2.2px) var(--gold);
@@ -267,7 +294,7 @@
   :focus-visible{outline:2px solid var(--gold); outline-offset:3px}
 
   @media (max-width:860px){
-    .hero-mark{--mark:clamp(2.6rem,15.5vw,6rem)}
+    .hero-mark{--mark:clamp(2.4rem,14vw,7.5rem)}
     .facts{grid-template-columns:1fr}
     .fact{border-right:0; border-bottom:1px solid rgb(var(--line-rgb) / .2)}
     .fact:last-child{border-bottom:0}

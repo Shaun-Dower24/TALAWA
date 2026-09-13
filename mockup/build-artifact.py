@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
-"""Inline every assets/ image as a data URI.
+"""Inline every assets/ file as a data URI - photographs and webfonts alike.
 
 Artifacts are published as a single file and their CSP blocks external images,
-so the published copy needs the photos embedded. index.html keeps normal
-<img src="assets/..."> references, which is what a real deploy should ship.
+so the published copy needs its assets embedded. index.html keeps normal
+assets/... references, which is what a real deploy should ship.
+
+The fonts are inlined by the same rule that catches the photos: url('assets/...')
+matches the pattern, and mimetypes already knows .woff2 is font/woff2. Worth
+stating because the fonts matter more than they look - they are served from this
+site rather than Google precisely so that what gets tested is what gets shipped.
 """
 import base64, mimetypes, os, re, sys
 

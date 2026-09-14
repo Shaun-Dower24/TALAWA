@@ -493,54 +493,36 @@
   .allergy b{color:var(--scotch); font-weight:500}
 
   /* ============ GALLERY ============ */
-  .gal{padding:clamp(3.5rem,10vh,7rem) 0}
-  .gal-grid{display:grid; grid-template-columns:minmax(240px,26%) 1fr; gap:clamp(1.5rem,4vw,3rem); align-items:start}
-  .gal-side{padding-left:var(--pad); position:sticky; top:6rem}
-  .gal-side p{color:var(--ash); font-size:.96rem; margin:0 0 1.2rem}
+  .gal-inner{max-width:960px; margin:0 auto}
+  .gal-intro{margin-bottom:clamp(1.6rem,4vh,3rem)}
+  .gal-intro > p{color:var(--ash); font-size:1rem; margin:0 0 .4rem}
   .gal-handle, .fact-link{
     font-family:var(--mono); font-size:12px; letter-spacing:.16em; color:var(--gold);
     text-decoration:none; text-transform:uppercase;
     border-bottom:1px solid var(--gold); padding-bottom:2px;
   }
-  .gal-rail{
-    display:flex; gap:clamp(.7rem,1.6vw,1.2rem);
-    overflow-x:auto; overflow-y:hidden; padding:0 var(--pad) 1.4rem 0;
-    scrollbar-width:thin; scrollbar-color:var(--gold) transparent; cursor:grab;
-    scroll-snap-type:x proximity; scroll-behavior:smooth;
+  .gal-handle{display:inline-flex; align-items:center; min-height:44px}
+  .gal-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px}
+  .gal-photo{display:block; min-width:0; color:var(--bone); text-decoration:none; cursor:zoom-in}
+  .gal-photo figure{margin:0}
+  .gal-frame{
+    display:block; aspect-ratio:4/5; overflow:hidden; background:var(--ink-2);
+    border:1px solid rgb(var(--line-rgb) / .3); border-radius:2px;
   }
-  .gal-rail::-webkit-scrollbar{height:3px}
-  .gal-rail::-webkit-scrollbar-thumb{background:var(--gold)}
-  .gal-rail.is-drag{cursor:grabbing; scroll-snap-type:none; scroll-behavior:auto}
-  .gal-rail:focus-visible{outline:2px solid var(--gold); outline-offset:4px}
-  .gal-rail.is-drag *{pointer-events:none}
-  .shot{
-    flex:0 0 auto; width:clamp(210px,26vw,340px); aspect-ratio:4/5;
-    position:relative; background:var(--ink-2);
-    border:1px solid rgb(var(--line-rgb) / .3);
-    display:flex; flex-direction:column; justify-content:flex-end;
-    padding:1rem; overflow:hidden; margin:0; will-change:transform;
-    scroll-snap-align:start;
+  .gal-frame img{display:block; width:100%; height:100%; object-fit:cover}
+  /* The supplied tray is tight to its edges: show the complete photograph. */
+  .gal-frame--tray img{object-fit:contain}
+  .gal-cap{
+    display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:.4rem 1rem;
+    padding:1rem 0; border-bottom:1px solid rgb(var(--line-rgb) / .3);
+    font-family:var(--mono); font-size:12px; line-height:1.5; letter-spacing:.03em;
   }
-  .shot--wide{width:clamp(300px,40vw,520px); aspect-ratio:3/2}
-  .shot-art{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
-  .shot-empty{
-    position:absolute; inset:0; opacity:.5;
-    background-image:repeating-linear-gradient(-45deg, transparent 0 13px, rgb(var(--line-rgb) / .14) 13px 14px);
-  }
-  .shot-i{
-    position:absolute; top:.7rem; left:.8rem; z-index:2;
-    font-family:var(--mono); font-size:10px; letter-spacing:.12em; color:var(--bone);
-    background:rgba(10,9,8,.72); padding:.25rem .45rem;
-  }
-  .shot-loop{
-    position:absolute; top:.7rem; right:.8rem; z-index:2;
-    font-family:var(--mono); font-size:9px; letter-spacing:.14em;
-    background:var(--scotch); color:var(--bone); padding:.25rem .45rem; text-transform:uppercase;
-  }
-  .shot-cap{
-    position:relative; z-index:2; font-family:var(--mono); font-size:11px;
-    line-height:1.5; letter-spacing:.03em; color:var(--bone);
-    background:rgba(10,9,8,.82); padding:.55rem .6rem; backdrop-filter:blur(3px);
+  .gal-view{color:var(--gold); white-space:nowrap}
+  .gal-photo:is(:hover,:focus-visible) .gal-frame,
+  .gal-photo:is(:hover,:focus-visible) .gal-cap{border-color:var(--gold)}
+  @media (hover:hover) and (prefers-reduced-motion:no-preference){
+    .gal-frame img{transition:transform .25s ease}
+    .gal-photo:hover .gal-frame:not(.gal-frame--tray) img{transform:scale(1.02)}
   }
 
   /* ============ FIND US ============ */
@@ -652,9 +634,8 @@
 
   @media (max-width:860px){
     .bar{display:flex}
-    .gal-grid{grid-template-columns:1fr}
-    .gal-side{position:static; padding-right:var(--pad)}
-    .gal-rail{padding-left:var(--pad)}
+    .gal-inner{max-width:520px}
+    .gal-grid{grid-template-columns:1fr; gap:2rem}
     .find-grid{grid-template-columns:1fr}
     .order-panel{grid-template-columns:1fr; gap:1rem}
     .map-wrap{order:-1}
@@ -778,24 +759,28 @@
 
   /* ============ LIGHTBOX ============ */
   .lb{
-    border:0; padding:0; background:transparent; max-width:100vw; max-height:100vh;
-    width:100%; height:100%; overflow:hidden;
+    position:fixed; inset:0; margin:0; border:0; padding:0; background:transparent;
+    max-width:none; max-height:none; width:100%; height:100%; height:100dvh; overflow:hidden;
   }
+  .lb:not([open]){display:none}
+  html.lb-open{overflow:hidden}
   .lb::backdrop{background:rgba(6,5,5,.94)}
   .lb-stage{
-    width:100%; height:100%; display:flex; flex-direction:column;
-    align-items:center; justify-content:center; gap:1rem; padding:clamp(2.6rem,6vw,4rem);
+    width:100%; height:100%; display:grid; grid-template-rows:minmax(0,1fr) auto auto;
+    justify-items:center; gap:.65rem;
+    padding:4.5rem clamp(3.5rem,6vw,5rem) max(1rem,env(safe-area-inset-bottom));
   }
+  .lb-media{min-height:0; width:100%; display:grid; place-items:center}
   .lb-img{
-    max-width:100%; max-height:76vh; width:auto; height:auto;
-    display:block; object-fit:contain; border:1px solid rgba(242,236,223,.16);
+    min-height:0; max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain;
   }
+  .lb-error{margin:0; color:var(--bone); font-size:.9rem; text-align:center; overflow:auto; max-height:100%}
   .lb-cap{
     margin:0; font-family:var(--mono); font-size:11px; letter-spacing:.08em;
     color:var(--bone); text-align:center; max-width:60ch;
   }
   .lb-count{
-    font-family:var(--mono); font-size:10px; letter-spacing:.2em; color:var(--ash);
+    margin:0; font-family:var(--mono); font-size:10px; letter-spacing:.2em; color:var(--ash);
   }
   .lb-btn{
     position:absolute; background:rgba(10,9,8,.8); color:var(--gold); cursor:pointer;
@@ -807,7 +792,6 @@
   .lb-close{top:clamp(.9rem,2.5vw,1.6rem); right:clamp(.9rem,2.5vw,1.6rem)}
   .lb-prev{left:clamp(.6rem,2vw,1.6rem);  top:50%; transform:translateY(-50%)}
   .lb-next{right:clamp(.6rem,2vw,1.6rem); top:50%; transform:translateY(-50%)}
-  .shot--zoom{cursor:zoom-in}
 
   /* ============ DOCK ============ */
   .bar-status{
@@ -1201,52 +1185,36 @@
 <div class="band-under" aria-hidden="true"></div>
 
 <!-- ===================== GALLERY ===================== -->
-<section class="gal" id="gallery">
-  <div class="gal-grid">
-    <div class="gal-side">
+<!-- Grid composition inspired by PrebuiltUI; built with TALAWA's existing primitives.
+     https://21st.dev/@prebuiltui/components/image-gallery/image-grid-gallery -->
+<section class="sec gal" id="gallery" aria-labelledby="galleryTitle">
+  <div class="gal-inner">
+    <header>
       <p class="sec-num">The truck</p>
-      <h2 class="sec-h" style="font-size:clamp(1.8rem,4.6vw,3.4rem)">Come<span class="ghost">Find Us</span></h2>
-      <p>Drag sideways. The first two are yours; the rest are shots still to be taken, each
-        captioned with what it is, so this rail doubles as the photo brief.</p>
-      <a class="gal-handle" data-social="instagram" href="#gallery" data-tbc><span data-social-label>@talawa, to confirm</span></a>
-    </div>
+      <h2 class="sec-h" id="galleryTitle">Come <span class="ghost">Find Us</span></h2>
+      <div class="gal-intro">
+        <p>The truck. The food. Take a closer look.</p>
+        <a class="gal-handle" data-social="instagram" href="https://www.instagram.com/talawa_caribbean/" target="_blank" rel="noopener noreferrer"><span data-social-label>@talawa_caribbean</span></a>
+      </div>
+    </header>
 
-    <div class="gal-rail" id="rail" tabindex="0" role="region" aria-label="Photo gallery, scrollable">
-      <figure class="shot shot--wide">
-        <img class="shot-art" src="assets/truck.jpg" alt="The Talawa trailer, hatch open, Jamaican flags on the counter">
-        <span class="shot-i">01</span>
-        <figcaption class="shot-cap">The truck, front on, hatch open</figcaption>
-      </figure>
-
-      <figure class="shot">
-        <img class="shot-art" src="assets/tray.jpg" alt="A Talawa tray: rice and peas, mac and cheese, plantain, festival, slaw and jerk chicken">
-        <span class="shot-i">02</span>
-        <figcaption class="shot-cap">The tray, from directly above, daylight</figcaption>
-      </figure>
-
-      <figure class="shot"><span class="shot-empty"></span><span class="shot-i">03</span>
-        <figcaption class="shot-cap">Jerk chicken, close enough to see the char</figcaption></figure>
-
-      <figure class="shot"><span class="shot-empty"></span><span class="shot-i">04</span><span class="shot-loop">Loop</span>
-        <figcaption class="shot-cap">Chicken turning on the grill, steam coming off</figcaption></figure>
-
-      <figure class="shot"><span class="shot-empty"></span><span class="shot-i">05</span>
-        <figcaption class="shot-cap">Rice &amp; peas on its own</figcaption></figure>
-
-      <figure class="shot"><span class="shot-empty"></span><span class="shot-i">06</span><span class="shot-loop">Loop</span>
-        <figcaption class="shot-cap">Festival going into the oil</figcaption></figure>
-
-      <figure class="shot shot--wide"><span class="shot-empty"></span><span class="shot-i">07</span>
-        <figcaption class="shot-cap">The truck at dusk, lights on</figcaption></figure>
-
-      <figure class="shot"><span class="shot-empty"></span><span class="shot-i">08</span><span class="shot-loop">Loop</span>
-        <figcaption class="shot-cap">Hands passing a tray over the counter</figcaption></figure>
-
-      <figure class="shot"><span class="shot-empty"></span><span class="shot-i">09</span>
-        <figcaption class="shot-cap">Sweet plantain on its own</figcaption></figure>
-
-      <figure class="shot"><span class="shot-empty"></span><span class="shot-i">10</span>
-        <figcaption class="shot-cap">The owner at the hatch. A real face sells this better than anything</figcaption></figure>
+    <div class="gal-grid">
+      <a class="gal-photo" href="assets/truck.jpg" aria-labelledby="truckCue truckCaption">
+        <figure>
+          <span class="gal-frame">
+            <img src="assets/truck.jpg" width="820" height="1093" loading="lazy" decoding="async" alt="The Talawa trailer, hatch open, Jamaican flags on the counter">
+          </span>
+          <figcaption class="gal-cap"><span id="truckCaption" class="gal-cap-title">The Talawa truck</span><span class="gal-view" id="truckCue">View photo <span aria-hidden="true">&#8599;</span></span></figcaption>
+        </figure>
+      </a>
+      <a class="gal-photo" href="assets/tray.jpg" aria-labelledby="trayCue trayCaption">
+        <figure>
+          <span class="gal-frame gal-frame--tray">
+            <img src="assets/tray.jpg" width="900" height="1082" loading="lazy" decoding="async" alt="A Talawa tray: rice and peas, mac and cheese, plantain, festival, slaw and jerk chicken">
+          </span>
+          <figcaption class="gal-cap"><span id="trayCaption" class="gal-cap-title">A Talawa tray</span><span class="gal-view" id="trayCue">View photo <span aria-hidden="true">&#8599;</span></span></figcaption>
+        </figure>
+      </a>
     </div>
   </div>
 </section>
@@ -1581,13 +1549,16 @@
   <a class="b2" href="#find" data-tbc>Directions</a>
 </nav>
 
-<dialog class="lb" id="lightbox" aria-label="Photo viewer">
+<dialog class="lb" id="lightbox" aria-label="Photo viewer" aria-describedby="lbCap">
   <div class="lb-stage">
-    <img class="lb-img" id="lbImg" alt="">
+    <div class="lb-media">
+      <img class="lb-img" id="lbImg" alt="">
+      <p class="lb-error" id="lbError" role="status" hidden></p>
+    </div>
     <p class="lb-cap" id="lbCap"></p>
-    <p class="lb-count" id="lbCount"></p>
+    <p class="lb-count" id="lbCount" aria-live="polite" aria-atomic="true"></p>
   </div>
-  <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Close">&#10005;</button>
+  <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Close photo viewer" autofocus>&#10005;</button>
   <button class="lb-btn lb-prev"  id="lbPrev"  type="button" aria-label="Previous photo">&#10094;</button>
   <button class="lb-btn lb-next"  id="lbNext"  type="button" aria-label="Next photo">&#10095;</button>
 </dialog>
@@ -1767,35 +1738,6 @@
     a.addEventListener('click', function (e) { e.preventDefault(); });
   });
 
-  /* ---------- gallery: click and drag to scroll ---------- */
-  var rail = document.getElementById('rail');
-  var railDragged = false;
-  if (rail) {
-    var down = false, startX = 0, startLeft = 0;
-    rail.addEventListener('pointerdown', function (e) {
-      if (e.pointerType === 'touch') return;          /* touch already scrolls */
-      down = true; startX = e.clientX; startLeft = rail.scrollLeft;
-    });
-    rail.addEventListener('pointermove', function (e) {
-      if (!down) return;
-      var dx = e.clientX - startX;
-      if (Math.abs(dx) > 6 && !railDragged) {
-        /* only now: `.is-drag` kills pointer-events on the cards, which would
-           otherwise retarget an ordinary click away from the photo */
-        railDragged = true;
-        rail.classList.add('is-drag');
-        rail.setPointerCapture(e.pointerId);
-      }
-      rail.scrollLeft = startLeft - dx;
-    });
-    ['pointerup', 'pointercancel'].forEach(function (ev) {
-      rail.addEventListener(ev, function () {
-        down = false; rail.classList.remove('is-drag');
-        setTimeout(function () { railDragged = false; }, 0);
-      });
-    });
-  }
-
   /* ---------- open / closed, worked out in UK time ---------- */
   function talawaStatus() {
     var p = {};
@@ -1819,62 +1761,68 @@
   paintStatus();
   setInterval(paintStatus, 60000);
 
-  /* ---------- lightbox on the real photographs ---------- */
+  /* ---------- progressively enhance the real photo links ---------- */
   var lb = document.getElementById('lightbox');
-  if (lb) {
+  if (lb && typeof lb.showModal === 'function' && typeof lb.close === 'function') {
     var lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap'),
         lbCount = document.getElementById('lbCount'), lbPrev = document.getElementById('lbPrev'),
-        lbNext = document.getElementById('lbNext'), items = [], cur = 0;
+        lbNext = document.getElementById('lbNext'), lbClose = document.getElementById('lbClose'),
+        lbError = document.getElementById('lbError'), items = [], cur = 0, opener = null;
 
-    document.querySelectorAll('.shot').forEach(function (fig) {
-      var img = fig.querySelector('img.shot-art');
-      if (!img) return;                          /* placeholder panels hold no photo */
-      var capEl = fig.querySelector('.shot-cap');
-      var cap = capEl ? capEl.textContent.trim() : '';
-      var i = items.push({ el: img, alt: img.alt, cap: cap }) - 1;
-
-      fig.classList.add('shot--zoom');
-      fig.tabIndex = 0;
-      fig.setAttribute('role', 'button');
-      fig.setAttribute('aria-label', 'View photo: ' + (cap || img.alt));
-      fig.addEventListener('click', function () { if (!railDragged) open(i); });
-      fig.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
+    document.querySelectorAll('.gal-photo').forEach(function (link) {
+      var img = link.querySelector('img');
+      var cap = link.querySelector('.gal-cap-title').textContent.trim();
+      var i = items.push({ src: link.href, alt: img.alt, cap: cap }) - 1;
+      link.setAttribute('aria-haspopup', 'dialog');
+      link.setAttribute('aria-controls', 'lightbox');
+      link.addEventListener('click', function (e) {
+        if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+        cur = i; opener = link; render();
+        lb.showModal();
+        document.documentElement.classList.add('lb-open');
+        lbClose.focus();
+        e.preventDefault();
       });
     });
 
     var render = function () {
       var it = items[cur];
-      lbImg.src = it.el.currentSrc || it.el.src;
+      lbError.hidden = true;
+      lbError.textContent = '';
+      lbImg.hidden = false;
       lbImg.alt = it.alt;
+      lbImg.src = it.src;
       lbCap.textContent = it.cap;
       lbCount.textContent = (cur + 1) + ' / ' + items.length;
       lbPrev.hidden = lbNext.hidden = items.length < 2;
     };
-    var open = function (i) {
-      cur = i; render();
-      if (lb.showModal) lb.showModal(); else lb.setAttribute('open', '');
-    };
     var step = function (d) { cur = (cur + d + items.length) % items.length; render(); };
 
-    document.getElementById('lbClose').addEventListener('click', function () { lb.close(); });
+    lbImg.addEventListener('error', function () {
+      lbImg.hidden = true;
+      lbError.textContent = items[cur].alt + '. This photo could not load.';
+      lbError.hidden = false;
+    });
+    lbClose.addEventListener('click', function () { lb.close(); });
     lbPrev.addEventListener('click', function () { step(-1); });
     lbNext.addEventListener('click', function () { step(1); });
-    lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
+    lb.addEventListener('click', function (e) {
+      if (e.target === lb || e.target.classList.contains('lb-stage') ||
+          e.target.classList.contains('lb-media')) lb.close();
+    });
+    lb.addEventListener('close', function () {
+      document.documentElement.classList.remove('lb-open');
+      if (opener) opener.focus({ preventScroll: true });
+    });
     lb.addEventListener('keydown', function (e) {
+      if (!lb.open) return;
       if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
       if (e.key === 'ArrowLeft')  { e.preventDefault(); step(-1); }
-    });
-  }
-
-  /* ---------- arrow keys move the gallery a card at a time ---------- */
-  if (rail) {
-    rail.addEventListener('keydown', function (e) {
-      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
-      e.preventDefault();
-      var card = rail.querySelector('.shot');
-      var w = card ? card.getBoundingClientRect().width + 12 : 300;
-      rail.scrollLeft += (e.key === 'ArrowRight' ? w : -w);
+      if (e.key === 'Tab') {
+        var last = lbNext.hidden ? lbClose : lbNext;
+        if (e.shiftKey && document.activeElement === lbClose) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); lbClose.focus(); }
+      }
     });
   }
 
@@ -1987,28 +1935,6 @@
       scrollTrigger: { trigger: h, start: 'top 86%' }
     });
   });
-
-  /* gallery panels lean into the drag */
-  if (rail) {
-    gsap.from('.shot', {
-      opacity: 0, y: 34, duration: .8, stagger: .07, ease: 'power3.out',
-      scrollTrigger: { trigger: '.gal-rail', start: 'top 88%' }
-    });
-
-    var shots = gsap.utils.toArray('.shot');
-    var last = rail.scrollLeft, raf = null;
-    rail.addEventListener('scroll', function () {
-      if (raf) return;
-      raf = requestAnimationFrame(function () {
-        var v = rail.scrollLeft - last;
-        last = rail.scrollLeft; raf = null;
-        gsap.to(shots, {
-          skewX: gsap.utils.clamp(-6, 6, -v * 0.28),
-          duration: .5, ease: 'power2.out', overwrite: 'auto'
-        });
-      });
-    }, { passive: true });
-  }
 
   /* reviews wall: duplicate the row, then loop it. Without JS or under
      reduced motion the wall stays an ordinary horizontal scroller. */

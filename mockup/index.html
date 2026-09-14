@@ -410,12 +410,13 @@
     padding:.3rem 0; border-bottom:1px solid transparent;
   }
   .nav-links a:hover{border-bottom-color:var(--gold); color:var(--gold)}
-  .nav-call{
+  .nav-links a.nav-call{
     font-family:var(--mono); font-size:11px; letter-spacing:.18em;
     text-transform:uppercase; background:var(--gold); color:var(--ink);
     text-decoration:none; padding:.55rem .95rem; border-radius:2px; font-weight:500;
+    min-height:44px; display:inline-flex; align-items:center;
   }
-  .nav-call:hover{background:var(--bone); border-bottom-color:transparent}
+  .nav-links a.nav-call:hover{background:var(--bone); border-bottom-color:transparent; color:var(--ink)}
   @media (max-width:640px){ .nav-links a[data-opt]{display:none} }
 
   /* ============ SHARED SECTION FURNITURE ============ */
@@ -526,20 +527,29 @@
   }
 
   /* ============ FIND US ============ */
-  .find-grid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(1.6rem,4vw,3.4rem); align-items:start}
-  .addr{list-style:none; margin:0 0 2rem; padding:0}
-  .addr li{
-    display:grid; grid-template-columns:8.5rem 1fr; gap:1rem;
-    padding:.85rem 0; border-top:1px solid rgb(var(--line-rgb) / .2); align-items:baseline;
+  /* Open contact columns inspired by Efferd's Contact Page:
+     https://21st.dev/@efferd/components/contact-page
+     Original static HTML/CSS adaptation; no reference source copied. */
+  .find-grid{
+    display:grid; grid-template-columns:minmax(0,45fr) minmax(0,30fr) minmax(0,25fr);
+    border-block:1px solid rgb(var(--line-rgb) / .3); margin-bottom:2rem;
   }
-  .addr li:last-child{border-bottom:1px solid rgb(var(--line-rgb) / .2)}
-  .addr b{
-    font-family:var(--mono); font-size:10px; letter-spacing:.22em;
-    text-transform:uppercase; color:var(--ash); font-weight:400;
+  .find-detail{min-width:0; display:flex; flex-direction:column; padding:2rem clamp(1.5rem,2.2vw,2rem)}
+  .find-detail:first-child{padding-left:0}
+  .find-detail:last-child{padding-right:0}
+  .find-detail + .find-detail{border-left:1px solid rgb(var(--line-rgb) / .3)}
+  .find-detail h3{
+    margin:0 0 1.25rem; font-family:var(--mono); font-size:11px; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--green); font-weight:500;
   }
-  .addr span{color:var(--bone)}
+  .find-detail address{font-style:normal}
+  .find-detail p{margin:0 0 .7rem}
+  .find-lead{display:block; font-size:1.2rem; font-weight:500; line-height:1.45; margin-bottom:.7rem}
+  .find-phone{font-family:var(--mono); font-size:clamp(1rem,1.7vw,1.2rem)}
+  .find-detail .find-support{color:var(--ash); font-size:15px; margin-top:.9rem}
+  .find-detail .btn-row{margin-top:auto; padding-top:1.25rem}
+  #find a, .map-frame{scroll-margin-block:6rem 8rem}
   .tbc{color:var(--scotch); font-family:var(--mono); font-size:.86em}
-  .addr span.tbc{color:var(--scotch)}
   .btn-row{display:flex; flex-wrap:wrap; gap:.7rem}
   .btn{
     font-family:var(--mono); font-size:12px; letter-spacing:.16em;
@@ -549,14 +559,12 @@
   }
   .btn--ghost{background:transparent; color:var(--gold)}
   .btn:hover{background:var(--bone); border-color:var(--bone); color:var(--ink)}
-  .map-wrap{position:relative}
-  .map{width:100%; height:auto; display:block; border:1px solid rgb(var(--line-rgb) / .3)}
-  .stamp{position:absolute; right:-14px; bottom:-26px; width:clamp(96px,13vw,150px); height:auto; z-index:3}
-  .stamp text{font-family:var(--mono); font-size:15.5px; letter-spacing:.16em; fill:var(--gold); text-transform:uppercase}
+  #find .btn{display:inline-flex; align-items:center; justify-content:center; min-height:44px; max-width:100%; text-align:center; overflow-wrap:anywhere}
+  .map-frame{width:100%; height:400px; display:block; border:1px solid rgb(var(--line-rgb) / .3); border-radius:2px; background:var(--ink-2)}
 
   /* This is the single most important instruction on the site — there is no
      ordering system, you just show up — so it opens Find Us rather than
-     trailing it, and it is sized to be read before the address list. The
+     trailing it, and it is sized to be read before the visit details. The
      leaf-green top edge is the same band device used between sections. */
   .order{
     margin:0 0 clamp(2.4rem,6vw,3.6rem);
@@ -572,9 +580,7 @@
     margin:0 auto 0 0; font-family:var(--mono); font-size:10px;
     letter-spacing:.3em; text-transform:uppercase; color:var(--green);
   }
-  /* Headline left, explanation right — same two-column rhythm as the address
-     and map grid below it, so the panel fills its width instead of leaving
-     half of it empty. Collapses with every other grid at 860px. */
+  /* Headline left, explanation right. Collapses with the visit details at 860px. */
   .order-panel{
     padding:clamp(1.6rem,4vw,2.6rem) clamp(1.1rem,3vw,2.2rem);
     display:grid; grid-template-columns:1fr 1fr;
@@ -637,10 +643,10 @@
     .gal-inner{max-width:520px}
     .gal-grid{grid-template-columns:1fr; gap:2rem}
     .find-grid{grid-template-columns:1fr}
+    .find-detail, .find-detail:first-child, .find-detail:last-child{padding:1.75rem 0}
+    .find-detail + .find-detail{border-left:0; border-top:1px solid rgb(var(--line-rgb) / .3)}
+    .map-frame{height:300px}
     .order-panel{grid-template-columns:1fr; gap:1rem}
-    .map-wrap{order:-1}
-    .stamp{right:8px; bottom:-22px}
-    .addr li{grid-template-columns:1fr; gap:.2rem}
   }
 
   /* ============ REVIEWS ============
@@ -720,7 +726,7 @@
 
   /* ============ OPEN / CLOSED STATUS ============ */
   /* Plain text, not a badge. The lettering matches .sec-num, .eyebrow and
-     .addr b everywhere else on the site; it was the box and the pulsing dot
+     the small mono labels elsewhere on the site; it was the box and the pulsing dot
      that read as a landing-page widget. The live behaviour is untouched —
      the script writes to .js-status and .status-txt, nothing else. */
   .status{
@@ -817,11 +823,9 @@
 
   /* ============ MAP / VENUE ============ */
   .map-note{
-    margin:.9rem 0 0; font-family:var(--mono); font-size:10px;
+    margin:.9rem 0 0; font-family:var(--mono); font-size:12px;
     letter-spacing:.05em; line-height:1.7; color:var(--ash);
-    padding-right:clamp(6.5rem,15vw,11rem);
   }
-  .venue-pending{color:var(--scotch)}
   .btn[aria-disabled="true"]{opacity:.45; cursor:not-allowed}
 
   /* ============ MAILING LIST ============ */
@@ -905,7 +909,7 @@
     <a href="#menu">Menu</a>
     <a href="#gallery" data-opt>The truck</a>
     <a href="#find">Find us</a>
-    <a class="nav-call" href="#find" data-tbc>Call</a>
+    <a class="nav-call js-call" href="tel:07841625488">Call</a>
   </div>
 </nav>
 
@@ -1186,9 +1190,9 @@
 <div class="band-under" aria-hidden="true"></div>
 
 <!-- ===================== FIND US ===================== -->
-<section class="sec" id="find">
+<section class="sec" id="find" aria-labelledby="findTitle">
   <p class="sec-num">Saturdays</p>
-  <h2 class="sec-h">Find<span class="ghost">The Truck</span></h2>
+  <h2 class="sec-h" id="findTitle">Find<span class="ghost">The Truck</span></h2>
 
   <div class="order">
     <div class="order-head">
@@ -1209,63 +1213,36 @@
   </div>
 
   <div class="find-grid">
-    <div>
-      <ul class="addr">
-        <li><b>Where</b><span>Man in the Moon, pub car park</span></li>
-        <li><b>Address</b><span class="tbc" data-venue="street">[ street address to confirm ]</span></li>
-        <li><b>Postcode</b><span class="tbc" data-venue="postcode">[ postcode to confirm ]</span></li>
-        <li><b>When</b><span>Every Saturday, 4&ndash;8pm, or until it&rsquo;s gone</span></li>
-        <li><b>Parking</b><span>Free in the pub car park</span></li>
-        <li><b>Payment</b><span>Card and cash</span></li>
-        <li><b>Phone</b><span data-venue="phone">07841 625488</span></li>
-      </ul>
+    <div class="find-detail">
+      <h3>Where</h3>
+      <address>
+        <strong class="find-lead"><span data-venue="name">Man in the Moon</span>, pub car park</strong>
+        <span data-venue="street">Broadwater Cres, Broadwater, Stevenage</span><br>
+        <span data-venue="postcode">SG2 8ET</span>
+      </address>
+      <p class="find-support">Free parking in the pub car park</p>
       <div class="btn-row">
-        <a class="btn js-directions" href="#find" data-tbc>Get directions</a>
-        <a class="btn btn--ghost js-call" href="#find" data-tbc>Call the truck</a>
+        <a class="btn js-directions" href="https://www.google.com/maps/dir/?api=1&amp;destination=Man%20in%20the%20Moon%2C%20Broadwater%20Cres%2C%20Broadwater%2C%20Stevenage%2C%20SG2%208ET" target="_blank" rel="noopener">Get directions</a>
       </div>
     </div>
-
-    <div class="map-wrap">
-      <svg class="map" viewBox="0 0 640 440" role="img" aria-label="Stylised map showing the truck at the Man in the Moon pub car park.">
-        <rect width="640" height="440" fill="#12110F"/>
-        <rect x="60" y="40" width="150" height="110" fill="#16240A"/>
-        <rect x="430" y="250" width="160" height="130" fill="#16240A"/>
-        <g fill="#191713">
-          <rect x="250" y="60" width="120" height="90"/>
-          <rect x="430" y="70" width="140" height="70"/>
-          <rect x="70" y="250" width="130" height="90"/>
-        </g>
-        <g stroke="#2E2B25" stroke-width="26" fill="none" stroke-linecap="square">
-          <path d="M0 200 H640"/><path d="M390 0 V440"/>
-        </g>
-        <g stroke="#3C382F" stroke-width="10" fill="none">
-          <path d="M0 360 H640"/><path d="M170 0 V440"/>
-        </g>
-        <path d="M390 200 L300 236" stroke="#FDCB04" stroke-width="2" stroke-dasharray="7 7" fill="none" opacity=".6"/>
-        <circle cx="300" cy="236" r="34" fill="rgba(255,201,28,.14)"/>
-        <path d="M300 208 c-12 0 -21 9.5 -21 21 c0 15 21 33 21 33 s21 -18 21 -33 c0 -11.5 -9 -21 -21 -21 z" fill="#FDCB04"/>
-        <circle cx="300" cy="229" r="7.5" fill="#0A0908"/>
-        <text x="300" y="288" text-anchor="middle" font-family="DM Mono, monospace" font-size="15" letter-spacing="2.4" fill="#F2ECDF">MAN IN THE MOON</text>
-        <text x="300" y="308" text-anchor="middle" font-family="DM Mono, monospace" font-size="11" letter-spacing="1.8" fill="#918A7B">BROADWATER CRES &#183; SG2 8ET</text>
-        <text x="300" y="328" text-anchor="middle" font-family="DM Mono, monospace" font-size="11.5" letter-spacing="2" fill="#918A7B">SATURDAYS 4&#8211;8PM</text>
-        <g stroke="#918A7B" stroke-width="1.6" fill="none">
-          <path d="M40 408 H100"/><path d="M40 403 V413"/><path d="M100 403 V413"/>
-        </g>
-        <text x="70" y="398" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" letter-spacing="1.6" fill="#918A7B">100m</text>
-        <text x="600" y="60" text-anchor="middle" font-family="DM Mono, monospace" font-size="15" fill="#918A7B">N</text>
-        <path d="M600 68 L594 84 L600 79 L606 84 Z" fill="#918A7B"/>
-      </svg>
-      <p class="map-note" id="mapNote"></p>
-
-      <svg class="stamp" viewBox="0 0 200 200" aria-hidden="true">
-        <defs><path id="stampPath" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0" fill="none"/></defs>
-        <circle cx="100" cy="100" r="92" fill="#0A0908" stroke="#FDCB04" stroke-width="2"/>
-        <circle cx="100" cy="100" r="60" fill="none" stroke="#FDCB04" stroke-width="1" opacity=".45"/>
-        <text><textPath href="#stampPath" startOffset="0">Fresh &#183; Vibrant &#183; Authentic &#183; Freshly Homemade &#183;&#160;</textPath></text>
-        <text x="100" y="94" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="900" font-size="34" fill="#F2ECDF">5</text>
-        <text x="100" y="118" text-anchor="middle" font-family="DM Mono, monospace" font-size="10.5" letter-spacing="1.6" fill="#918A7B">HYGIENE</text>
-      </svg>
+    <div class="find-detail">
+      <h3>When</h3>
+      <p><strong class="find-lead">Every Saturday</strong>4&ndash;8pm, or until it&rsquo;s gone</p>
+      <p class="find-support">Walk up and join the queue</p>
     </div>
+    <div class="find-detail">
+      <h3>Call</h3>
+      <address><strong class="find-lead find-phone" data-venue="phone">07841 625488</strong></address>
+      <p>Card and cash</p>
+      <div class="btn-row">
+        <a class="btn btn--ghost js-call" href="tel:07841625488">Call the truck</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-wrap">
+    <iframe class="map-frame" title="Man in the Moon, Stevenage &mdash; location map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2462.8750296029875!2d-0.1779502!3d51.88149369999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48762f862b0c1285%3A0x171a34e2892b628f!2sMan%20In%20the%20Moon%20Stevenage%20(previously%20Willows)!5e0!3m2!1sen!2suk!4v1789416316585!5m2!1sen!2suk" width="1200" height="400" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <p class="map-note">Find us in the pub car park. Use Get directions to plan your route.</p>
   </div>
 </section>
 
@@ -1431,8 +1408,8 @@
   <p class="bar-status js-status" data-open="false">
     <span class="status-txt">Saturdays 4&ndash;8pm</span>
   </p>
-  <a class="b1" href="#find" data-tbc>Call</a>
-  <a class="b2" href="#find" data-tbc>Directions</a>
+  <a class="b1 js-call" href="tel:07841625488">Call</a>
+  <a class="b2 js-directions" href="https://www.google.com/maps/dir/?api=1&amp;destination=Man%20in%20the%20Moon%2C%20Broadwater%20Cres%2C%20Broadwater%2C%20Stevenage%2C%20SG2%208ET" target="_blank" rel="noopener">Directions</a>
 </nav>
 
 <dialog class="lb" id="lightbox" aria-label="Photo viewer" aria-describedby="lbCap">
@@ -1498,9 +1475,11 @@
     wide.addEventListener('change', fitTray);
   }
 
-  /* ---------- venue: the one place the address lives ----------
-     Fill these four in and the directions link, the call button, the address
-     list and the map caption all wire themselves up. Nothing else to change. */
+  /* ---------- venue enhancement ----------
+     Keep these values aligned with static visit details/actions, FAQ and JSON-LD.
+     The iframe URL is from Google Maps Share > Embed a map for this venue;
+     verified 14 September 2026. Evidence: output/playwright/find-map-verification.md.
+     A venue change also needs a newly verified embed in the static HTML. */
   var VENUE = {
     name:     'Man in the Moon',
     street:   'Broadwater Cres',
@@ -1524,6 +1503,7 @@
         el.textContent = val; el.classList.remove('tbc');
       });
     };
+    setVenue('name', VENUE.name);
     setVenue('street', VENUE.street + (VENUE.town ? ', ' + VENUE.town : ''));
     setVenue('postcode', VENUE.postcode);
   }
@@ -1538,17 +1518,9 @@
   }
   document.querySelectorAll('.js-directions, .js-call').forEach(function (a) {
     var live = a.classList.contains('js-call') ? phoneReady : venueReady;
-    if (!live) a.setAttribute('aria-disabled', 'true');
+    if (live) a.removeAttribute('aria-disabled');
+    else a.setAttribute('aria-disabled', 'true');
   });
-
-  var mapNote = document.getElementById('mapNote');
-  if (mapNote) {
-    mapNote.innerHTML = venueReady
-      ? 'Tap for directions. Opens in Maps.'
-      : '<span class="venue-pending">Postcode needed.</span> A live, tappable map belongs here. '
-      + 'This preview cannot load one, because the page&rsquo;s security settings block '
-      + 'outside map tiles. The real site will. The drawing is standing in.';
-  }
 
   /* ---------- Saturday mailing list ----------
      Paste the form URL from whichever email service you use (MailerLite,
@@ -1827,11 +1799,6 @@
     scrollTrigger: { trigger: '.faq-list', start: 'top 85%' }
   });
 
-  gsap.to('.stamp', {
-    rotate: 128, ease: 'none',
-    scrollTrigger: { trigger: '.find-grid', start: 'top bottom', end: 'bottom top', scrub: 1 }
-  });
-
   gsap.utils.toArray('.stat-n').forEach(function (el) {
     var to = parseInt(el.getAttribute('data-count'), 10);
     ScrollTrigger.create({
@@ -1844,11 +1811,6 @@
         });
       }
     });
-  });
-
-  gsap.from('.addr li', {
-    opacity: 0, x: -16, duration: .6, stagger: .07, ease: 'power2.out',
-    scrollTrigger: { trigger: '.addr', start: 'top 86%' }
   });
 
   /* nav drops in once the hero is behind you.

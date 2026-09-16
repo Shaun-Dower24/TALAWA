@@ -271,58 +271,6 @@
     font-weight:400; line-height:1.5;
   }
 
-  /* ============ TRAY ============ */
-  .tray-section{position:relative}
-  .tray-stage{
-    min-height:100svh; display:flex; flex-direction:column;
-    align-items:center; justify-content:center;
-    padding:clamp(3.5rem,8vh,5rem) var(--pad); position:relative;
-  }
-  .tray-head{
-    font-family:var(--mono); font-size:10px; letter-spacing:.3em;
-    text-transform:uppercase; color:var(--ash);
-    margin:0 0 clamp(1rem,3vh,2rem); text-align:center;
-  }
-  .tray-art{
-    width:min(100%,1180px,calc(72svh * 1.585)); height:auto; display:block;
-    flex-shrink:0;
-  }
-  .tray-art .lbl-group{opacity:1}
-  .lbl-slab{fill:var(--gold)}
-  .lbl-txt{
-    font-family:var(--mono); font-size:21px; font-weight:500;
-    letter-spacing:.08em; fill:var(--ink);
-  }
-  .lead-halo{fill:none; stroke:#0A0908; stroke-width:6.5; stroke-linecap:round; opacity:.8}
-  .lead{fill:none; stroke:var(--gold); stroke-width:2.4; stroke-linecap:round}
-  .lead-dot{fill:var(--gold); stroke:#0A0908; stroke-width:2.5}
-
-  .tray-final{
-    position:static; z-index:5;
-    margin:clamp(1.4rem,4vh,2.6rem) auto 0;
-    width:min(90vw,900px); max-width:100%; text-align:center;
-    font-family:var(--display); font-weight:900;
-    font-size:clamp(1.8rem,6.2vw,5.2rem); line-height:.94;
-    letter-spacing:-.02em; color:var(--bone);
-    text-wrap:balance; pointer-events:none;
-  }
-  .tray-final b{color:var(--gold); font-weight:900}
-  .tray-line{display:block}
-  .tray-static-photo{display:none}
-
-  .tray-stage.js-pin{
-    height:100svh; min-height:0; padding-block:88px 28px;
-  }
-  .js-pin .tray-art{
-    width:min(100%,1180px,calc((100svh - 160px) * 1.585));
-  }
-  .js-pin .tray-final{
-    position:absolute; left:50%; top:50%;
-    transform:translate(-50%,-50%); margin:0;
-  }
-
-  .legend{display:none}
-
   a{color:var(--gold)}
   :focus-visible{outline:2px solid var(--gold); outline-offset:3px}
 
@@ -350,19 +298,6 @@
     .fact dd{font-size:clamp(1.8rem,5vw,2.8rem)}
     .fact--where{grid-column:1 / -1; border-bottom:0}
     .frond--br{display:none}
-    .tray-art .lbl-group,.tray-art .lead,.tray-art .lead-dot{display:none}
-    .tray-art{width:min(100%,520px,calc(70svh * .837))}
-    .tray-stage{min-height:auto}
-    .tray-final{position:static; transform:none; width:auto; margin-top:2rem}
-    .legend{
-      display:grid; grid-template-columns:repeat(2,1fr);
-      gap:.5rem; width:100%; max-width:520px; margin-top:1.6rem;
-    }
-    .legend span{
-      font-family:var(--mono); font-size:11px; letter-spacing:.06em;
-      text-transform:uppercase; color:var(--ink); background:var(--gold);
-      padding:.5rem .6rem;
-    }
   }
 
   @media (max-width:379px){
@@ -643,96 +578,6 @@
   <div class="fact fact--where"><dt>Where</dt><dd><span class="fact-location">Man in the Moon</span><a class="fact-link" href="find-us/">See location&nbsp;<span aria-hidden="true">&#8599;</span></a></dd></div>
 </dl>
 
-<!-- ===================== TRAY ===================== -->
-<section class="tray-section">
-  <div class="tray-stage">
-    <p class="tray-head">The tray</p>
-
-    <noscript>
-      <style>
-        .tray-stage > noscript{display:contents}
-        @media (max-width:860px){
-          .tray-art{display:none}
-          .tray-static-photo{
-            display:block; width:min(100%,520px,calc(70svh * .837));
-            aspect-ratio:600 / 722; object-fit:cover; border-radius:10px;
-          }
-        }
-      </style>
-      <img class="tray-static-photo" src="assets/tray.jpg" alt="A Talawa tray: rice and peas, mac and cheese, sauce, sweet plantain, festival, slaw and jerk chicken.">
-    </noscript>
-
-    <svg class="tray-art" id="trayArt" viewBox="0 0 1300 820" role="img" aria-label="A Talawa tray: rice and peas, mac and cheese, sauce, sweet plantain, festival, slaw and jerk chicken, each labelled.">
-      <defs>
-        <clipPath id="photoClip"><rect x="350" y="30" width="600" height="722" rx="10"/></clipPath>
-        <radialGradient id="vig" cx="50%" cy="50%" r="74%">
-          <stop offset="0"   stop-color="#0A0908" stop-opacity="0"/>
-          <stop offset=".60" stop-color="#0A0908" stop-opacity="0"/>
-          <stop offset="1"   stop-color="#0A0908" stop-opacity=".6"/>
-        </radialGradient>
-      </defs>
-
-      <g id="plate">
-        <image href="assets/tray.jpg" x="350" y="30" width="600" height="722"
-               preserveAspectRatio="xMidYMid slice" clip-path="url(#photoClip)"/>
-        <rect x="350" y="30" width="600" height="722" rx="10" fill="url(#vig)"/>
-        <rect x="350" y="30" width="600" height="722" rx="10" fill="none" stroke="#F2ECDF" stroke-opacity=".16"/>
-      </g>
-
-      <g class="lbl-group">
-        <path class="lead-halo" d="M 310 171 Q 430 158 574 170" pathLength="1"/>
-        <path class="lead"      d="M 310 171 Q 430 158 574 170" pathLength="1"/>
-        <circle class="lead-dot" cx="574" cy="170" r="6"/>
-        <rect class="lbl-slab" x="121" y="150" width="189" height="42" rx="2"/>
-        <text class="lbl-txt" x="137" y="178">RICE &amp; PEAS</text>
-      </g>
-      <g class="lbl-group">
-        <path class="lead-halo" d="M 990 222 Q 930 214 866 222" pathLength="1"/>
-        <path class="lead"      d="M 990 222 Q 930 214 866 222" pathLength="1"/>
-        <circle class="lead-dot" cx="866" cy="222" r="6"/>
-        <rect class="lbl-slab" x="990" y="201" width="203" height="42" rx="2"/>
-        <text class="lbl-txt" x="1006" y="229">MAC &amp; CHEESE</text>
-      </g>
-      <g class="lbl-group">
-        <path class="lead-halo" d="M 310 342 Q 410 330 534 342" pathLength="1"/>
-        <path class="lead"      d="M 310 342 Q 410 330 534 342" pathLength="1"/>
-        <circle class="lead-dot" cx="534" cy="342" r="6"/>
-        <rect class="lbl-slab" x="78" y="321" width="232" height="42" rx="2"/>
-        <text class="lbl-txt" x="94" y="349">SWEET PLANTAIN</text>
-      </g>
-      <g class="lbl-group">
-        <path class="lead-halo" d="M 990 412 Q 880 402 764 412" pathLength="1"/>
-        <path class="lead"      d="M 990 412 Q 880 402 764 412" pathLength="1"/>
-        <circle class="lead-dot" cx="764" cy="412" r="6"/>
-        <rect class="lbl-slab" x="990" y="391" width="146" height="42" rx="2"/>
-        <text class="lbl-txt" x="1006" y="419">FESTIVAL</text>
-      </g>
-      <g class="lbl-group">
-        <path class="lead-halo" d="M 310 538 Q 362 528 434 538" pathLength="1"/>
-        <path class="lead"      d="M 310 538 Q 362 528 434 538" pathLength="1"/>
-        <circle class="lead-dot" cx="434" cy="538" r="6"/>
-        <rect class="lbl-slab" x="221" y="517" width="89" height="42" rx="2"/>
-        <text class="lbl-txt" x="237" y="545">SLAW</text>
-      </g>
-      <g class="lbl-group">
-        <path class="lead-halo" d="M 990 578 Q 840 600 670 578" pathLength="1"/>
-        <path class="lead"      d="M 990 578 Q 840 600 670 578" pathLength="1"/>
-        <circle class="lead-dot" cx="670" cy="578" r="6"/>
-        <rect class="lbl-slab" x="990" y="557" width="203" height="42" rx="2"/>
-        <text class="lbl-txt" x="1006" y="585">JERK CHICKEN</text>
-      </g>
-    </svg>
-
-    <div class="legend" aria-hidden="true">
-      <span>Rice &amp; Peas</span><span>Mac &amp; Cheese</span>
-      <span>Sweet Plantain</span><span>Festival</span>
-      <span>Slaw</span><span>Jerk Chicken</span>
-    </div>
-
-    <p class="tray-final"><span class="tray-line">One tray.</span> <b class="tray-line">No corners cut.</b></p>
-  </div>
-</section>
-
 <!-- ===================== STATS ===================== -->
 <section class="sec stats" id="stats" aria-labelledby="stats-heading">
   <p class="sec-num">By the numbers</p>
@@ -869,17 +714,6 @@
     svg.appendChild(g);
   });
 
-  /* ---------- phones drop the labels, so crop the viewBox to the tray ---------- */
-  var trayArt = document.getElementById('trayArt');
-  if (trayArt) {
-    var wide = window.matchMedia('(min-width: 861px)');
-    var fitTray = function () {
-      trayArt.setAttribute('viewBox', wide.matches ? '0 0 1300 820' : '336 16 628 750');
-    };
-    fitTray();
-    wide.addEventListener('change', fitTray);
-  }
-
   /* ---------- call and directions links ----------
      Keep these values aligned with the Find Us page and JSON-LD. */
   var VENUE = {
@@ -968,54 +802,6 @@
 
   if (!window.gsap || !window.ScrollTrigger) return;
 
-  /* ---------- tray: Unlumen image settle + ibelick line entrance ----------
-     See TRAY-REVEAL-PLAN.md for the 21st references and timing checklist.
-     Create the pin before ambient triggers, and give it refresh priority for
-     later phone-to-desktop changes. matchMedia reverts GSAP styles and spacers. */
-  var traySection = document.querySelector('.tray-section');
-  var trayStage = traySection.querySelector('.tray-stage');
-  var trayMedia = gsap.matchMedia();
-  try {
-    gsap.registerPlugin(ScrollTrigger);
-    trayMedia.add('(min-width: 861px) and (min-height: 700px) and (prefers-reduced-motion: no-preference)', function () {
-      trayStage.classList.add('js-pin');
-      var labels = gsap.utils.toArray('.lbl-group');
-      gsap.set('#plate', { transformOrigin: '50% 50%' });
-      gsap.set('.lead, .lead-halo', { strokeDasharray: 1, strokeDashoffset: 1 });
-      gsap.set('.lead-dot', { scale: 0, transformOrigin: '50% 50%' });
-      gsap.set('.lbl-slab, .lbl-txt', { opacity: 0, y: 8 });
-      gsap.set('.tray-line', { opacity: 0, y: 18 });
-
-      var tray = gsap.timeline({
-        scrollTrigger: {
-          id: 'tray-reveal', trigger: trayStage, start: 'top top',
-          end: function () { return '+=' + Math.round(gsap.utils.clamp(640, 1000, window.innerHeight * .95)); },
-          pin: true, scrub: .3, invalidateOnRefresh: true, refreshPriority: 1
-        }
-      });
-      tray.fromTo('#plate', { scale: 1.06 }, { scale: 1, duration: .2, ease: 'power2.out' }, 0);
-
-      labels.forEach(function (g, i) {
-        var at = .22 + i * .035;
-        tray.to(g.querySelectorAll('.lead, .lead-halo'), { strokeDashoffset: 0, duration: .075, ease: 'power2.inOut' }, at)
-            .to(g.querySelector('.lead-dot'), { scale: 1, duration: .04, ease: 'power2.out' }, at + .05)
-            .to(g.querySelectorAll('.lbl-slab, .lbl-txt'), { opacity: 1, y: 0, duration: .065, ease: 'power2.out' }, at + .025);
-      });
-
-      /* Hold the complete annotation, then let the two lines land in order. */
-      tray.to('.lbl-group', { opacity: 0, duration: .08 }, .68)
-          .to('#plate', { opacity: .17, duration: .1 }, .7)
-          .to('.tray-line', { opacity: 1, y: 0, duration: .1, stagger: .055, ease: 'power3.out' }, .78)
-          .to({}, { duration: .065 });
-
-      return function () { trayStage.classList.remove('js-pin'); };
-    }, traySection);
-  } catch (err) {
-    trayMedia.revert();
-    trayStage.classList.remove('js-pin');
-    if (window.console && console.warn) console.warn('Talawa: tray animation disabled —', err);
-  }
-
   if (reduced) return;
 
   /* Everything past this point is decoration. It is guarded because these paths
@@ -1038,7 +824,7 @@
     .from('.hero-sub', { opacity: 0, y: 26, duration: .9 }, .85)
     .from('.aside', { opacity: 0, y: 16, rotate: -8, duration: .8 }, 1.15);
 
-  /* ---------- 3. everything below is ambient, created AFTER the pin ---------- */
+  /* ---------- ambient animations ---------- */
 
   gsap.to('.hero-glow', {
     yPercent: 16, ease: 'none',

@@ -202,24 +202,11 @@
     display:flex; flex-wrap:wrap; align-items:flex-end;
     justify-content:space-between; gap:1.6rem;
   }
-  .strap{
-    font-family:var(--mono); font-size:clamp(10px,1.15vw,13px);
-    letter-spacing:.26em; text-transform:uppercase;
-    color:var(--bone); margin:0;
-  }
-  .strap b{color:var(--gold); font-weight:500}
   .aside{
     font-family:var(--script); font-size:clamp(1.15rem,2.5vw,2rem);
     color:var(--green); margin:0; transform:rotate(-2.4deg);
     transform-origin:left bottom; line-height:1.15;
   }
-  .cue{
-    display:flex; align-items:center; gap:.7rem;
-    font-family:var(--mono); font-size:10px; letter-spacing:.28em;
-    text-transform:uppercase; color:var(--ash);
-  }
-  .cue i{display:block; width:52px; height:1px; background:var(--ash); transform-origin:left}
-
   /* ============ TICKER ============ */
   .band{
     position:relative; isolation:isolate;
@@ -635,9 +622,7 @@
     <div>
       <p class="aside">likkle but talawa. Small, but mighty.</p>
       <p class="hero-status"><span class="status js-status" data-open="false"><span class="status-txt">Saturdays 4&ndash;8pm</span></span></p>
-      <p class="strap" style="margin-top:1.1rem">Jamaican food &nbsp;&middot;&nbsp; Stevenage &nbsp;&middot;&nbsp; <b>Every Saturday, 4&ndash;8pm</b></p>
     </div>
-    <div class="cue"><i></i> Scroll</div>
   </div>
 </header>
 
@@ -1051,10 +1036,7 @@
        duration: 1.05, stagger: .045
      }, .2)
     .from('.hero-sub', { opacity: 0, y: 26, duration: .9 }, .85)
-    .from('.aside', { opacity: 0, y: 16, rotate: -8, duration: .8 }, 1.15)
-    .from('.strap', { opacity: 0, y: 14, duration: .7 }, 1.3)
-    .from('.cue',   { opacity: 0, duration: .6 }, 1.45)
-    .from('.cue i', { scaleX: 0, duration: .9 }, 1.45);
+    .from('.aside', { opacity: 0, y: 16, rotate: -8, duration: .8 }, 1.15);
 
   /* ---------- 3. everything below is ambient, created AFTER the pin ---------- */
 

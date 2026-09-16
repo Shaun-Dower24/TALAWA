@@ -434,37 +434,10 @@
   .sec-h .ghost{color:transparent; -webkit-text-stroke:clamp(1px,.13vw,2px) var(--gold); display:block}
   [id]{scroll-margin-top:5.25rem}
 
-  /* ============ GALLERY ============ */
-  .gal-inner{max-width:960px; margin:0 auto}
-  .gal-intro{margin-bottom:clamp(1.6rem,4vh,3rem)}
-  .gal-intro > p{color:var(--ash); font-size:1rem; margin:0 0 .4rem}
-  .gal-handle, .fact-link{
+  .fact-link{
     font-family:var(--mono); font-size:12px; letter-spacing:.16em; color:var(--gold);
     text-decoration:none; text-transform:uppercase;
     border-bottom:1px solid var(--gold); padding-bottom:2px;
-  }
-  .gal-handle{display:inline-flex; align-items:center; min-height:44px}
-  .gal-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px}
-  .gal-photo{display:block; min-width:0; color:var(--bone); text-decoration:none; cursor:zoom-in}
-  .gal-photo figure{margin:0}
-  .gal-frame{
-    display:block; aspect-ratio:4/5; overflow:hidden; background:var(--ink-2);
-    border:1px solid rgb(var(--line-rgb) / .3); border-radius:2px;
-  }
-  .gal-frame img{display:block; width:100%; height:100%; object-fit:cover}
-  /* The supplied tray is tight to its edges: show the complete photograph. */
-  .gal-frame--tray img{object-fit:contain}
-  .gal-cap{
-    display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:.4rem 1rem;
-    padding:1rem 0; border-bottom:1px solid rgb(var(--line-rgb) / .3);
-    font-family:var(--mono); font-size:12px; line-height:1.5; letter-spacing:.03em;
-  }
-  .gal-view{color:var(--gold); white-space:nowrap}
-  .gal-photo:is(:hover,:focus-visible) .gal-frame,
-  .gal-photo:is(:hover,:focus-visible) .gal-cap{border-color:var(--gold)}
-  @media (hover:hover) and (prefers-reduced-motion:no-preference){
-    .gal-frame img{transition:transform .25s ease}
-    .gal-photo:hover .gal-frame:not(.gal-frame--tray) img{transform:scale(1.02)}
   }
 
   .tbc{color:var(--scotch); font-family:var(--mono); font-size:.86em}
@@ -512,8 +485,6 @@
 
   @media (max-width:860px){
     .bar{display:flex}
-    .gal-inner{max-width:520px}
-    .gal-grid{grid-template-columns:1fr; gap:2rem}
   }
 
   /* ============ REVIEWS ============
@@ -564,42 +535,6 @@
   .status[data-open="true"]{color:var(--bone)}
   .hero-status{margin:.9rem 0 1rem}   /* the badge box used to supply this gap */
   @media (max-width:560px){ .nav .status{display:none} }
-
-  /* ============ LIGHTBOX ============ */
-  .lb{
-    position:fixed; inset:0; margin:0; border:0; padding:0; background:transparent;
-    max-width:none; max-height:none; width:100%; height:100%; height:100dvh; overflow:hidden;
-  }
-  .lb:not([open]){display:none}
-  html.lb-open{overflow:hidden}
-  .lb::backdrop{background:rgba(6,5,5,.94)}
-  .lb-stage{
-    width:100%; height:100%; display:grid; grid-template-rows:minmax(0,1fr) auto auto;
-    justify-items:center; gap:.65rem;
-    padding:4.5rem clamp(3.5rem,6vw,5rem) max(1rem,env(safe-area-inset-bottom));
-  }
-  .lb-media{min-height:0; width:100%; display:grid; place-items:center}
-  .lb-img{
-    min-height:0; max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain;
-  }
-  .lb-error{margin:0; color:var(--bone); font-size:.9rem; text-align:center; overflow:auto; max-height:100%}
-  .lb-cap{
-    margin:0; font-family:var(--mono); font-size:11px; letter-spacing:.08em;
-    color:var(--bone); text-align:center; max-width:60ch;
-  }
-  .lb-count{
-    margin:0; font-family:var(--mono); font-size:10px; letter-spacing:.2em; color:var(--ash);
-  }
-  .lb-btn{
-    position:absolute; background:rgba(10,9,8,.8); color:var(--gold); cursor:pointer;
-    border:1px solid rgb(var(--line-rgb) / .42); border-radius:2px;
-    width:44px; height:44px; display:grid; place-items:center; padding:0;
-    font-family:var(--mono); font-size:16px; line-height:1;
-  }
-  .lb-btn:hover{background:var(--gold); color:var(--ink); border-color:var(--gold)}
-  .lb-close{top:clamp(.9rem,2.5vw,1.6rem); right:clamp(.9rem,2.5vw,1.6rem)}
-  .lb-prev{left:clamp(.6rem,2vw,1.6rem);  top:50%; transform:translateY(-50%)}
-  .lb-next{right:clamp(.6rem,2vw,1.6rem); top:50%; transform:translateY(-50%)}
 
   /* ============ DOCK ============ */
   .bar-status{
@@ -673,9 +608,9 @@
   <span class="status js-status" data-open="false"><span class="status-txt">Saturdays 4&ndash;8pm</span></span>
   <div class="nav-links">
     <a href="menu/">Menu</a>
-    <a href="#gallery" data-opt>The truck</a>
+    <a href="the-truck/">The truck</a>
     <a href="find-us/">Find us</a>
-    <a class="nav-call js-call" href="tel:07841625488">Call</a>
+    <a class="nav-call js-call" data-opt href="tel:07841625488">Call</a>
   </div>
 </nav>
 
@@ -844,43 +779,6 @@
 
 <div class="band-under" aria-hidden="true"></div>
 
-<!-- ===================== GALLERY ===================== -->
-<!-- Grid composition inspired by PrebuiltUI; built with TALAWA's existing primitives.
-     https://21st.dev/@prebuiltui/components/image-gallery/image-grid-gallery -->
-<section class="sec gal" id="gallery" aria-labelledby="galleryTitle">
-  <div class="gal-inner">
-    <header>
-      <p class="sec-num">The truck</p>
-      <h2 class="sec-h" id="galleryTitle">Come <span class="ghost">Find Us</span></h2>
-      <div class="gal-intro">
-        <p>The truck. The food. Take a closer look.</p>
-        <a class="gal-handle" data-social="instagram" href="https://www.instagram.com/talawa_caribbean/" target="_blank" rel="noopener noreferrer"><span data-social-label>@talawa_caribbean</span></a>
-      </div>
-    </header>
-
-    <div class="gal-grid">
-      <a class="gal-photo" href="assets/truck.jpg" aria-labelledby="truckCue truckCaption">
-        <figure>
-          <span class="gal-frame">
-            <img src="assets/truck.jpg" width="820" height="1093" loading="lazy" decoding="async" alt="The Talawa trailer, hatch open, Jamaican flags on the counter">
-          </span>
-          <figcaption class="gal-cap"><span id="truckCaption" class="gal-cap-title">The Talawa truck</span><span class="gal-view" id="truckCue">View photo <span aria-hidden="true">&#8599;</span></span></figcaption>
-        </figure>
-      </a>
-      <a class="gal-photo" href="assets/tray.jpg" aria-labelledby="trayCue trayCaption">
-        <figure>
-          <span class="gal-frame gal-frame--tray">
-            <img src="assets/tray.jpg" width="900" height="1082" loading="lazy" decoding="async" alt="A Talawa tray: rice and peas, mac and cheese, plantain, festival, slaw and jerk chicken">
-          </span>
-          <figcaption class="gal-cap"><span id="trayCaption" class="gal-cap-title">A Talawa tray</span><span class="gal-view" id="trayCue">View photo <span aria-hidden="true">&#8599;</span></span></figcaption>
-        </figure>
-      </a>
-    </div>
-  </div>
-</section>
-
-<div class="band-under" aria-hidden="true"></div>
-
 <!-- ===================== REVIEWS (light) ===================== -->
 <section class="sec sec--light" id="reviews" aria-labelledby="reviewsTitle">
   <p class="sec-num">Reviews</p>
@@ -947,20 +845,6 @@
   <a class="b1 js-call" href="tel:07841625488">Call</a>
   <a class="b2 js-directions" href="https://www.google.com/maps/dir/?api=1&amp;destination=Man%20in%20the%20Moon%2C%20Broadwater%20Cres%2C%20Broadwater%2C%20Stevenage%2C%20SG2%208ET" target="_blank" rel="noopener">Directions</a>
 </nav>
-
-<dialog class="lb" id="lightbox" aria-label="Photo viewer" aria-describedby="lbCap">
-  <div class="lb-stage">
-    <div class="lb-media">
-      <img class="lb-img" id="lbImg" alt="">
-      <p class="lb-error" id="lbError" role="status" hidden></p>
-    </div>
-    <p class="lb-cap" id="lbCap"></p>
-    <p class="lb-count" id="lbCount" aria-live="polite" aria-atomic="true"></p>
-  </div>
-  <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Close photo viewer" autofocus>&#10005;</button>
-  <button class="lb-btn lb-prev"  id="lbPrev"  type="button" aria-label="Previous photo">&#10094;</button>
-  <button class="lb-btn lb-next"  id="lbNext"  type="button" aria-label="Next photo">&#10095;</button>
-</dialog>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -1097,71 +981,6 @@
   paintStatus();
   setInterval(paintStatus, 60000);
 
-  /* ---------- progressively enhance the real photo links ---------- */
-  var lb = document.getElementById('lightbox');
-  if (lb && typeof lb.showModal === 'function' && typeof lb.close === 'function') {
-    var lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap'),
-        lbCount = document.getElementById('lbCount'), lbPrev = document.getElementById('lbPrev'),
-        lbNext = document.getElementById('lbNext'), lbClose = document.getElementById('lbClose'),
-        lbError = document.getElementById('lbError'), items = [], cur = 0, opener = null;
-
-    document.querySelectorAll('.gal-photo').forEach(function (link) {
-      var img = link.querySelector('img');
-      var cap = link.querySelector('.gal-cap-title').textContent.trim();
-      var i = items.push({ src: link.href, alt: img.alt, cap: cap }) - 1;
-      link.setAttribute('aria-haspopup', 'dialog');
-      link.setAttribute('aria-controls', 'lightbox');
-      link.addEventListener('click', function (e) {
-        if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
-        cur = i; opener = link; render();
-        lb.showModal();
-        document.documentElement.classList.add('lb-open');
-        lbClose.focus();
-        e.preventDefault();
-      });
-    });
-
-    var render = function () {
-      var it = items[cur];
-      lbError.hidden = true;
-      lbError.textContent = '';
-      lbImg.hidden = false;
-      lbImg.alt = it.alt;
-      lbImg.src = it.src;
-      lbCap.textContent = it.cap;
-      lbCount.textContent = (cur + 1) + ' / ' + items.length;
-      lbPrev.hidden = lbNext.hidden = items.length < 2;
-    };
-    var step = function (d) { cur = (cur + d + items.length) % items.length; render(); };
-
-    lbImg.addEventListener('error', function () {
-      lbImg.hidden = true;
-      lbError.textContent = items[cur].alt + '. This photo could not load.';
-      lbError.hidden = false;
-    });
-    lbClose.addEventListener('click', function () { lb.close(); });
-    lbPrev.addEventListener('click', function () { step(-1); });
-    lbNext.addEventListener('click', function () { step(1); });
-    lb.addEventListener('click', function (e) {
-      if (e.target === lb || e.target.classList.contains('lb-stage') ||
-          e.target.classList.contains('lb-media')) lb.close();
-    });
-    lb.addEventListener('close', function () {
-      document.documentElement.classList.remove('lb-open');
-      if (opener) opener.focus({ preventScroll: true });
-    });
-    lb.addEventListener('keydown', function (e) {
-      if (!lb.open) return;
-      if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
-      if (e.key === 'ArrowLeft')  { e.preventDefault(); step(-1); }
-      if (e.key === 'Tab') {
-        var last = lbNext.hidden ? lbClose : lbNext;
-        if (e.shiftKey && document.activeElement === lbClose) { e.preventDefault(); last.focus(); }
-        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); lbClose.focus(); }
-      }
-    });
-  }
-
   if (!window.gsap || !window.ScrollTrigger) return;
 
   /* ---------- tray: Unlumen image settle + ibelick line entrance ----------
@@ -1218,7 +1037,7 @@
      depend on a CDN library and cannot be exercised in the build environment —
      if GSAP fails to load, changes shape, or throws, the page must fall back to
      a static, fully readable state rather than a frozen one. The content-critical
-     behaviour above (status, lightbox, gallery, ordering) is
+     behaviour above (status and call/directions links) is
      deliberately outside the guard. Body left un-indented to keep the diff
      reviewable. */
   try {

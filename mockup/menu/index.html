@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Keep this preview hidden from search until the site is ready to launch. -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Menu | Talawa Caribbean Food</title>
+  <meta name="description" content="Explore Talawa's Caribbean menu: curry goat, jerk chicken, sides and kids' meals. Find the truck in Stevenage every Saturday, 4–8pm or until sold out.">
+  <style>
+
+  /* ============ FONTS ============
+     Served from this site rather than Google. Three reasons, in order of how
+     much they matter:
+       1. It is the only way these fonts can be measured during development.
+          Google Fonts is unreachable from the build environment, so every
+          local render silently used a substitute ~34% narrower than Archivo —
+          which is how a clipped hero shipped with the width tests passing.
+       2. No render-blocking third-party stylesheet, and no request to Google
+          from anyone who visits.
+       3. The page stops depending on a service we do not control.
+     Latin subsets only, matching what the Google stylesheet served. Archivo
+     and Work Sans are variable fonts: one file covers both declared weights,
+     exactly as Google delivered them. */
+  @font-face{font-family:'Archivo'; font-style:normal; font-weight:500; font-stretch:125%;
+    font-display:swap; src:url('../assets/fonts/archivo-var.woff2') format('woff2')}
+  @font-face{font-family:'Archivo'; font-style:normal; font-weight:900; font-stretch:125%;
+    font-display:swap; src:url('../assets/fonts/archivo-var.woff2') format('woff2')}
+  @font-face{font-family:'Caveat Brush'; font-style:normal; font-weight:400;
+    font-display:swap; src:url('../assets/fonts/caveat-brush-400.woff2') format('woff2')}
+  @font-face{font-family:'DM Mono'; font-style:normal; font-weight:400;
+    font-display:swap; src:url('../assets/fonts/dm-mono-400.woff2') format('woff2')}
+  @font-face{font-family:'DM Mono'; font-style:normal; font-weight:500;
+    font-display:swap; src:url('../assets/fonts/dm-mono-500.woff2') format('woff2')}
+  @font-face{font-family:'Work Sans'; font-style:normal; font-weight:400;
+    font-display:swap; src:url('../assets/fonts/work-sans-var.woff2') format('woff2')}
+  @font-face{font-family:'Work Sans'; font-style:normal; font-weight:500;
+    font-display:swap; src:url('../assets/fonts/work-sans-var.woff2') format('woff2')}
+
+  :root{
+    --ink:#0A0908;
+    --ink-2:#151311;
+    --gold:#FDCB04;          /* sampled: the paint splatter and wordmark top */
+    --gold-deep:#C98A00;
+    --hot:#F7E003;           /* sampled: the bright middle of the wordmark */
+    --green:#7A9E03;         /* sampled: lime — 6.4:1 on ink, text-safe */
+    --green-deep:#1A6003;    /* sampled: leaf — 2.6:1, DECORATION ONLY */
+    --brand-grad:linear-gradient(180deg, var(--gold) 0%, var(--hot) 34%, var(--green) 72%, var(--green-deep) 100%);
+    --bone:#F2ECDF;
+    --ash:#918A7B;
+    --scotch:#E8481B;
+    --foil:#B9B7AE;
+    --line-rgb:121 130 99;   /* ash tinted 20% toward leaf green */
+
+    /* the light section. gold is 1.3:1 on paper, so the accent inverts to leaf
+       green. every value checked on the paper AND the panel that sits on it. */
+    --lite-bg:#E9DDC4;          /* warmer and deeper than bone, to soften the jolt
+                                   from black. 14.8:1 with ink */
+    --lite-panel:#DDCFAB;       /* 12.9:1 with ink */
+    --lite-accent:#1A6003;      /* 5.7:1 / 5.0:1 — the logo's leaf green */
+    --lite-muted:#544B3E;       /* 6.4:1 / 5.5:1 — darkened with the ground */
+    --lite-star:#8A5A00;        /* 4.4:1 / 3.8:1 — graphics need 3:1 */
+    --lite-warn:#96290A;        /* 6.0:1 / 5.2:1 — darkened with the ground */
+
+    --display:'Archivo','Archivo Black',Impact,sans-serif;
+    --script:'Caveat Brush','Bradley Hand',cursive;
+    --mono:'DM Mono','SFMono-Regular',Menlo,monospace;
+    --body:'Work Sans','Helvetica Neue',Arial,sans-serif;
+
+    --pad:clamp(1.25rem,4vw,4rem);
+  }
+
+  *{box-sizing:border-box}
+  :root{interpolate-size:allow-keywords}
+  /* ScrollTrigger's resize measurements require instant native scroll writes. */
+  html{scroll-behavior:auto}
+  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--bone);
+    font-family:var(--body);
+    font-size:17px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  .grain{
+    position:fixed; inset:0; z-index:60; pointer-events:none;
+    opacity:.055; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+
+
+  /* ============ NAV ============ */
+  .nav{
+    position:fixed; top:0; left:0; right:0; z-index:55;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:1rem; padding:.85rem var(--pad);
+    background:rgba(10,9,8,.9); backdrop-filter:blur(10px);
+    border-bottom:1px solid rgb(var(--line-rgb) / .2);
+    transform:translateY(-101%);
+  }
+  .nav-mark{display:flex; align-items:center; line-height:0}
+  .nav-mark img{width:38px; height:38px; border-radius:50%; display:block}
+  .nav-links{display:flex; align-items:center; gap:clamp(.9rem,2.4vw,2rem)}
+  .nav-links a{
+    font-family:var(--mono); font-size:11px; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--bone); text-decoration:none;
+    padding:.3rem 0; border-bottom:1px solid transparent;
+  }
+  .nav-links a:hover{border-bottom-color:var(--gold); color:var(--gold)}
+  .nav-links a.nav-call{
+    font-family:var(--mono); font-size:11px; letter-spacing:.18em;
+    text-transform:uppercase; background:var(--gold); color:var(--ink);
+    text-decoration:none; padding:.55rem .95rem; border-radius:2px; font-weight:500;
+    min-height:44px; display:inline-flex; align-items:center;
+  }
+  .nav-links a.nav-call:hover{background:var(--bone); border-bottom-color:transparent; color:var(--ink)}
+  @media (max-width:640px){ .nav-links a[data-opt]{display:none} }
+
+  /* ============ SHARED SECTION FURNITURE ============ */
+  .sec{padding:clamp(3.5rem,10vh,7rem) var(--pad); position:relative}
+  .sec-num{
+    font-family:var(--mono); font-size:10px; letter-spacing:.3em;
+    text-transform:uppercase; color:var(--green); margin:0 0 .8rem;
+  }
+  .sec-h{
+    font-family:var(--display); font-weight:900; text-transform:uppercase;
+    font-size:clamp(2.1rem,8.6vw,7rem); line-height:.88;
+    letter-spacing:-.024em; margin:0 0 clamp(1.6rem,4vh,3rem);
+    color:var(--bone); text-wrap:balance;
+  }
+  .sec-h .ghost{color:transparent; -webkit-text-stroke:clamp(1px,.13vw,2px) var(--gold); display:block}
+  [id]{scroll-margin-top:5.25rem}
+
+
+  /* ============ MENU ============ */
+  .menu-board{
+    max-width:1180px; margin:0 auto; background:var(--ink-2);
+    border:1px solid rgba(242,236,223,.16);
+    padding:clamp(1.25rem,4vw,3rem); position:relative;
+  }
+  .menu-board::after{
+    content:''; position:absolute; inset:0; pointer-events:none;
+    opacity:.5; mix-blend-mode:soft-light;
+    background:
+      radial-gradient(60% 50% at 12% 8%, rgba(232,72,27,.5), transparent 60%),
+      radial-gradient(50% 40% at 92% 94%, rgba(255,201,28,.35), transparent 62%);
+  }
+  .menu-note{
+    font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--gold);
+    margin:0 0 clamp(1.4rem,3vw,2.2rem); border-left:2px solid var(--gold);
+    padding-left:.8rem; line-height:1.6; position:relative; z-index:1;
+  }
+  .menu-categories{position:relative; z-index:1}
+  .menu-category + .menu-category{margin-top:clamp(1.8rem,4vw,3rem)}
+  .menu-category h2{
+    position:relative; z-index:2; align-self:start;
+    font-family:var(--display); font-weight:900; text-transform:uppercase;
+    font-size:clamp(1.8rem,3.4vw,3rem); line-height:1.1;
+    letter-spacing:-.02em; color:var(--gold); background:var(--ink-2);
+    margin:0; padding:.75rem 0; border-bottom:2px solid var(--green);
+  }
+  .menu-category dl{min-width:0; margin:0}
+  @media (min-width:861px){
+    .menu-category{
+      display:grid; grid-template-columns:minmax(0,3fr) minmax(0,7fr);
+      gap:clamp(1.8rem,4vw,3rem); align-items:start;
+      border-top:2px solid var(--green);
+    }
+    .menu-category h2{border-bottom:0}
+  }
+  /* Keep the current category below the fixed nav, within its own section.
+     Short windows use normal flow so the heading cannot crowd the dishes. */
+  @media (min-height:700px){
+    .menu-category h2{position:sticky; top:5.25rem}
+  }
+  .menu-row{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:clamp(.65rem,2vw,1.5rem); align-items:baseline; padding:.85rem 0}
+  .menu-row + .menu-row{border-top:1px solid rgba(242,236,223,.11)}
+  .menu-row dt{min-width:0; margin:0; overflow-wrap:break-word}
+  .menu-row .item{display:block; font-weight:500; color:var(--bone); font-size:clamp(1.02rem,1.6vw,1.25rem)}
+  .menu-row .with{
+    display:block; font-family:var(--mono); font-size:11px;
+    letter-spacing:.06em; color:var(--ash); margin-top:.18rem;
+  }
+  .menu-row dd{margin:0; font-family:var(--mono); font-size:1rem; color:var(--gold); font-variant-numeric:tabular-nums; white-space:nowrap}
+  .allergy{
+    position:relative; z-index:1; margin:clamp(1.8rem,4vw,3rem) 0 0;
+    padding:1.1rem 1.2rem; border:1px solid var(--scotch); color:var(--bone);
+    font-family:var(--mono); font-size:12px; letter-spacing:.05em;
+    line-height:1.7; text-transform:uppercase;
+  }
+  .allergy b{color:var(--scotch); font-weight:500}
+
+
+  /* ============ FOOTER ============ */
+  .foot{border-top:1px solid rgb(var(--line-rgb) / .24); padding:clamp(3rem,8vh,5.5rem) var(--pad) 7rem}
+  .foot-banner{width:100%; max-width:520px; height:auto; display:block; margin:0 0 clamp(2rem,5vw,3rem)}
+  .foot-top{
+    display:flex; flex-wrap:wrap; gap:2rem; align-items:flex-end;
+    justify-content:space-between; margin-bottom:clamp(2.4rem,6vw,4rem);
+  }
+  .foot-script{
+    font-family:var(--script); color:var(--green); font-size:clamp(1.4rem,4.4vw,3rem);
+    margin:0; transform:rotate(-2deg); transform-origin:left bottom; line-height:1.1;
+  }
+  .socials{display:flex; gap:1.4rem; list-style:none; margin:0; padding:0}
+  .socials a{
+    font-family:var(--mono); font-size:12px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--bone); text-decoration:none;
+    display:flex; align-items:center; gap:.5rem;
+  }
+  .socials a:hover{color:var(--gold)}
+  .socials svg{width:16px; height:16px; fill:currentColor}
+  .foot-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:2rem; padding-top:2rem; border-top:1px solid rgb(var(--line-rgb) / .2);
+  }
+  .foot-grid h2{
+    font-family:var(--mono); font-size:10px; letter-spacing:.24em;
+    text-transform:uppercase; color:var(--ash); margin:0 0 .8rem; font-weight:400;
+  }
+  .foot-grid p{margin:0; font-size:.9rem; color:var(--bone); opacity:.8; line-height:1.7}
+  .hyg{display:inline-flex; align-items:center; gap:.6rem; border:1px solid var(--green); padding:.5rem .75rem}
+  .hyg b{font-family:var(--display); font-weight:900; font-size:1.5rem; color:var(--green); line-height:1}
+  .hyg span{font-family:var(--mono); font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--ash); line-height:1.4}
+
+  /* ============ MOBILE ACTION BAR ============ */
+  .bar{position:fixed; left:0; right:0; bottom:0; z-index:58; display:none; flex-wrap:wrap; gap:1px; background:rgb(var(--line-rgb) / .3)}
+  .bar a{
+    flex:1; text-align:center; text-decoration:none; font-family:var(--mono);
+    font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+    padding:1.05rem .5rem; font-weight:500;
+  }
+  .bar .b1{background:var(--gold); color:var(--ink)}
+  .bar .b2{background:var(--ink-2); color:var(--gold)}
+
+
+  .status{
+    display:inline-block; font-family:var(--mono); font-size:10px;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--ash);
+    white-space:nowrap;
+  }
+  .status[data-open="true"]{color:var(--bone)}
+  .hero-status{margin:.9rem 0 1rem}   /* the badge box used to supply this gap */
+  @media (max-width:560px){ .nav .status{display:none} }
+
+
+  /* ============ DOCK ============ */
+  .bar-status{
+    flex:0 0 100%; display:flex; align-items:center; justify-content:center; gap:.5rem;
+    background:var(--ink-2); color:var(--ash);
+    font-family:var(--mono); font-size:10px; letter-spacing:.16em;
+    text-transform:uppercase; padding:.5rem;
+  }
+  .bar-status[data-open="true"]{color:var(--bone)}
+
+
+  .sec--light{
+    background:var(--lite-bg); color:var(--ink);
+  }
+  .sec--light .sec-num{color:var(--lite-accent)}
+  .sec--light .sec-h{color:var(--ink)}
+  .sec--light .sec-h .ghost{
+    color:transparent; -webkit-text-stroke:clamp(1px,.13vw,2px) var(--lite-accent);
+  }
+
+
+  a{color:var(--gold)}
+  :focus-visible{outline:2px solid var(--gold); outline-offset:3px}
+  .tbc{color:var(--scotch); font-family:var(--mono); font-size:.86em}
+  .nav{transform:none}
+  .nav-links a{min-height:44px; display:inline-flex; align-items:center}
+  .nav-links a[aria-current="page"]{color:var(--gold); border-bottom-color:var(--gold)}
+  .menu-page{padding-top:clamp(7rem,14vh,9rem)}
+  .menu-heading{max-width:1180px; margin:0 auto}
+  .skip-link{position:fixed; top:.5rem; left:var(--pad); z-index:80; padding:.7rem 1rem;
+    background:var(--gold); color:var(--ink); transform:translateY(-200%)}
+  .skip-link:focus{transform:none}
+  @media (max-width:860px){.bar{display:flex}}
+
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#menu">Skip to menu</a>
+<div class="grain" aria-hidden="true"></div>
+<nav class="nav" aria-label="Main">
+  <a class="nav-mark" href="../" aria-label="Talawa homepage"><img src="../assets/logo.jpg" alt="Talawa Caribbean Takeaway"></a>
+  <span class="status js-status" data-open="false"><span class="status-txt">Saturdays 4&ndash;8pm</span></span>
+  <div class="nav-links">
+    <a href="../">Home</a>
+    <a href="./" aria-current="page">Menu</a>
+    <a href="../#find">Find us</a>
+    <a class="nav-call js-call" data-opt href="tel:07841625488">Call</a>
+  </div>
+</nav>
+
+<main class="sec sec--light menu-page" id="menu" aria-labelledby="menuTitle">
+  <header class="menu-heading">
+  <p class="sec-num">The menu</p>
+  <h1 class="sec-h" id="menuTitle">What&rsquo;s<span class="ghost">Cooking</span></h1>
+  </header>
+
+  <div class="menu-board">
+    <p class="menu-note">
+      Prices to follow. The dishes are listed as they appear on the truck&rsquo;s own boards;
+      no price has been guessed at or filled in with a placeholder figure.
+    </p>
+
+    <div class="menu-categories">
+      <section class="menu-category" aria-labelledby="menu-mains">
+        <h2 id="menu-mains">Mains</h2>
+        <dl>
+          <div class="menu-row">
+            <dt><span class="item">Boneless Curry Goat</span><span class="with">Served with rice &amp; peas</span></dt>
+            <dd>&pound;&mdash;</dd>
+          </div>
+          <div class="menu-row">
+            <dt><span class="item">Boneless Jerk Chicken</span><span class="with">Served with rice &amp; peas</span></dt>
+            <dd>&pound;&mdash;</dd>
+          </div>
+          <div class="menu-row">
+            <dt><span class="item">Jerk Chicken Burger</span><span class="with">Served with slaw</span></dt>
+            <dd>&pound;&mdash;</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="menu-category" aria-labelledby="menu-sides">
+        <h2 id="menu-sides">Sides</h2>
+        <dl>
+          <div class="menu-row"><dt><span class="item">Fried Dumplings</span></dt><dd>&pound;&mdash;</dd></div>
+          <div class="menu-row"><dt><span class="item">Rice &amp; Peas</span></dt><dd>&pound;&mdash;</dd></div>
+          <div class="menu-row"><dt><span class="item">Mac &amp; Cheese</span></dt><dd>&pound;&mdash;</dd></div>
+          <div class="menu-row"><dt><span class="item">Plantain</span></dt><dd>&pound;&mdash;</dd></div>
+          <div class="menu-row"><dt><span class="item">Coleslaw</span></dt><dd>&pound;&mdash;</dd></div>
+          <div class="menu-row"><dt><span class="item">Chips</span></dt><dd>&pound;&mdash;</dd></div>
+        </dl>
+      </section>
+
+      <section class="menu-category" aria-labelledby="menu-kids">
+        <h2 id="menu-kids">Kids</h2>
+        <dl>
+          <div class="menu-row"><dt><span class="item">Chicken Nuggets &amp; Chips</span></dt><dd>&pound;&mdash;</dd></div>
+          <div class="menu-row">
+            <dt><span class="item">Boneless Jerk Chicken</span><span class="with">With rice or chips</span></dt>
+            <dd>&pound;&mdash;</dd>
+          </div>
+        </dl>
+      </section>
+    </div>
+
+    <p class="allergy"><b>Allergies &middot;</b> Please inform us of any allergies or dietary requirements when placing your order.</p>
+  </div>
+</main>
+
+<footer class="foot">
+  <img class="foot-banner" src="../assets/banner.jpg" alt="Talawa Caribbean Food">
+  <div class="foot-top">
+    <p class="foot-script">See you Saturday.</p>
+    <ul class="socials">
+      <li><a data-social="instagram" href="../#find" data-tbc><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 3.24A6.6 6.6 0 1 0 18.6 12 6.6 6.6 0 0 0 12 5.4zm0 10.89A4.29 4.29 0 1 1 16.29 12 4.29 4.29 0 0 1 12 16.29zm8.4-11.15a1.54 1.54 0 1 1-1.54-1.54 1.54 1.54 0 0 1 1.54 1.54z"/></svg>Instagram</a></li>
+      <li><a data-social="facebook" href="../#find" data-tbc><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.91h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>Facebook</a></li>
+    </ul>
+  </div>
+
+  <div class="foot-grid">
+    <div><h2>Hygiene</h2><span class="hyg"><b>5</b><span>Food hygiene<br>rating</span></span></div>
+    <div><h2>Allergies</h2><p>Please tell us about any allergies or dietary requirements when you order. Our food is prepared in a small kitchen where allergens are present.</p></div>
+    <div><h2>Trading</h2><p>Talawa Caribbean Food<br><span class="tbc">[ trading details to confirm ]</span></p></div>
+    <div><h2>Find us</h2><p>Man in the Moon<br>Broadwater Cres, Stevenage<br>SG2 8ET<br>Every Saturday, 4&ndash;8pm</p></div>
+  </div>
+</footer>
+
+<nav class="bar" aria-label="Quick actions">
+  <p class="bar-status js-status" data-open="false">
+    <span class="status-txt">Saturdays 4&ndash;8pm</span>
+  </p>
+  <a class="b1 js-call" href="tel:07841625488">Call</a>
+  <a class="b2 js-directions" href="https://www.google.com/maps/dir/?api=1&amp;destination=Man%20in%20the%20Moon%2C%20Broadwater%20Cres%2C%20Broadwater%2C%20Stevenage%2C%20SG2%208ET" target="_blank" rel="noopener">Directions</a>
+</nav>
+<script>
+(function () {
+  'use strict';
+  /* ---------- socials: fill a handle and its links go live ---------- */
+  var SOCIAL = { instagram: 'talawa_caribbean', facebook: '' };
+  var social = function (net, url) {
+    document.querySelectorAll('[data-social="' + net + '"]').forEach(function (a) {
+      if (!url) return;
+      a.href = url; a.target = '_blank'; a.rel = 'noopener';
+      a.removeAttribute('data-tbc');
+      var txt = a.querySelector('[data-social-label]');
+      if (txt) txt.textContent = '@' + SOCIAL[net];
+    });
+  };
+  social('instagram', SOCIAL.instagram ? 'https://instagram.com/' + SOCIAL.instagram : '');
+  social('facebook',  SOCIAL.facebook  ? 'https://facebook.com/'  + SOCIAL.facebook  : '');
+
+  /* ---------- placeholder links must not jump the page ---------- */
+  document.querySelectorAll('[data-tbc]').forEach(function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); });
+  });
+
+  /* ---------- open / closed, worked out in UK time ---------- */
+  function talawaStatus() {
+    var p = {};
+    new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Europe/London', weekday: 'short', hour: '2-digit', hour12: false
+    }).formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; });
+
+    var h = parseInt(p.hour, 10) % 24;          /* some locales render midnight as 24 */
+    var sat = p.weekday === 'Sat';
+    if (sat && h >= 16 && h < 20) return { open: true,  text: 'Open now til 8pm' };
+    if (sat && h < 16)            return { open: false, text: 'Opens today, 4pm' };
+    return { open: false, text: 'Opens Saturday, 4pm' };
+  }
+  function paintStatus() {
+    var st = talawaStatus();
+    document.querySelectorAll('.js-status').forEach(function (el) {
+      el.setAttribute('data-open', st.open ? 'true' : 'false');
+      el.querySelector('.status-txt').textContent = st.text;
+    });
+  }
+  paintStatus();
+  setInterval(paintStatus, 60000);
+
+
+})();
+</script>
+</body>
+</html>

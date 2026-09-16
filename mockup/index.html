@@ -432,7 +432,6 @@
     color:var(--bone); text-wrap:balance;
   }
   .sec-h .ghost{color:transparent; -webkit-text-stroke:clamp(1px,.13vw,2px) var(--gold); display:block}
-  .rule{height:1px; background:rgb(var(--line-rgb) / .22); border:0; margin:0}
   [id]{scroll-margin-top:5.25rem}
 
   /* ============ MENU ============ */
@@ -684,46 +683,6 @@
     .rev-grid:has(> .rev:nth-child(3)){grid-template-columns:repeat(3,minmax(0,1fr))}
   }
 
-  /* ============ FAQ ============ */
-  .faq-list{max-width:64rem; margin:0; border-top:1px solid rgb(var(--line-rgb) / .22)}
-  .faq-item{border-bottom:1px solid rgb(var(--line-rgb) / .22)}
-  .faq-item summary{
-    display:flex; align-items:flex-start; gap:1rem; cursor:pointer;
-    padding:clamp(1rem,2.6vw,1.45rem) 0; list-style:none;
-    font-family:var(--display); font-weight:900; text-transform:uppercase;
-    font-size:clamp(.92rem,2.1vw,1.3rem); letter-spacing:.005em;
-    color:var(--bone); line-height:1.25;
-  }
-  .faq-item summary::-webkit-details-marker{display:none}
-  .faq-item summary:hover{color:var(--gold)}
-  .faq-mark{
-    flex:0 0 auto; margin-left:auto; width:22px; height:22px; position:relative;
-    transition:transform .34s cubic-bezier(.22,1,.36,1);
-  }
-  .faq-mark::before,.faq-mark::after{
-    content:''; position:absolute; inset:50% 0 auto 0; height:2px;
-    background:var(--gold); transform:translateY(-50%);
-  }
-  .faq-mark::after{transform:translateY(-50%) rotate(90deg); transition:opacity .34s}
-  .faq-item[open] .faq-mark{transform:rotate(180deg)}
-  .faq-item[open] .faq-mark::after{opacity:0}
-  .faq-a{padding:0 0 clamp(1.1rem,2.6vw,1.6rem); max-width:62ch}
-  .faq-a p{margin:0 0 .8rem; color:var(--bone); opacity:.86}
-  .faq-a p:last-child{margin-bottom:0}
-  .faq-todo{
-    display:inline-block; font-family:var(--mono); font-size:10px;
-    letter-spacing:.16em; text-transform:uppercase; color:var(--scotch);
-    border:1px solid var(--scotch); padding:.3rem .5rem;
-  }
-  /* progressive: animates where ::details-content is supported, instant elsewhere */
-  @supports selector(::details-content){
-    .faq-item::details-content{
-      block-size:0; overflow:hidden;
-      transition:block-size .38s cubic-bezier(.22,1,.36,1), content-visibility .38s allow-discrete;
-    }
-    .faq-item[open]::details-content{block-size:auto}
-  }
-
   /* ============ OPEN / CLOSED STATUS ============ */
   /* Plain text, not a badge. The lettering matches .sec-num, .eyebrow and
      the small mono labels elsewhere on the site; it was the box and the pulsing dot
@@ -827,60 +786,6 @@
     letter-spacing:.05em; line-height:1.7; color:var(--ash);
   }
   .btn[aria-disabled="true"]{opacity:.45; cursor:not-allowed}
-
-  /* ============ MAILING LIST ============ */
-  .list-wrap{
-    display:grid; grid-template-columns:1fr 1fr;
-    gap:clamp(1.8rem,5vw,4rem); align-items:start;
-  }
-  .list-lead p{margin:0 0 1rem; color:var(--bone); opacity:.86; max-width:46ch}
-  .list-lead p:last-child{margin-bottom:0}
-  .list-form{
-    background:var(--ink-2); border:1px solid rgb(var(--line-rgb) / .28);
-    padding:clamp(1.3rem,3.4vw,2.1rem);
-  }
-  .field{display:flex; flex-direction:column; gap:.5rem; margin-bottom:1rem}
-  .field label{
-    font-family:var(--mono); font-size:10px; letter-spacing:.2em;
-    text-transform:uppercase; color:var(--ash);
-  }
-  .field input[type="email"]{
-    font-family:var(--body); font-size:1rem; color:var(--bone);
-    background:var(--ink); border:1px solid rgb(var(--line-rgb) / .4);
-    border-radius:2px; padding:.85rem .9rem; width:100%;
-  }
-  .field input[type="email"]:focus-visible{outline:2px solid var(--gold); outline-offset:2px}
-  .field input[type="email"]::placeholder{color:rgb(var(--line-rgb) / .7)}
-  .consent{
-    display:flex; gap:.7rem; align-items:flex-start; margin-bottom:1.2rem;
-    font-size:.88rem; line-height:1.6; color:var(--bone); opacity:.86;
-  }
-  .consent input{
-    flex:0 0 auto; width:18px; height:18px; margin-top:.15rem;
-    accent-color:var(--gold);
-  }
-  .list-form button{
-    font-family:var(--mono); font-size:12px; letter-spacing:.16em; font-weight:500;
-    text-transform:uppercase; cursor:pointer; width:100%;
-    background:var(--gold); color:var(--ink); border:1px solid var(--gold);
-    border-radius:2px; padding:.95rem 1.4rem;
-  }
-  .list-form button:hover{background:var(--bone); border-color:var(--bone)}
-  .list-form button[disabled]{opacity:.5; cursor:not-allowed}
-  .list-msg{
-    margin:1rem 0 0; font-family:var(--mono); font-size:11px;
-    line-height:1.7; letter-spacing:.04em; color:var(--ash); min-height:1.2em;
-  }
-  .list-msg[data-tone="warn"]{color:var(--scotch)}
-  .list-msg[data-tone="good"]{color:var(--green)}
-  .list-small{
-    margin:1.1rem 0 0; padding-top:1.1rem;
-    border-top:1px solid rgb(var(--line-rgb) / .2);
-    font-family:var(--mono); font-size:10px; line-height:1.8;
-    letter-spacing:.04em; color:var(--ash);
-  }
-  .hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden}
-  @media (max-width:860px){ .list-wrap{grid-template-columns:1fr} }
 
   /* ============ THE LIGHT SECTION ============
      Open reviews use the existing warm paper background.
@@ -1246,119 +1151,6 @@
   </div>
 </section>
 
-<hr class="rule">
-
-<!-- ===================== FAQ ===================== -->
-<section class="sec" id="faq">
-  <p class="sec-num">Before you set off</p>
-  <h2 class="sec-h">Common<span class="ghost">Questions</span></h2>
-
-  <div class="faq-list">
-    <details class="faq-item" name="faq" open>
-      <summary>When are you open?<span class="faq-mark" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p>Every Saturday, 4pm until 8pm, or until we sell out, whichever comes first. We are not open any other day.</p></div>
-    </details>
-
-    <details class="faq-item" name="faq">
-      <summary>Where do I find you?<span class="faq-mark" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p>In the car park at the Man in the Moon, Broadwater Cres, Broadwater, Stevenage SG2 8ET. Look for the trailer with the Jamaican flags on the counter.</p></div>
-    </details>
-
-    <details class="faq-item" name="faq">
-      <summary>Do you do catering or parties?<span class="faq-mark" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p>No. We are Saturdays at the Man in the Moon and nothing else. It keeps the food consistent and the queue moving.</p></div>
-    </details>
-
-    <details class="faq-item" name="faq">
-      <summary>I&rsquo;ve got an allergy. What should I do?<span class="faq-mark" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p>Tell us when you place your order and we will talk it through with you. Please inform us of any allergies or dietary requirements before you order. Our food is prepared in a small kitchen where allergens are present.</p></div>
-    </details>
-
-    <details class="faq-item" name="faq">
-      <summary>Can I order ahead?<span class="faq-mark" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p>No. Everything is cooked fresh on the day and served in the order people arrive. Come down and join the queue.</p></div>
-    </details>
-
-    <details class="faq-item" name="faq">
-      <summary>Do you take card?<span class="faq-mark" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p>Both. Card and cash are fine.</p></div>
-    </details>
-
-    <details class="faq-item" name="faq">
-      <summary>Is there anything vegetarian?<span class="faq-mark" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p>Not at the moment. The board is built around the jerk chicken and the curry goat, so there is no vegetarian main. If that changes it will be on the board first.</p></div>
-    </details>
-
-    <details class="faq-item" name="faq">
-      <summary>What time do you usually sell out?<span class="faq-mark" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p><span class="faq-todo">Answer needed</span></p><p>A rough honest answer, like &ldquo;the goat usually goes by 6&rdquo;, gets people there earlier.</p></div>
-    </details>
-
-    <details class="faq-item" name="faq">
-      <summary>Is there parking?<span class="faq-mark" aria-hidden="true"></span></summary>
-      <div class="faq-a"><p>Yes, free parking in the Man in the Moon car park, which is where you will find the trailer.</p></div>
-    </details>
-  </div>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {"@type":"Question","name":"When are you open?","acceptedAnswer":{"@type":"Answer","text":"Every Saturday, 4pm until 8pm, or until we sell out. We are not open any other day."}},
-      {"@type":"Question","name":"Where do I find you?","acceptedAnswer":{"@type":"Answer","text":"In the car park at the Man in the Moon pub."}},
-      {"@type":"Question","name":"Do you do catering or parties?","acceptedAnswer":{"@type":"Answer","text":"No. Talawa trades on Saturdays at the Man in the Moon only."}},
-      {"@type":"Question","name":"I have an allergy. What should I do?","acceptedAnswer":{"@type":"Answer","text":"Tell us when you place your order. Our food is prepared in a small kitchen where allergens are present."}}
-    ]
-  }
-  </script>
-</section>
-<hr class="rule">
-
-<!-- ===================== MAILING LIST ===================== -->
-<section class="sec" id="list">
-  <p class="sec-num">Saturday reminder</p>
-  <h2 class="sec-h">Never Miss<span class="ghost">A Saturday</span></h2>
-
-  <div class="list-wrap">
-    <div class="list-lead">
-      <p>The truck is out four hours a week. Most people who mean to come don&rsquo;t decide
-        against it. They just forget which Saturday it is.</p>
-      <p>So: one message on a Saturday morning saying we&rsquo;re on and what&rsquo;s cooking.
-        That is the whole thing. No offers, no newsletter, nothing on a Tuesday.</p>
-    </div>
-
-    <form class="list-form" id="listForm" novalidate>
-      <div class="field">
-        <label for="listEmail">Your email</label>
-        <input type="email" id="listEmail" name="email" placeholder="you@example.com"
-               autocomplete="email" required>
-      </div>
-
-      <p class="hp" aria-hidden="true">
-        <label for="listNick">Leave this empty</label>
-        <input type="text" id="listNick" name="nickname" tabindex="-1" autocomplete="off">
-      </p>
-
-      <label class="consent">
-        <input type="checkbox" id="listConsent" name="consent" required>
-        <span>Yes, Talawa can email me to say when the truck is out. One message on a
-          Saturday morning. I can unsubscribe any time.</span>
-      </label>
-
-      <button type="submit" id="listBtn">Send me the Saturday nudge</button>
-      <p class="list-msg" id="listMsg" role="status" aria-live="polite"></p>
-
-      <p class="list-small">
-        Your address is used for the Saturday message and nothing else. It is never sold or
-        passed on, and every email carries a one-click unsubscribe.
-        <span class="tbc">Privacy notice still to be written.</span>
-      </p>
-    </form>
-  </div>
-</section>
-
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1476,7 +1268,7 @@
   }
 
   /* ---------- venue enhancement ----------
-     Keep these values aligned with static visit details/actions, FAQ and JSON-LD.
+     Keep these values aligned with static visit details/actions and JSON-LD.
      The iframe URL is from Google Maps Share > Embed a map for this venue;
      verified 14 September 2026. Evidence: output/playwright/find-map-verification.md.
      A venue change also needs a newly verified embed in the static HTML. */
@@ -1522,13 +1314,6 @@
     else a.setAttribute('aria-disabled', 'true');
   });
 
-  /* ---------- Saturday mailing list ----------
-     Paste the form URL from whichever email service you use (MailerLite,
-     Buttondown, Mailchimp, Formspree) into `endpoint` and this starts working.
-     Note: the artifact preview blocks outgoing requests, so it will only
-     actually send from a real deploy. */
-  var LIST = { endpoint: '', service: '' };
-
   /* ---------- socials: fill a handle and its links go live ---------- */
   var SOCIAL = { instagram: 'talawa_caribbean', facebook: '' };
   var social = function (net, url) {
@@ -1542,54 +1327,6 @@
   };
   social('instagram', SOCIAL.instagram ? 'https://instagram.com/' + SOCIAL.instagram : '');
   social('facebook',  SOCIAL.facebook  ? 'https://facebook.com/'  + SOCIAL.facebook  : '');
-
-  var listForm = document.getElementById('listForm');
-  if (listForm) {
-    var listMsg = document.getElementById('listMsg');
-    var listBtn = document.getElementById('listBtn');
-    var say = function (text, tone) {
-      listMsg.textContent = text;
-      if (tone) listMsg.setAttribute('data-tone', tone); else listMsg.removeAttribute('data-tone');
-    };
-
-    if (!LIST.endpoint) {
-      say('Not connected yet. This needs an email service behind it before it can take sign-ups.', 'warn');
-    }
-
-    listForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var email = document.getElementById('listEmail');
-      var consent = document.getElementById('listConsent');
-
-      /* honeypot: a bot filled the hidden field — say nothing useful */
-      if (document.getElementById('listNick').value) { say('You are on the list.', 'good'); return; }
-
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
-        say('That email address does not look right.', 'warn'); email.focus(); return;
-      }
-      if (!consent.checked) {
-        say('Tick the box to say we can email you.', 'warn'); consent.focus(); return;
-      }
-      if (!LIST.endpoint) {
-        say('Nothing was sent. There is no email service connected yet. Your address has not gone anywhere.', 'warn');
-        return;
-      }
-
-      listBtn.disabled = true;
-      say('Sending…');
-      fetch(LIST.endpoint, {
-        method: 'POST', body: new FormData(listForm), headers: { Accept: 'application/json' }
-      }).then(function (r) {
-        if (!r.ok) throw new Error(r.status);
-        listForm.reset();
-        say('You are on the list. See you Saturday.', 'good');
-      }).catch(function () {
-        say('That did not go through. Try again in a moment, or send us a message instead.', 'warn');
-      }).then(function () {
-        listBtn.disabled = false;
-      });
-    });
-  }
 
   /* ---------- placeholder links must not jump the page ---------- */
   document.querySelectorAll('[data-tbc]').forEach(function (a) {
@@ -1740,7 +1477,7 @@
      depend on a CDN library and cannot be exercised in the build environment —
      if GSAP fails to load, changes shape, or throws, the page must fall back to
      a static, fully readable state rather than a frozen one. The content-critical
-     behaviour above (status, lightbox, gallery, ordering, mailing list) is
+     behaviour above (status, lightbox, gallery, ordering) is
      deliberately outside the guard. Body left un-indented to keep the diff
      reviewable. */
   try {
@@ -1792,11 +1529,6 @@
       clipPath: 'inset(0 100% 0 0)', y: 18, duration: 1.05, ease: 'power3.out',
       scrollTrigger: { trigger: h, start: 'top 86%' }
     });
-  });
-
-  gsap.from('.faq-item', {
-    opacity: 0, y: 16, duration: .6, stagger: .06, ease: 'power2.out',
-    scrollTrigger: { trigger: '.faq-list', start: 'top 85%' }
   });
 
   gsap.utils.toArray('.stat-n').forEach(function (el) {
